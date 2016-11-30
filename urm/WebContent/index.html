@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>OSI</title>
+     <link rel="stylesheet" href="app-content/css/bootstrap.min.css"/>
+    <link href="app-content/css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="app-content/css/angular-tree-widget.css" rel="stylesheet" />
+</head>
+<body ng-app="app">
+<div class="container">
+	<header>
+   <div ng-include = "'layout/header.html'"></div>
+</header>
+<nav  ng-controller="authController" ng-show="{{loggedIn}}">
+  <div ng-include = "'layout/menu.html'"></div>
+</nav>
+<article>
+ <ng-view></ng-view>
+</article>
+<footer><div ng-include = "'layout/footer.html'"></div></footer>
+</div>
+<script src="app-content/js/jquery.min.js"></script>
+	<script src="app-content/js/angular.min.js"></script>
+<script src="app-content/js/angular-route.js"></script>
+<script src="app-content/js/angular-cookies.js"></script>
+<script src="app-content/js/angular-messages.js"></script>
+	<script src="app-content/js/lodash.js"></script>
+	<script src="app-content/js/bootstrap.min.js"></script>
+	<script src="app-content/js/ui-bootstrap-tpls.js"></script>
+	<script src="app-content/js/angular-input-masks-standalone.min.js"></script>
+	<script src="app-content/js/angular-animate.min.js"></script>
+	<script src="app-content/js/angular-growl.min.js"></script>
+	<script src="app-content/js/ngDialog-0.1.6.js"></script>
+	<script src="app-content/js/angular-hotkeys.js"></script>
+	<script src="app-content/js/angular-auto-focus.js"></script>
+	<script src="app-content/js/angular-websocket.min.js"></script>
+	<script src="app-content/js/messages.js"></script>
+	<script src="app-content/js/ngMask.min.js"></script>
+	<script src="app-content/js/angular-server-time.js"></script>
+	<script src="app-content/js/angular-idle.js"></script>
+	<script src="app-content/js/ngStorage.js"></script>
+	<script src="app-content/js/angular-confirm.js"></script>
+	    <script src="app-content/js/angular-animate.min.js"></script>
+    <script src="app-content/js/angular-recursion.js"></script>
+    <script src="app-content/js/angular-tree-widget.js"></script>
+<!--  <script src="https://code.angularjs.org/1.4.2/angular.js"></script>
+<script src="https://code.angularjs.org/1.4.2/angular-route.js"></script> -->
+
+
+<script src="app.js" type="text/javascript"></script>
+<script src="login/loginController.js"></script>
+<script src="home/homeController.js"></script>
+<script src="app-services/authentication.service.js" type="text/javascript"></script>
+</body>
+</html>
