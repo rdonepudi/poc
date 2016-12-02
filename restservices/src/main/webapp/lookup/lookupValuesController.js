@@ -3,9 +3,9 @@
  
     angular
         .module('app.lookupValuesController',[])
-        .controller('lookupValuesController', homeController);
-    homeController.$inject = ['$location', '$window', 'AuthenticationService'];
-    function homeController($location, $window, AuthenticationService) {
+        .controller('lookupValuesController', lookupValuesController);
+    lookupValuesController.$inject = ['$location', '$window', 'AuthenticationService'];
+    function lookupValuesController($location, $window, AuthenticationService) {
         var vm = this;
         initController();
         vm.logout = logout;

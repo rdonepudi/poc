@@ -3,9 +3,9 @@
  
     angular
         .module('app.adminResponsibilityController',[])
-        .controller('adminResponsibilityController', homeController);
-    homeController.$inject = ['$location', '$window', 'AuthenticationService'];
-    function homeController($location, $window, AuthenticationService) {
+        .controller('adminResponsibilityController', adminResponsibilityController);
+    adminResponsibilityController.$inject = ['$location', '$window', 'AuthenticationService'];
+    function adminResponsibilityController($location, $window, AuthenticationService) {
         var vm = this;
         initController();
         vm.logout = logout;

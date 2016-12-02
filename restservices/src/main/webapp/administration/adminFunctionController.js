@@ -3,9 +3,9 @@
  
     angular
         .module('app.adminFunctionController',[])
-        .controller('adminFunctionController', homeController);
-    homeController.$inject = ['$location', '$window', 'AuthenticationService'];
-    function homeController($location, $window, AuthenticationService) {
+        .controller('adminFunctionController', adminFunctionController);
+    adminFunctionController.$inject = ['$location', '$window', 'AuthenticationService'];
+    function adminFunctionController($location, $window, AuthenticationService) {
         var vm = this;
         initController();
         vm.logout = logout;
