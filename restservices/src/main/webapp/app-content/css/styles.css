@@ -42,3 +42,7 @@ article {
     overflow: hidden;
     height: 81.5%;
 }
+
+.title {
+	text-align: center;
+}

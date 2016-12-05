@@ -7,7 +7,7 @@ var osi = angular
                         'app.adminMenuController',
                         'app.adminResponsibilityController',
                         'app.adminFunctionController',
-                        'app.adminUserController',
+                        'app.userController',
                         'app.adminMenusMenu1Controller',
                         'app.loginController',
                         'app.AuthenticationService',
@@ -46,9 +46,9 @@ var osi = angular
 	       controller: 'adminResponsibilityController',
 	       controllerAs: 'vm'
 	   })
-	   .when('/adminUser', {
-	       templateUrl: 'administration/adminUser.html', 
-	       controller: 'adminUserController',
+	   .when('/user', {
+	       templateUrl: 'administration/user/user.html', 
+	       controller: 'userController',
 	       controllerAs: 'vm'
 	   })
 	   .when('/adminMenusMenu1', {
@@ -81,7 +81,7 @@ var osi = angular
 	    			{name: "Menu", nodeId:141, url:"adminMenu"},
 		            {name: "Function", nodeId:142, url:"adminFunction"},
 		            {name: "Responsibility", nodeId:143, url:"adminResponsibility"},
-		            {name: "User", nodeId:140, url:"adminUser"},
+		            {name: "User", nodeId:140, url:"user"},
 		            {name: "Menus", nodeId:141,
 		            	children:[
 		            		{name:"Menu1",nodeId:112, url:"adminMenusMenu1"},

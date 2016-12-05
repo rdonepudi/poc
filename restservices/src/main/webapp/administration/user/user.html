@@ -1,0 +1,24 @@
+<div id="exTab2" class="container">
+	<h3 class="title">User Management</h3>
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-target="#info" data-toggle="tab">Personal Info</a></li>
+		<li><a data-target="#resp" data-toggle="tab">Responsibility</a></li>
+		<li><a data-target="#funcExcl" data-toggle="tab">Function Exclusion</a></li>
+		<li><a data-target="#oprnExcl" data-toggle="tab">Operation Exclusion</a></li>
+	</ul>
+
+	<div class="tab-content container">
+		<div class="tab-pane active" id="info">
+			<div ng-include="'administration/user/info.html'"></div>
+		</div>
+		<div class="tab-pane" id="resp">
+			<div ng-include="'administration/user/responsibility.html'"></div>
+		</div>
+		<div class="tab-pane" id="funcExcl">
+			<div ng-include="'administration/user/functionExclusion.html'"></div>
+		</div>
+		<div class="tab-pane" id="oprnExcl">
+			<div ng-include="'administration/user/operationExclusion.html'"></div>
+		</div>
+	</div>
+</div>
