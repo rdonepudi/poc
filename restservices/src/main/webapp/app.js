@@ -11,6 +11,8 @@ var osi = angular
                         'app.adminMenusMenu1Controller',
                         'app.loginController',
                         'app.AuthenticationService',
+                        'ui.bootstrap',
+                        'ui.bootstrap.datetimepicker',
                         'ngStorage'])
         .config(config)
         .run(run);

@@ -1,0 +1,22 @@
+{
+  "name": "restservices",
+  "homepage": "https://github.com/rdonepudi/poc",
+  "authors": [
+    "Pradeep Rawate <prawate@nisum.com>"
+  ],
+  "description": "POC",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src/main/webapp/bower_components"
+  ],
+  "dependencies": {
+    "angular-ui-bootstrap": "^2.3.0",
+    "bootstrap-ui-datetime-picker": "^2.4.3"
+  }
+}
