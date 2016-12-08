@@ -12,9 +12,10 @@ var osi = angular
                         'app.loginController',
                         'app.AuthenticationService',
                         'app.adminResponsibilityService',
+                        'app.AdminMenuService',
                         'ui.bootstrap',
                         'ui.bootstrap.datetimepicker',
-                        'ngStorage'])
+                        'ngStorage','ngResource'])
         .config(config)
         .run(run);
 	function config($routeProvider) {
