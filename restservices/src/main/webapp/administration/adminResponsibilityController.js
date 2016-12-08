@@ -4,8 +4,8 @@
     angular
         .module('app.adminResponsibilityController',[])
         .controller('adminResponsibilityController', adminResponsibilityController);
-    adminResponsibilityController.$inject = ['$location', '$window', 'AuthenticationService','adminResponsibilityService'];
-    function adminResponsibilityController($location, $window, AuthenticationService,adminResponsibilityService) {
+    adminResponsibilityController.$inject = ['$location', '$window', 'AuthenticationService','adminResponsibilityService','AdminMenuService'];
+    function adminResponsibilityController($location, $window, AuthenticationService,adminResponsibilityService,AdminMenuService) {
         var vm = this;
         initController();
         vm.logout = logout;
@@ -15,7 +15,16 @@
         vm.datePickerOpenStatus = {};
     	vm.datePickerOpenStatus.sdate = false;
     	vm.datePickerOpenStatus.edate = false;
+    	 vm.loadAll = loadAll;
 
+         loadAll();
+
+         function loadAll() {
+        	 AdminMenuService.query(function(result) {
+            	 console.log(result);
+            	 vm.allMenu= result;
+             });
+         }
         function logout() {
         	console.log('adminResponsibilityController');
             // reset login status

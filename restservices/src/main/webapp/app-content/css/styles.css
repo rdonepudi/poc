@@ -43,18 +43,18 @@ header {
     text-align: center;
     padding-bottom: 4px;
 }
-/* .row{
-	width:99%;
-	padding:20px;
-}
-#form{
-	margin-top:20px;
+
+#responsibilityForm{
+	margin-top:80px;
 	width:650px;
 	padding:20px;
 	margin-left: 200px;
 	border: solid 1px black;
 	 box-shadow: 3px 3px 1px grey;
-} */
+} 
+#resField{
+	padding:20px;
+}
 nav {
     float: left;
     max-width: 160px;

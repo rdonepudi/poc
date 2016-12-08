@@ -1,7 +1,7 @@
 <div class="container">
-	<form id="form">
+	<form id="responsibilityForm">
 
-		<div class="row">
+		<div class="row" id="resField">
 			<div class="form_group" style="float: left">
 				<label>Name</label> <input type="text" name="name" id="field_name"
 					ng-model="vm.responsibility.respName" required />
@@ -16,16 +16,20 @@
 					style="margin-left: 7px"> </textarea>
 			</div>
 		</div>
-		<div class="row">
-			<div class="form_group" style="float: left">
-				<label>Menu</label> <input type="text" name="menu" id="field_menu"
-					ng-model="vm.osiMenus" />
+		<div class="row" id="resField">
+			<div class="form_group" >
+			<label class="col-lg-4 col-form-label">Menu</label>
+			<select class="form-control"  id="field_menu" name="menu" ng-model="vm.responsibility.osiMenu"
+			 ng-options="menu as menu.menuName for menu in vm.allMenu" required>
+                <option value=""></option>
+            </select>
+			
 
 			</div>
 
 
 		</div>
-		<div class="row">
+		<div class="row" id="resField">
 			<div class="col-md-6">
 				<div class="form-group">
 					<label class="control-label" for="field_sdate">Start date</label>
@@ -59,7 +63,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" id="resField">
 			<div style="float: right">
 				<button type="submit" ng-disabled="editForm.$invalid || vm.isSaving"
 					class="btn btn-primary" ng-click="vm.save()">

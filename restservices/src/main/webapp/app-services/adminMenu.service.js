@@ -9,6 +9,13 @@
      var resourceUrl =  'api/osi-menus';
 
           return $resource(resourceUrl, {}, {
+        	  'query': { method: 'GET', isArray: true},
+              'get': {
+                  method: 'GET',
+                  transformResponse: function (data) {
+                      return data;
+                  }
+              },
     'save': {
              method: 'POST',
              transformRequest: function (data) {
