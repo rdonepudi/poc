@@ -93,3 +93,9 @@ article {
 textarea {
     resize: none;
 }
+
+.panel{
+	padding-top:1%;
+	padding-bottom:2%;
+	border:1px solid black !important;
+}

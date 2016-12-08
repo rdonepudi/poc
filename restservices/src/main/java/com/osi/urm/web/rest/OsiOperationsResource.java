@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.osi.urm.domain.OsiOperations;
 import com.osi.urm.service.OsiOperationsService;
 import com.osi.urm.service.dto.OsiOperationsDTO;
 import com.osi.urm.web.rest.util.PaginationUtil;
@@ -85,11 +86,14 @@ public class OsiOperationsResource {
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/osi-operataions")
-    public ResponseEntity<List<OsiOperationsDTO>> getAllOsiOperataions(Pageable pageable)
+    public ResponseEntity<List<OsiOperations>> getAllOsiOperataions(Pageable pageable)
         throws URISyntaxException {
+    	System.out.println("call........................................................");
         log.debug("REST request to get a page of OsiOperataions");
-        Page<OsiOperationsDTO> page = osiOperationsService.findAll(pageable);
+        Page<OsiOperations> page = osiOperationsService.findAll(pageable);
+        System.out.println("page : "+page.getContent());
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/osi-operataions");
+        System.out.println("headers : "+headers);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
