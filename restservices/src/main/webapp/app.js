@@ -15,7 +15,7 @@
                         'app.DateUtils',
                         'ui.bootstrap',
                         'ui.bootstrap.datetimepicker',
-                        'ngStorage','ngResource'])
+                        'ngStorage'])
         .config(config)
         .run(run);
 	function config($routeProvider) {
