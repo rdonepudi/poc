@@ -50,7 +50,7 @@ public class OsiMenuResource {
     @PostMapping("/osi-menus")
     public ResponseEntity<OsiMenusDTO> createOsiMenu(@Valid @RequestBody OsiMenusDTO osiMenusDTO) throws URISyntaxException {
         log.debug("REST request to save OsiMenu : {}", osiMenusDTO);
-        System.out.println("osiMenusDTO: "+osiMenusDTO.getMenuName());
+       // System.out.println("osiMenusDTO: "+osiMenusDTO.getMenuName());
         if (osiMenusDTO.getId() != null) {
             return ResponseEntity.badRequest()
             		.body(null);

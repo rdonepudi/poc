@@ -18,6 +18,7 @@
                         'ngStorage',
                         'app.menuEntriesService',
                         'app.menuEntriesController'])
+
         .config(config)
         .run(run);
 	function config($routeProvider) {
@@ -38,7 +39,7 @@
 	       controllerAs: 'vm'
 	   })
 	   .when('/adminMenu', {
-	       templateUrl: 'administration/adminMenu.html', 
+	       templateUrl: 'administration/menu/adminMenu.html', 
 	       controller: 'adminMenuController',
 	       controllerAs: 'vm'
 	   })
@@ -81,7 +82,8 @@
 	       templateUrl: 'administration/menu-entries/menuEntries.html', 
 	       controller: 'menuEntriesController',
 	       controllerAs: 'vm'
-	   })	}
+	   })
+	}
 	osi.controller('authController', function ($location, $rootScope, $scope) {
 
 	    $scope.loggedIn = $rootScope.globals.currentUser;
