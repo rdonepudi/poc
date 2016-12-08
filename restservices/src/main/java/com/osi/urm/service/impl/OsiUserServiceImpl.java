@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.osi.urm.domain.OsiUser;
 import com.osi.urm.repository.OsiUserRepository;
 import com.osi.urm.service.OsiUserService;
-import com.osi.urm.service.dto.OsiUserDTO;
 
 /**
  * Service Implementation for managing OsiUser.
@@ -28,14 +27,14 @@ public class OsiUserServiceImpl implements OsiUserService{
     /**
      * Save a osiUser.
      *
-     * @param osiUserDTO the entity to save
+     * @param OsiUser the entity to save
      * @return the persisted entity
      */
-    public OsiUserDTO save(OsiUserDTO osiUserDTO) {
-        log.debug("Request to save OsiUser : {}", osiUserDTO);
-        /*OsiUser osiUser = osiUserMapper.osiUserDTOToOsiUser(osiUserDTO);
+    public OsiUser save(OsiUser OsiUser) {
+        log.debug("Request to save OsiUser : {}", OsiUser);
+        /*OsiUser osiUser = osiUserMapper.OsiUserToOsiUser(OsiUser);
         osiUser = osiUserRepository.save(osiUser);
-        OsiUserDTO result = osiUserMapper.osiUserToOsiUserDTO(osiUser);
+        OsiUser result = osiUserMapper.osiUserToOsiUser(osiUser);
         return result;*/
         return null;
     }
@@ -47,10 +46,10 @@ public class OsiUserServiceImpl implements OsiUserService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<OsiUserDTO> findAll(Pageable pageable) {
+    public Page<OsiUser> findAll(Pageable pageable) {
         log.debug("Request to get all OsiUsers");
         /*Page<OsiUser> result = osiUserRepository.findAll(pageable);
-        return result.map(osiUser -> osiUserMapper.osiUserToOsiUserDTO(osiUser));*/
+        return result.map(osiUser -> osiUserMapper.osiUserToOsiUser(osiUser));*/
         return null;
     }
 
@@ -61,11 +60,11 @@ public class OsiUserServiceImpl implements OsiUserService{
      *  @return the entity
      */
     @Transactional(readOnly = true) 
-    public OsiUserDTO findOne(Long id) {
+    public OsiUser findOne(Long id) {
         log.debug("Request to get OsiUser : {}", id);
         /*OsiUser osiUser = osiUserRepository.findOne(id);
-        OsiUserDTO osiUserDTO = osiUserMapper.osiUserToOsiUserDTO(osiUser);
-        return osiUserDTO;*/
+        OsiUser OsiUser = osiUserMapper.osiUserToOsiUser(osiUser);
+        return OsiUser;*/
         return null;
     }
 

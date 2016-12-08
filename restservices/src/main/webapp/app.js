@@ -1,18 +1,18 @@
-﻿/// <reference path="angular.min.js" />
-/// <reference path="angular-route.min.js" />
- 
-var osi = angular
+﻿var osi = angular
         .module('app', ['ngRoute', 'ngCookies', 'ngMessages','TreeWidget','ngResource',
                         'app.homeController',
                         'app.adminMenuController',
                         'app.adminResponsibilityController',
                         'app.adminFunctionController',
                         'app.userController',
+                        'app.infoController',
+                        'app.infoService',
                         'app.adminMenusMenu1Controller',
                         'app.loginController',
                         'app.AuthenticationService',
                         'app.adminResponsibilityService',
                         'app.AdminMenuService',
+                        'app.DateUtils',
                         'ui.bootstrap',
                         'ui.bootstrap.datetimepicker',
                         'ngStorage','ngResource'])

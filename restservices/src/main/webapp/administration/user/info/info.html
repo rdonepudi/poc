@@ -1,20 +1,19 @@
-<div class="innerContainer">
-	<form name="editForm" role="form" novalidate ng-submit=""
-		show-validation>
+<div ng-controller="infoController as inf" class="innerContainer">
+	<form name="editForm" role="form" novalidate ng-submit="inf.save()" show-validation>
 		<div class="row">
 			<div class="col-md-9">
 				<div class="">
 					<jhi-alert-error></jhi-alert-error>
-					<div class="form-group" ng-show="vm.info.id">
+					<div class="form-group" ng-show="inf.user.info.id">
 						<label for="id">ID</label> <input type="text" class="form-control"
-							id="id" name="id" ng-model="vm.info.id" readonly />
+							id="id" name="id" ng-model="inf.user.info.id" readonly />
 					</div>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="control-label" for="field_username">Username</label>
 								<input type="text" class="form-control" name="username"
-									id="field_username" ng-model="vm.info.username" required />
+									id="field_username" ng-model="inf.user.info.username" required />
 								<div ng-show="editForm.username.$invalid">
 									<p class="help-block"
 										ng-show="editForm.username.$error.required">This field is
@@ -26,7 +25,7 @@
 							<div class="form-group">
 								<label class="control-label" for="field_password">Password</label>
 								<input type="text" class="form-control" name="password"
-									id="field_password" ng-model="vm.info.password" required />
+									id="field_password" ng-model="inf.user.info.password" required />
 								<div ng-show="editForm.password.$invalid">
 									<p class="help-block"
 										ng-show="editForm.password.$error.required">This field is
@@ -40,7 +39,7 @@
 							<div class="form-group">
 								<label class="control-label" for="field_confirm">Confirm</label>
 								<input type="text" class="form-control" name="confirm"
-									id="field_confirm" ng-model="vm.info.confirm" required />
+									id="field_confirm" ng-model="inf.user.info.confirm" required />
 								<div ng-show="editForm.confirm.$invalid">
 									<p class="help-block"
 										ng-show="editForm.confirm.$error.required">This field is
@@ -52,7 +51,7 @@
 							<div class="form-group">
 								<label class="control-label" for="field_empNo">Emp No</label> <input
 									type="text" class="form-control" name="empNo" id="field_empNo"
-									ng-model="vm.info.empNo" required />
+									ng-model="inf.user.info.empNo" required />
 								<div ng-show="editForm.empNo.$invalid">
 									<p class="help-block" ng-show="editForm.empNo.$error.required">
 										This field is required.</p>
@@ -63,9 +62,9 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label" for="field_fname">Fname</label> <input
+								<label class="control-label" for="field_fname">First Name</label> <input
 									type="text" class="form-control" name="fname" id="field_fname"
-									ng-model="vm.info.fname" required />
+									ng-model="inf.user.info.firstName" required />
 								<div ng-show="editForm.fname.$invalid">
 									<p class="help-block" ng-show="editForm.fname.$error.required">
 										This field is required.</p>
@@ -74,9 +73,9 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label" for="field_lname">Lname</label> <input
+								<label class="control-label" for="field_lname">Last Name</label> <input
 									type="text" class="form-control" name="lname" id="field_lname"
-									ng-model="vm.info.lname" required />
+									ng-model="inf.user.info.lastName" required />
 								<div ng-show="editForm.lname.$invalid">
 									<p class="help-block" ng-show="editForm.lname.$error.required">
 										This field is required.</p>
@@ -89,7 +88,7 @@
 							<div class="form-group">
 								<label class="control-label" for="field_mobile">Mobile</label> <input
 									type="text" class="form-control" name="mobile"
-									id="field_mobile" ng-model="vm.info.mobile" required />
+									id="field_mobile" ng-model="inf.user.info.mobileNumber" required />
 								<div ng-show="editForm.mobile.$invalid">
 									<p class="help-block" ng-show="editForm.mobile.$error.required">
 										This field is required.</p>
@@ -98,15 +97,14 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label" for="field_emailId">Email
+								<label class="control-label" for="field_emailId">Email Id
 									Id</label> <input type="text" class="form-control" name="emailId"
-									id="field_emailId" ng-model="vm.info.emailId"
+									id="field_emailId" ng-model="inf.user.info.emailId"
 									ng-pattern="/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/" />
 								<div ng-show="editForm.emailId.$invalid">
 									<p class="help-block" ng-show="editForm.emailId.$error.pattern"
 										translate-value-pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
-										This field should follow pattern
-										"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$".</p>
+										Enter Valid Email Id</p>
 								</div>
 							</div>
 						</div>
@@ -114,14 +112,14 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label" for="field_sdate">Sdate</label>
+								<label class="control-label" for="field_sdate">Start Date</label>
 								<div class="input-group">
 									<input id="field_sdate" type="text" class="form-control"
 										name="sdate" uib-datepicker-popup="yyyy-MM-dd"
-										ng-model="vm.sdate" is-open="vm.datePickerOpenStatus.sdate" />
+										ng-model="inf.user.info.startDate" is-open="inf.datePickerOpenStatus.sdate" />
 									<span class="input-group-btn">
 										<button type="button" class="btn btn-default"
-											ng-click="vm.openCalendar('sdate')">
+											ng-click="inf.openCalendar('sdate')">
 											<i class="glyphicon glyphicon-calendar"></i>
 										</button>
 									</span>
@@ -130,14 +128,14 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label" for="field_edate">Edate</label>
+								<label class="control-label" for="field_edate">End Date</label>
 								<div class="input-group">
 									<input id="field_edate" type="text" class="form-control"
 										name="edate" uib-datepicker-popup="yyyy-MM-dd"
-										ng-model="vm.edate" is-open="vm.datePickerOpenStatus.edate" />
+										ng-model="inf.user.info.endDate" is-open="inf.datePickerOpenStatus.edate" />
 									<span class="input-group-btn">
 										<button type="button" class="btn btn-default"
-											ng-click="vm.openCalendar('edate')">
+											ng-click="inf.openCalendar('edate')">
 											<i class="glyphicon glyphicon-calendar"></i>
 										</button>
 									</span>
@@ -148,20 +146,34 @@
 				</div>
 			</div>
 
+			<div class="col-md-3">
+				<div class="card" style="text-align: center;">
+					<img class="card-img-top" alt="my Image" style="width: 90%"
+					src="https://s-media-cache-ak0.pinimg.com/564x/c0/de/d8/c0ded861585e2d3714601cc028f05813.jpg">
+					<div class="card-block">
+						<h4 class="card-title">Ganpatrao Apte</h4>
+						<p class="card-text"></p>
+						<button ng-click="inf.clr()" class="btn btn-primary">Update Photo</button>
+					</div>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-4 col-md-offset-8">
-					<button type="button" class="btn btn-default" data-dismiss="modal"
-						ng-click="vm.clear()">
-						<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+					<button
+						ng-disabled="editForm.$invalid || inf.isSaving"
+						class="btn btn-primary">
+						<span>Save & Next</span>&nbsp;&nbsp;<span class="glyphicon glyphicon-play"></span>
 					</button>
 					<button type="submit"
-						ng-disabled="editForm.$invalid || vm.isSaving"
+						ng-disabled="editForm.$invalid || inf.isSaving"
 						class="btn btn-primary">
-						<span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+						<span>Submit</span>&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>
+					</button>
+					<button type="button" class="btn btn-default" ng-click="inf.clear()">
+						<span>Cancel</span>&nbsp;&nbsp;<span class="glyphicon glyphicon-ban-circle"></span>
 					</button>
 				</div>
 			</div>
-			<div class="col-md-3"></div>
 		</div>
 	</form>
 </div>
