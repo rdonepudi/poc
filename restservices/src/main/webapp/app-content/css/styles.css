@@ -5,37 +5,12 @@ body{
 div.container {
     width: 99.85%;
     border: 0px solid gray;
-    /* height: 600px; */
+    min-height: 600px;
     padding-left: 0px !important;
     padding-right: 0px !important;
 }
 
-.innerContainer {
-    margin: 2%;
-}
-
-html {
-	height: 100%;
-	box-sizing: border-box;
-}
-
-body {
-	position: relative;
-	margin: 0;
-	/* min-height: 100%; */
-}
-
-footer {
-	width: 99.95%;
-	position: absolute;
-	bottom: -5%;
-	padding: 0.6rem;
-	background-color: #01538D;
-	color: white;
-	text-align: center;
-}
-
-header {
+header, footer {
     padding-top: 1em;
     color: white;
     background-color: #01538D;
@@ -43,7 +18,18 @@ header {
     text-align: center;
     padding-bottom: 4px;
 }
-
+.row{
+	width:99%;
+	padding:20px;
+}
+#form{
+	margin-top:20px;
+	width:650px;
+	padding:20px;
+	margin-left: 200px;
+	border: solid 1px black;
+	 box-shadow: 3px 3px 1px grey;
+}
 nav {
     float: left;
     max-width: 160px;
@@ -66,8 +52,4 @@ article {
     padding-left: 1em;
     overflow: hidden;
     height: 81.5%;
-}
-
-.title {
-	text-align: center;
 }

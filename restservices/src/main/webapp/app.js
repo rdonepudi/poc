@@ -2,7 +2,7 @@
 /// <reference path="angular-route.min.js" />
  
 var osi = angular
-        .module('app', ['ngRoute', 'ngCookies', 'ngMessages','TreeWidget',
+        .module('app', ['ngRoute', 'ngCookies', 'ngMessages','TreeWidget','ngResource',
                         'app.homeController',
                         'app.adminMenuController',
                         'app.adminResponsibilityController',
@@ -11,6 +11,7 @@ var osi = angular
                         'app.adminMenusMenu1Controller',
                         'app.loginController',
                         'app.AuthenticationService',
+                        'app.adminResponsibilityService',
                         'ui.bootstrap',
                         'ui.bootstrap.datetimepicker',
                         'ngStorage'])

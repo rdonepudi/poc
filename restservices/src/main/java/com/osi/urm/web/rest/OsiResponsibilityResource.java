@@ -47,8 +47,10 @@ public class OsiResponsibilityResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/osi-responsibilities")
-    public ResponseEntity<OsiResponsibilitiesDTO> createOsiResponsibility(@Valid @RequestBody OsiResponsibilitiesDTO osiResponsibilitiesDTO) throws URISyntaxException {
-        log.debug("REST request to save OsiResponsibility : {}", osiResponsibilitiesDTO);
+    public ResponseEntity<OsiResponsibilitiesDTO> createOsiResponsibility(@RequestBody OsiResponsibilitiesDTO osiResponsibilitiesDTO) throws URISyntaxException {
+    	System.out.println("call");
+    	System.out.println(osiResponsibilitiesDTO);
+    	log.debug("REST request to save OsiResponsibility : {}", osiResponsibilitiesDTO);
         if (osiResponsibilitiesDTO.getId() != null) {
             return ResponseEntity.badRequest()
             		.body(null);
