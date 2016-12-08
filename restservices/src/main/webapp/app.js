@@ -16,6 +16,7 @@
                         'ui.bootstrap',
                         'ui.bootstrap.datetimepicker',
                         'ngStorage',
+                        'app.menuEntriesService',
                         'app.menuEntriesController'])
         .config(config)
         .run(run);
