@@ -15,7 +15,8 @@
                         'app.DateUtils',
                         'ui.bootstrap',
                         'ui.bootstrap.datetimepicker',
-                        'ngStorage'])
+                        'ngStorage',
+                        'app.menuEntriesController'])
         .config(config)
         .run(run);
 	function config($routeProvider) {
@@ -74,6 +75,11 @@
 	       templateUrl: 'lookup/lookupValues.html', 
 	       controller: 'lookupValuesController',
 	       controllerAs: 'vm'
+	   })
+	   .when('/menuEntries', {
+	       templateUrl: 'administration/menu-entries/menuEntries.html', 
+	       controller: 'menuEntriesController',
+	       controllerAs: 'vm'
 	   })	}
 	osi.controller('authController', function ($location, $rootScope, $scope) {
 
@@ -102,6 +108,9 @@
 	        		]
 	    },
 	    {name: "Logout", nodeId:120, url:"logout"
+	},
+	{
+		name: "createMenuEntries", nodeId:121, url:"menuEntries"
 	}];
 	    $scope.basicOptions = {
 	    	    showIcon: true,
