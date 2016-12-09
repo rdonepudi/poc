@@ -25,7 +25,6 @@
             'update': {
                 method: 'PUT',
                 transformRequest: function (data) {
-                	console.log('in service PUT: ',JSON.stringify(data));
                     var copy = angular.copy(data);
                     copy.sdate = DateUtils.convertLocalDateToServer(copy.sdate);
                     copy.edate = DateUtils.convertLocalDateToServer(copy.edate);
@@ -35,11 +34,9 @@
             'save': {
                 method: 'POST',
                 transformRequest: function (data) {
-                	console.log('in service POST: ',JSON.stringify(data));
                     var copy = angular.copy(data);
                     copy.sdate = DateUtils.convertLocalDateToServer(copy.sdate);
                     copy.edate = DateUtils.convertLocalDateToServer(copy.edate);
-                    console.log(angular.toJson(copy));
                     return angular.toJson(copy);
                 }
             }

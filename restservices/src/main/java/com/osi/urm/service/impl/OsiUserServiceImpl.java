@@ -1,5 +1,7 @@
 package com.osi.urm.service.impl;
 
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.osi.urm.domain.OsiMenus;
 import com.osi.urm.domain.OsiUser;
 import com.osi.urm.repository.OsiUserRepository;
 import com.osi.urm.service.OsiUserService;
@@ -30,13 +33,19 @@ public class OsiUserServiceImpl implements OsiUserService{
      * @param OsiUser the entity to save
      * @return the persisted entity
      */
-    public OsiUser save(OsiUser OsiUser) {
-        log.debug("Request to save OsiUser : {}", OsiUser);
-        /*OsiUser osiUser = osiUserMapper.OsiUserToOsiUser(OsiUser);
-        osiUser = osiUserRepository.save(osiUser);
-        OsiUser result = osiUserMapper.osiUserToOsiUser(osiUser);
-        return result;*/
-        return null;
+    public OsiUser save(OsiUser osiUser) {
+        log.debug("Request to save OsiUser : {}", osiUser);
+        osiUser.setFullName(osiUser.getFirstName()+" "+osiUser.getLastName());
+        if(osiUser.getId() != null) {
+        	osiUser.setId(osiUser.getId());
+        	osiUser.setUpdatedBy(osiUser.getUpdatedBy());
+        	osiUser.setUpdatedDate(new Date());
+        	return osiUserRepository.updateUser(osiUser);
+        }else{
+        	osiUser.setCreatedBy(osiUser.getCreatedBy());
+        	osiUser.setCreatedDate(new Date());
+        	return osiUserRepository.save(osiUser);
+        }
     }
 
     /**
