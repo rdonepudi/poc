@@ -111,3 +111,8 @@ textarea {
     box-shadow: 3px 3px 1px grey;
         padding:40px 0px 50px 0px;
 }
+
+.minusIcon{    
+	font-size: 25px;
+    margin-top: 5px;
+}
