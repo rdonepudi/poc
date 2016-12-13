@@ -2,6 +2,7 @@ package com.osi.urm.web.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -9,9 +10,6 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,7 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.osi.urm.domain.OsiUser;
 import com.osi.urm.service.OsiUserService;
-import com.osi.urm.web.rest.util.PaginationUtil;
+import com.osi.urm.service.dto.OsiUserDTO;
+import com.osi.urm.service.mapper.OsiUserMapper;
 
 /**
  * REST controller for managing OsiUser.
@@ -38,6 +37,11 @@ public class OsiUserResource {
         
     @Autowired
     private OsiUserService osiUserService;
+    
+    /*@Autowired
+    private OsiUserMapper osiUserMapper;*/
+    
+//    OsiUserMapper osiUserMapper = Mappers.getMapper(OsiUserMapper.class);
 
     /**
      * POST  /osi-users : Create a new osiUser.
@@ -86,14 +90,26 @@ public class OsiUserResource {
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/osi-users")
-    public ResponseEntity<List<OsiUser>> getAllOsiUsers(Pageable pageable)
+    public ResponseEntity<List<OsiUserDTO>> getAllOsiUsers()
         throws URISyntaxException {
         log.debug("REST request to get a page of OsiUsers");
-        Page<OsiUser> page = osiUserService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/osi-users");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        List<OsiUser> users = osiUserService.findAll();
+//        List<OsiUserDTO> usersDTO = osiUserMapper.osiUserListToOsiUserDTOList(users);
+        List<OsiUserDTO> usersDTO = new ArrayList<OsiUserDTO>();
+        for (OsiUser osiUser : users) {
+        	OsiUserDTO userDto = new OsiUserDTO();
+        	userDto.setFirstName(osiUser.getFirstName());
+        	usersDTO.add(userDto);
+		}
+        return new ResponseEntity<List<OsiUserDTO>>(usersDTO, HttpStatus.OK);
     }
-
+  /*public ResponseEntity<List<OsiUser>> getAllOsiUsers(Pageable pageable)
+            throws URISyntaxException {
+            log.debug("REST request to get a page of OsiUsers");
+            Page<OsiUser> page = osiUserService.findAll(pageable);
+            HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/osi-users");
+            return new ResponseEntity<List<OsiUser>>(page.getContent(), headers, HttpStatus.OK);
+        }*/
     /**
      * GET  /osi-users/:id : get the "id" osiUser.
      *
@@ -103,13 +119,17 @@ public class OsiUserResource {
     @GetMapping("/osi-users/{id}")
     public ResponseEntity<OsiUser> getOsiUser(@PathVariable Long id) {
         log.debug("REST request to get OsiUser : {}", id);
-        OsiUser OsiUser = osiUserService.findOne(id);
+        OsiUser result = osiUserService.findOne(id);
+        if(result != null) {
+        	return new ResponseEntity<OsiUser>(result, HttpStatus.OK);
+        } else {
+        	return new ResponseEntity<OsiUser>(result, HttpStatus.NOT_FOUND);
+        }
        /* return Optional.ofNullable(OsiUser)
             .map(result -> new ResponseEntity<>(
                 result,
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));*/
-        return null;
     }
 
     /**

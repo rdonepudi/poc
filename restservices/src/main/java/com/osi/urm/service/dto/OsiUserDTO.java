@@ -9,6 +9,7 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+@SuppressWarnings("serial")
 @JsonInclude(Include.NON_EMPTY)
 public class OsiUserDTO implements java.io.Serializable {
 

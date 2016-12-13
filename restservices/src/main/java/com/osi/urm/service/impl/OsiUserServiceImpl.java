@@ -1,16 +1,14 @@
 package com.osi.urm.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.osi.urm.domain.OsiMenus;
 import com.osi.urm.domain.OsiUser;
 import com.osi.urm.repository.OsiUserRepository;
 import com.osi.urm.service.OsiUserService;
@@ -55,11 +53,10 @@ public class OsiUserServiceImpl implements OsiUserService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<OsiUser> findAll(Pageable pageable) {
+    public List<OsiUser> findAll() {
         log.debug("Request to get all OsiUsers");
-        /*Page<OsiUser> result = osiUserRepository.findAll(pageable);
-        return result.map(osiUser -> osiUserMapper.osiUserToOsiUser(osiUser));*/
-        return null;
+        List<OsiUser> result = osiUserRepository.findAll();
+        return result;
     }
 
     /**

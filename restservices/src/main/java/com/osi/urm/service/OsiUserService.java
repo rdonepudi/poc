@@ -1,7 +1,6 @@
 package com.osi.urm.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.List;
 
 import com.osi.urm.domain.OsiUser;
 
@@ -24,7 +23,7 @@ public interface OsiUserService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<OsiUser> findAll(Pageable pageable);
+    List<OsiUser> findAll();
 
     /**
      *  Get the "id" osiUser.
