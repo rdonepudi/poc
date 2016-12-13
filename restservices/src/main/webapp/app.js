@@ -47,7 +47,7 @@
 	       controllerAs: 'vm'
 	   })
 	    .when('/adminResponsibility', {
-	       templateUrl: 'administration/adminResponsibility.html', 
+	       templateUrl: 'administration/responsibility/adminResponsibility.html', 
 	       controller: 'adminResponsibilityController',
 	       controllerAs: 'vm'
 	   })

@@ -3,6 +3,7 @@ package com.osi.urm.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.osi.urm.domain.OsiResponsibilities;
 import com.osi.urm.service.dto.OsiResponsibilitiesDTO;
 
 /**
@@ -13,10 +14,10 @@ public interface OsiResponsibilityService {
     /**
      * Save a osiResponsibility.
      *
-     * @param osiResponsibilityDTO the entity to save
+     * @param osiResponsibilities the entity to save
      * @return the persisted entity
      */
-    OsiResponsibilitiesDTO save(OsiResponsibilitiesDTO osiResponsibilityDTO);
+    OsiResponsibilities save(OsiResponsibilities osiResponsibilities);
 
     /**
      *  Get all the osiResponsibilities.

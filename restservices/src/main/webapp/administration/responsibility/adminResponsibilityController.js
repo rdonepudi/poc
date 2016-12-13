@@ -21,13 +21,10 @@
 
          function loadAll() {
         	 AdminMenuService.query(function(result) {
-            	 console.log(result);
             	 vm.allMenu= result;
              });
          }
         function logout() {
-        	console.log('adminResponsibilityController');
-            // reset login status
         	AuthenticationService.Logout();
         	$location.path('/adminResponsibility');
         	$window.location.reload();
@@ -42,14 +39,17 @@
         
         
         function clear () {
-        	console.log("call");
-        	
-//            $uibModalInstance.dismiss('cancel');
+        	$location.path('/home');
+        	$window.location.reload();
         }
         function save () {
             vm.isSaving = true;
-            console.log(vm.responsibility);
-            adminResponsibilityService.save(vm.responsibility);
+          //  console.log(JSON.stringify(vm.responsibility));
+            adminResponsibilityService.save((vm.responsibility), function(result){
+            	alert("Responsibility added success");
+            	$location.path('/home');
+            	$window.location.reload();
+            });
         }
         
    

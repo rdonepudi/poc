@@ -21,20 +21,3 @@
     }
 })();
 
-
-//angular.module('app.adminResponsibilityService',[]).service('adminResponsibilityService',['$http',adminResponsibilityService]);
-//function  adminResponsibilityService($http){
-//	return{
-//		save:save
-//	}
-//	
-//	function save(responsibility){
-//		console.log("----------------");
-//		return $http.post("api/osi-responsibilities",responsibility);
-//	}
-//	
-//	        
-//		
-//	     
-//	
-//}

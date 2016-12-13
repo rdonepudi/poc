@@ -1,10 +1,15 @@
 <div class="container">
-	<form id="responsibilityForm">
+	<form id="responsibilityForm" name="myForm" novalidate="" ng-controller="adminResponsibilityController">
 
 		<div class="row" id="resField">
 			<div class="form_group" style="float: left">
-				<label>Name</label> <input type="text" name="name" id="field_name"
-					ng-model="vm.responsibility.respName" required />
+				<label>Name</label> <input type="text" name="respName"
+					id="field_name" ng-model="vm.responsibility.respName" ng-required="true" />
+				<span style="color: red"
+					ng-show="myForm.respName.$dirty && myForm.respName.$invalid">
+					<span ng-show="myForm.respName.$error.required">Name is
+						required.</span>
+				</span>
 			</div>
 
 
@@ -17,13 +22,17 @@
 			</div>
 		</div>
 		<div class="row" id="resField">
-			<div class="form_group" >
-			<label class="col-lg-4 col-form-label">Menu</label>
-			<select class="form-control"  id="field_menu" name="menu" ng-model="vm.responsibility.osiMenu"
-			 ng-options="menu as menu.menuName for menu in vm.allMenu" required>
-                <option value=""></option>
-            </select>
-			
+			<div class="form_group">
+				<label class="col-lg-4 col-form-label">Menu</label> <select
+					class="form-control" id="field_menu" name="osiMenus"
+					ng-model="vm.responsibility.osiMenus"
+					ng-options="menu as menu.menuName for menu in vm.allMenu" ng-required="true">
+					<option value=""></option>
+				</select> <span style="color: red"
+					ng-show="myForm.osiMenus.$dirty && myForm.osiMenus.$invalid">
+					<span ng-show="myForm.osiMenus.$error.required">Menu is
+						required.</span>
+				</span>
 
 			</div>
 
@@ -36,7 +45,7 @@
 					<div class="input-group">
 						<input id="field_sdate" type="text" class="form-control"
 							name="sdate" uib-datepicker-popup="yyyy-MM-dd"
-							ng-model="vm.start_date" is-open="vm.datePickerOpenStatus.sdate" />
+							ng-model="vm.responsibility.startDate" is-open="vm.datePickerOpenStatus.sdate" />
 						<span class="input-group-btn">
 							<button type="button" class="btn btn-default"
 								ng-click="vm.openCalendar('sdate')">
@@ -52,7 +61,7 @@
 					<div class="input-group">
 						<input id="field_edate" type="text" class="form-control"
 							name="edate" uib-datepicker-popup="yyyy-MM-dd"
-							ng-model="vm.end_date" is-open="vm.datePickerOpenStatus.edate" />
+							ng-model="vm.responsibility.endDate" is-open="vm.datePickerOpenStatus.edate" />
 						<span class="input-group-btn">
 							<button type="button" class="btn btn-default"
 								ng-click="vm.openCalendar('edate')">
@@ -65,7 +74,9 @@
 		</div>
 		<div class="row" id="resField">
 			<div style="float: right">
-				<button type="submit" ng-disabled="editForm.$invalid || vm.isSaving"
+				<button type="submit"
+					ng-disabled="myForm.respName.$dirty && myForm.respName.$invalid ||
+				myForm.osiMenus.$dirty && myForm.osiMenus.$invalid|| myForm.$invalid"
 					class="btn btn-primary" ng-click="vm.save()">
 					<span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
 				</button>

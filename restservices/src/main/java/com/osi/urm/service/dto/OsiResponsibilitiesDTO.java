@@ -19,11 +19,19 @@ public class OsiResponsibilitiesDTO implements java.io.Serializable {
 	private Date createdDate;
 	private Integer updatedBy;
 	private Date updatedDate;
+	private Date startDate;
+	private Date endDate;
 	private Set<OsiRespUserDTO> osiRespUsers = new HashSet<OsiRespUserDTO>(0);
 
 	public OsiResponsibilitiesDTO() {
 	}
-
+	
+	public OsiResponsibilitiesDTO(Integer id, Date startDate, Date endDate) {
+		this.id = id;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+	
 	public OsiResponsibilitiesDTO(Integer id, OsiMenusDTO osiMenus, String respName) {
 		this.id = id;
 		this.osiMenus = osiMenus;
@@ -32,7 +40,8 @@ public class OsiResponsibilitiesDTO implements java.io.Serializable {
 
 	public OsiResponsibilitiesDTO(Integer id, OsiMenusDTO osiMenus, String respName,
 			String description, Integer createdBy, Date createdDate,
-			Integer updatedBy, Date updatedDate, Set<OsiRespUserDTO> osiRespUsers) {
+			Integer updatedBy, Date updatedDate, Set<OsiRespUserDTO> osiRespUsers, Date startDate,
+			Date endDate) {
 		this.id = id;
 		this.osiMenus = osiMenus;
 		this.respName = respName;
@@ -42,6 +51,8 @@ public class OsiResponsibilitiesDTO implements java.io.Serializable {
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
 		this.osiRespUsers = osiRespUsers;
+		this.startDate = startDate;
+		this.endDate = endDate;
 	}
 
 	public Integer getId() {
@@ -115,5 +126,20 @@ public class OsiResponsibilitiesDTO implements java.io.Serializable {
 	public void setOsiRespUsers(Set<OsiRespUserDTO> osiRespUsers) {
 		this.osiRespUsers = osiRespUsers;
 	}
+	
+	public Date getStartDate() {
+		return this.startDate;
+	}
 
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return this.endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
 }

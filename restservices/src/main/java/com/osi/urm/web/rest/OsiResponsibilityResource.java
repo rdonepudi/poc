@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.osi.urm.domain.OsiMenus;
+import com.osi.urm.domain.OsiResponsibilities;
 import com.osi.urm.service.OsiResponsibilityService;
 import com.osi.urm.service.dto.OsiResponsibilitiesDTO;
 import com.osi.urm.web.rest.util.PaginationUtil;
@@ -47,15 +49,13 @@ public class OsiResponsibilityResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/osi-responsibilities")
-    public ResponseEntity<OsiResponsibilitiesDTO> createOsiResponsibility(@RequestBody OsiResponsibilitiesDTO osiResponsibilitiesDTO) throws URISyntaxException {
-    	System.out.println("call");
-    	System.out.println(osiResponsibilitiesDTO);
-    	log.debug("REST request to save OsiResponsibility : {}", osiResponsibilitiesDTO);
-        if (osiResponsibilitiesDTO.getId() != null) {
+    public ResponseEntity<OsiResponsibilities> createOsiResponsibility(@RequestBody OsiResponsibilities osiResponsibilities) throws URISyntaxException {
+    	log.debug("REST request to save OsiResponsibility : {}", osiResponsibilities);
+        if (osiResponsibilities.getId() != null) {
             return ResponseEntity.badRequest()
             		.body(null);
         }
-        OsiResponsibilitiesDTO result = osiResponsibilityService.save(osiResponsibilitiesDTO);
+        OsiResponsibilities result = osiResponsibilityService.save(osiResponsibilities);
         return ResponseEntity.created(new URI("/api/osi-responsibilities/" + result.getId()))
             .body(result);
     }
@@ -73,11 +73,11 @@ public class OsiResponsibilityResource {
     public ResponseEntity<OsiResponsibilitiesDTO> updateOsiResponsibility(@Valid @RequestBody OsiResponsibilitiesDTO osiResponsibilitiesDTO) throws URISyntaxException {
         log.debug("REST request to update OsiResponsibility : {}", osiResponsibilitiesDTO);
         if (osiResponsibilitiesDTO.getId() == null) {
-            return createOsiResponsibility(osiResponsibilitiesDTO);
+//            return createOsiResponsibility(osiResponsibilitiesDTO);
         }
-        OsiResponsibilitiesDTO result = osiResponsibilityService.save(osiResponsibilitiesDTO);
+//        OsiResponsibilitiesDTO result = osiResponsibilityService.save(osiResponsibilitiesDTO);
         return ResponseEntity.ok()
-            .body(result);
+            .body(null);
     }
 
     /**
