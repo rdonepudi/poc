@@ -30,10 +30,17 @@ public class OsiMenuEntries implements java.io.Serializable {
 	private Date createdDate;
 	private Integer updatedBy;
 	private Date updatedDate;
+	private Date startDate;
+	private Date endDate;
 
 	public OsiMenuEntries() {
 	}
 
+	public OsiMenuEntries(int id, Date startDate, Date endDate) {
+		this.id = id;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
 	public OsiMenuEntries(int id, OsiMenus osiMenusByMenuId, int seq,
 			String menuPrompt) {
 		this.id = id;
@@ -45,7 +52,7 @@ public class OsiMenuEntries implements java.io.Serializable {
 	public OsiMenuEntries(int id, OsiFunctions osiFunctions,
 			OsiMenus osiMenusBySubMenuId, OsiMenus osiMenusByMenuId, int seq,
 			String menuPrompt, Integer createdBy, Date createdDate,
-			Integer updatedBy, Date updatedDate) {
+			Integer updatedBy, Date updatedDate, Date startDate, Date endDate) {
 		this.id = id;
 		this.osiFunctions = osiFunctions;
 		this.osiMenusBySubMenuId = osiMenusBySubMenuId;
@@ -56,6 +63,8 @@ public class OsiMenuEntries implements java.io.Serializable {
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
+		this.startDate=startDate;
+		this.endDate=endDate;
 	}
 
 	@Id
@@ -107,7 +116,7 @@ public class OsiMenuEntries implements java.io.Serializable {
 		this.seq = seq;
 	}
 
-	@Column(name = "menu_prompt", nullable = false, length = 100)
+	@Column(name = "prompt", nullable = false, length = 100)
 	public String getMenuPrompt() {
 		return this.menuPrompt;
 	}
@@ -152,6 +161,26 @@ public class OsiMenuEntries implements java.io.Serializable {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "start_date", length = 0)
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "end_date", length = 0)
+	public Date getEndtDate() {
+		return endDate;
+	}
+
+	public void setEndtDate(Date endtDate) {
+		this.endDate = endtDate;
 	}
 
 }

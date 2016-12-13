@@ -2,6 +2,9 @@ package com.osi.urm.web.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.osi.urm.domain.OsiMenuEntries;
 import com.osi.urm.service.OsiMenuEntriesService;
 import com.osi.urm.service.dto.OsiMenuEntriesDTO;
 
@@ -42,13 +46,30 @@ public class OsiMenuEntriesResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/osi-menu-entries")
-    public ResponseEntity<OsiMenuEntriesDTO> createOsiMenuEntries(@Valid @RequestBody OsiMenuEntriesDTO osiMenuEntriesDTO) throws URISyntaxException {
-        log.debug("REST request to save OsiMenuEntries : {}", osiMenuEntriesDTO);
-        if (osiMenuEntriesDTO.getId() != null) {
-            return ResponseEntity.badRequest()
-            		.body(null);
-        }
-        OsiMenuEntriesDTO result = osiMenuEntriesService.save(osiMenuEntriesDTO);
+    public ResponseEntity<OsiMenuEntries> createOsiMenuEntries(@Valid @RequestBody OsiMenuEntries osiMenuEntries) throws URISyntaxException {
+//        log.debug("REST request to save OsiMenuEntries : {}", osiMenuEntriesDTO);
+        System.out.println("/***************************************:");
+//        System.out.println(osiMenuEntriesD.getMenuPrompt()); 
+//        System.out.println(osiMenuEntriesDTO.getSeq()); 
+       // System.out.println(osiMenuEntriesDTO.getOsiMenusByMenuId()); 
+        
+       // if (osiMenuEntries.getId() != null) {
+    //    	System.out.println("bad request");
+     //       return ResponseEntity.badRequest()
+    //        		.body(null);
+//        }
+        
+       // DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+       // System.out.println(dateFormat.format(date)); //201
+        
+        
+        osiMenuEntries.setStartDate(date);
+        osiMenuEntries.setEndtDate(date);
+        
+        
+        OsiMenuEntries result = osiMenuEntriesService.save(osiMenuEntries);
+        
         return ResponseEntity.created(new URI("/api/osi-menu-entries/" + result.getId()))
             .body(result);
     }
@@ -61,17 +82,17 @@ public class OsiMenuEntriesResource {
      * or with status 400 (Bad Request) if the osiMenuEntriesDTO is not valid,
      * or with status 500 (Internal Server Error) if the osiMenuEntriesDTO couldnt be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
-    @PutMapping("/osi-menu-entries")
-    public ResponseEntity<OsiMenuEntriesDTO> updateOsiMenuEntries(@Valid @RequestBody OsiMenuEntriesDTO osiMenuEntriesDTO) throws URISyntaxException {
-        log.debug("REST request to update OsiMenuEntries : {}", osiMenuEntriesDTO);
-        if (osiMenuEntriesDTO.getId() == null) {
-            return createOsiMenuEntries(osiMenuEntriesDTO);
-        }
-        OsiMenuEntriesDTO result = osiMenuEntriesService.save(osiMenuEntriesDTO);
-        return ResponseEntity.ok()
-            .body(result);
-    }
+//     */
+//    @PutMapping("/osi-menu-entries")
+//    public ResponseEntity<OsiMenuEntriesDTO> updateOsiMenuEntries(@Valid @RequestBody OsiMenuEntriesDTO osiMenuEntriesDTO) throws URISyntaxException {
+//        log.debug("REST request to update OsiMenuEntries : {}", osiMenuEntriesDTO);
+//        if (osiMenuEntriesDTO.getId() == null) {
+////            return createOsiMenuEntries(osiMenuEntriesDTO);
+//        }
+//        OsiMenuEntries result = osiMenuEntriesService.save(osiMenuEntriesDTO);
+//        return ResponseEntity.ok()
+//            .body(result);
+//    }
 
     /**
      * GET  /osi-menu-entries : get all the osiMenuEntries.
