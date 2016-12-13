@@ -3,6 +3,7 @@ package com.osi.urm.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.osi.urm.domain.OsiOperations;
 import com.osi.urm.service.dto.OsiOperationsDTO;
 
 /**
@@ -24,7 +25,7 @@ public interface OsiOperationsService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<OsiOperationsDTO> findAll(Pageable pageable);
+    Page<OsiOperations> findAll(Pageable pageable);
 
     /**
      *  Get the "id" osiOperataions.

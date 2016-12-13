@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.osi.urm.domain.OsiOperations;
 import com.osi.urm.repository.OsiOperationsRepository;
 import com.osi.urm.service.OsiOperationsService;
 import com.osi.urm.service.dto.OsiOperationsDTO;
@@ -47,11 +48,11 @@ public class OsiOperationsServiceImpl implements OsiOperationsService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<OsiOperationsDTO> findAll(Pageable pageable) {
+    public Page<OsiOperations> findAll(Pageable pageable) {
         log.debug("Request to get all OsiOperataions");
-        /*Page<OsiOperataions> result = osiOperataionsRepository.findAll(pageable);
-        return result.map(osiOperataions -> osiOperataionsMapper.osiOperataionsToosiOperationsRepository(osiOperataions));*/
-        return null;
+        Page<OsiOperations> result = osiOperationsRepository.findAll(pageable);
+        //return result.map(osiOperataions -> osiOperataionsMapper.osiOperataionsToosiOperationsRepository(osiOperataions));
+        return result;
     }
 
     /**

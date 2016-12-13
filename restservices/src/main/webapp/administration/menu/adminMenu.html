@@ -3,7 +3,7 @@
     <p>You're logged in with JWT!!</p> -->
     
     <div class="container">
-    	<div class="row">
+    	<div class="row" style="padding-top:25px;">
 	    	<form class="adminMenuForm">
 	    		<div class="row">
 	    			<div class="form-group">
@@ -12,28 +12,28 @@
 						    <input class="form-control" type="text" id="menuNameField" ng-model="menu.menuName" required>
 						  </div>
 	    			</div>
-	    		</div>
+	    		</div><br>
 	    		<div class="row">
 	    			<div class="form-group">
 	    				<label for="menuNameField" class="col-lg-3 col-form-label">Description</label>
 						  <div class="col-lg-8">
-						    <textarea rows="4" cols="38" name="comment" id="menuNameField" ng-model="menu.description">Enter Description here...</textarea>
+						    <textarea rows="4" cols="47" name="comment" id="menuNameField" ng-model="menu.description">Enter Description here...</textarea>
 						  </div>
 	    			</div>
 	    		</div><br>
 	    		<div class="row">
 	    			<div class="form-group">
 	    				<p class="col-lg-3"></p>
-	    				<p class="col-lg-4"><button ng-click="vm.save(menu)" class="btn btn-primary">Save</button></p>
-	    				<p class="col-lg-4"><button ng-click="vm.cancel()" class="btn btn-primary">Cancel</button></p>
+	    				<p class="col-lg-4"><button ng-click="vm.save(menu)" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Save</button></p>
+	    				<p class="col-lg-4"><button ng-click="vm.cancel()" class="btn btn-default"><span class="glyphicon glyphicon-ban-circle"></span> Cancel</button></p>
 	    			</div>
 	    		</div>
 	    	</form>
-    	</div><br><br><br>
-    	<div class="row">
+    	</div><br><br>
+    	<!-- <div class="row">
 	    	<p align="center">
 	    		<button ng-click="vm.logout()" class="btn btn-primary">Logout</button>
 	    	</p>
-    	</div>
+    	</div> -->
     </div>
 </div>

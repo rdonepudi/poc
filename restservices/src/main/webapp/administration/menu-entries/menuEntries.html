@@ -1,82 +1,101 @@
-<div class="container" style="padding-left:100px;" >
+<br><br>
+<div class="row" class="Top50">
+	<div class="col-lg-1" ></div>
+	<div class="col-lg-9">
 	
-			<div class="row" style="color:blue;">
-				<h3>Create Menu Entries</h3>
-			</div>
-			
-			<div class="row">
-				<div class="col-lg-2">
-					<h3>Header Menu</h3>
-				</div>
-				<div class="col-lg-2">
-					<div class="form-group">
-					  <select ng-model="selectedName" class="form-control" id="sel1" style="margin-top: 10px;" >
-					    <option ng-repeat="menu in vm.menus">{{menu.title}}</option>
-					  </select>
-					</div>
-				</div>
-			</div>
-			
-			
-			<div class="row">
-				<h3 style="color:blue;">Create Menu Entries</h3>
-			</div>
-			
-			<div class="row" >
-				<div class="" >
-					<div class="col-lg-2">
-					Type
-					</div>
-					<div class="col-lg-2">
-					Sequence
-					</div>
-					<div class="col-lg-2">
-					Menu/Function	
-					</div>
-					<div class="col-lg-2">
-					Prompt
-					</div>
-					<div class="col-lg-1">
-					...
-					</div>
-				</div>
-			</div>
-			
-			<div class="row" >
-					<div class="col-lg-2">
-						<select ng-model="selectedType" class="form-control" id="sel1" style="margin-top: 10px;" >
-					    <option ng-repeat="menu in vm.menus">{{menu.title}}</option>
-					  </select>
-					</div>
-					<div class="col-lg-2">
-						<select ng-model="selectedSequence" class="form-control" id="sel1" style="margin-top: 10px;" >
-					    <option ng-repeat="menu in vm.menus">{{menu.title}}</option>
-					  </select>
-					</div>
-					<div class="col-lg-2">
-						<select ng-model="selectedItem" class="form-control" id="sel1" style="margin-top: 10px;" >
-					    <option ng-repeat="menu in vm.menus">{{menu.title}}</option>
-					  </select>
-					</div>
-					<div class="col-lg-2">
-					<input type="text" ng-model="prompt" class="form-control" id="usr" style="margin-top: 10px;">
-					</div>
-					<div class="col-lg-1">
-					
-					</div>
-			</div>
-			<br>
-			<div class="row" >
-					<div class="col-lg-4">
+		<div class="box"   >
+				<div class="row">
+				 	<div class="col-lg-2"></div>
+				 	<div class="col-lg-10">
+					<div class="row" style="color:blue;">
+						<h3>Create Menu Entries</h3>
 					</div>
 					
-					<div class="col-lg-2">
-						<button class="btn btn-primary" ng-click="vm.save()">SAVE</button>
+					<div class="row">
+						<div class="col-lg-2 top10">
+							<strong>Header Menu</strong>
+						</div>
+						<div class="col-lg-4">
+							<div class="form-group">
+							  <select ng-model="selectedName"  class="form-control top10" id="sel1" place-holder="select Type" >
+							    <option ng-repeat="menu in vm.menus">{{menu.menuName}}</option>
+							  </select>
+							</div>
+						</div>
 					</div>
-					<div class="col-lg-2">
-					<button class="btn btn-danger">CANCEL</button>
+					<!-- <div class="col-lg-4">
+										<select class="form-control">
+										<option>Select Me</option>
+					  <option ng-repeat="menu in vm.menus">{{menu.menuName}}</option>
+					</select>
+					</div> -->
+					<div class="row">
+						<h3 style="color:blue;">Create Menu Entries</h3>
+					</div>
 					
-			</div>
-			
+					<div class="row" >
+					<strong>
+						<div class="" >
+							<div class="col-lg-2">
+							Type
+							</div>
+							<div class="col-lg-2">
+							Sequence
+							</div>
+							<div class="col-lg-3">
+							Menu/Function	
+							</div>
+							<div class="col-lg-2">
+							Prompt
+							</div>
+							<div class="col-lg-1">
+							...
+							</div>
+						</div>
+						</strong>
+					</div>
+					
+					<div class="row" >
+							<div class="col-lg-2 top10">
+								<select class="form-control" ng-model="selectedType" ng-init="selectedType='M'">
+						  			<option ng-repeat="type in vm.types">{{type.type}}</option>
+								</select>
+							</div>
+							<div class="col-lg-2">
+								 <input ng-model="sequence"  ng-init="sequence=0" type="number" class="form-control top10" name="quantity" min="1" >
+							  </select>
+							</div>
+							<div class="col-lg-3">
+								<select ng-model="selectedItem"  ng-init="selectedItem=vm.subMenus[0].menuName" class="form-control top10" id="sel1" >
+							   	 	<option ng-repeat="mnu in vm.subMenus" >{{mnu.menuName}}</option>
+							 	</select>
+							</div>
+							<div class="col-lg-2">
+							<input type="text" ng-model="prompt" class="form-control top10" id="usr" >
+							</div>
+							<div class="col-lg-1 top10">
+								<span class="glyphicon glyphicon-minus-sign minusIcon"  ></span>
+							</div>
+					</div>
+					<br>
+					<div class="row" >
+							<div class="col-lg-4">
+							</div>
+							
+							<div class="col-lg-2">
+								<button class="btn btn-primary" ng-click="vm.save()">SAVE</button>
+							</div>
+							<div class="col-lg-2">
+							<button class="btn">CANCEL</button>
+							
+							
+					</div>
+				
+		</div>
 		
+	</div>
+	</div>
+	</div>
+</div>
+<div class="col-lg-2" ></div>
 </div>

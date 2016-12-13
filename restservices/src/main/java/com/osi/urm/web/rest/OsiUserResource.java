@@ -49,7 +49,7 @@ public class OsiUserResource {
     @PostMapping("/osi-users")
     public ResponseEntity<OsiUser> createOsiUser(@Valid @RequestBody OsiUser osiUser) throws URISyntaxException {
         log.debug("REST request to save OsiUser : {}", osiUser);
-        if (osiUser.getId() != 0) {
+        if (osiUser.getId() != null) {
             return ResponseEntity.badRequest()
             		.body(null);
         }
