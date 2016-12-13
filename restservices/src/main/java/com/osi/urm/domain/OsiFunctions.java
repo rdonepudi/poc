@@ -22,6 +22,7 @@ import javax.persistence.TemporalType;
 public class OsiFunctions implements java.io.Serializable {
 
 	private int id;
+	private String funcName;
 	private String funcType;
 	private String funcValue;
 	private String parameters;
@@ -39,20 +40,22 @@ public class OsiFunctions implements java.io.Serializable {
 	public OsiFunctions() {
 	}
 
-	public OsiFunctions(int id, String funcType, String funcValue) {
+	public OsiFunctions(int id, String funcType, String funcValue, String funcName) {
 		this.id = id;
+		this.funcName = funcName;
 		this.funcType = funcType;
 		this.funcValue = funcValue;
 	}
 
-	public OsiFunctions(int id, String funcType, String funcValue,
+	public OsiFunctions(int id, String funcName, String funcType, String funcValue,
 			String parameters, Integer createdBy, Date createdDate,
 			Integer updatedBy, Date updatedDate,
 			Set<OsiUserFuncExcl> osiUserFuncExcls,
 			Set<OsiMenuEntries> osiMenuEntrieses,
 			Set<OsiUserOperationExcl> osiUserOperationExcls) {
 		this.id = id;
-		this.funcType = funcType;
+		this.funcName = funcName;
+	    this.funcType = funcType;
 		this.funcValue = funcValue;
 		this.parameters = parameters;
 		this.createdBy = createdBy;
@@ -72,6 +75,15 @@ public class OsiFunctions implements java.io.Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	@Column(name = "func_name", nullable = false, length = 65535)
+	public String getFuncName() {
+		return funcName;
+	}
+
+	public void setFuncName(String funcName) {
+		this.funcName = funcName;
 	}
 
 	@Column(name = "func_type", nullable = false, length = 1000)
@@ -166,5 +178,7 @@ public class OsiFunctions implements java.io.Serializable {
 			Set<OsiUserOperationExcl> osiUserOperationExcls) {
 		this.osiUserOperationExcls = osiUserOperationExcls;
 	}
+
+	
 
 }

@@ -14,6 +14,7 @@
                         'app.adminResponsibilityService',
                         'app.AdminMenuService',
                         'app.OperationExclusionService',
+                        'app.AdminFunctionService',
                         'app.DateUtils',
                         'ui.bootstrap',
                         'ui.bootstrap.datetimepicker',
@@ -46,7 +47,7 @@
 	       controllerAs: 'vm'
 	   })
 	   .when('/adminFunction', {
-	       templateUrl: 'administration/adminFunction.html', 
+	       templateUrl: 'administration/function/adminFunction.html', 
 	       controller: 'adminFunctionController',
 	       controllerAs: 'vm'
 	   })

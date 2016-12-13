@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class OsiFunctionsDTO implements java.io.Serializable {
 
 	private Integer id;
+	private String funcName;
 	private String funcType;
 	private String funcValue;
 	private String parameters;
@@ -29,19 +30,20 @@ public class OsiFunctionsDTO implements java.io.Serializable {
 	public OsiFunctionsDTO() {
 	}
 
-	public OsiFunctionsDTO(Integer id, String funcType, String funcValue) {
+	public OsiFunctionsDTO(Integer id, String funcType, String funcValue,String funcName) {
 		this.id = id;
 		this.funcType = funcType;
 		this.funcValue = funcValue;
 	}
 
 	public OsiFunctionsDTO(Integer id, String funcType, String funcValue,
-			String parameters, Integer createdBy, Date createdDate,
+			String parameters, Integer createdBy, Date createdDate,String funcName,
 			Integer updatedBy, Date updatedDate,
 			Set<OsiUserFuncExclDTO> osiUserFuncExcls,
 			Set<OsiMenuEntriesDTO> osiMenuEntrieses,
 			Set<OsiUserOperationExclDTO> osiUserOperationExcls) {
 		this.id = id;
+		this.funcName = funcName;
 		this.funcType = funcType;
 		this.funcValue = funcValue;
 		this.parameters = parameters;
@@ -76,6 +78,14 @@ public class OsiFunctionsDTO implements java.io.Serializable {
 
 	public void setFuncValue(String funcValue) {
 		this.funcValue = funcValue;
+	}
+	
+	public String getFuncName() {
+		return funcName;
+	}
+
+	public void setFuncName(String funcName) {
+		this.funcName = funcName;
 	}
 
 	public String getParameters() {
@@ -142,5 +152,7 @@ public class OsiFunctionsDTO implements java.io.Serializable {
 			Set<OsiUserOperationExclDTO> osiUserOperationExcls) {
 		this.osiUserOperationExcls = osiUserOperationExcls;
 	}
+
+	
 
 }

@@ -51,6 +51,7 @@ public class OsiFunctionResource {
     @PostMapping("/osi-functions")
     public ResponseEntity<OsiFunctionsDTO> createOsiFunction(@Valid @RequestBody OsiFunctionsDTO osiFunctionsDTO) throws URISyntaxException {
         log.debug("REST request to save OsiFunction : {}", osiFunctionsDTO);
+       System.out.println("createOsiFunction");
         if (osiFunctionsDTO.getId() != null) {
             return ResponseEntity.badRequest().body(null);
         }

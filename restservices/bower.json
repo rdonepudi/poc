@@ -18,6 +18,7 @@
   "dependencies": {
     "angular-ui-bootstrap": "^2.3.0",
     "bootstrap-ui-datetime-picker": "^2.4.3",
-    "angular-resource": "^1.5.9"
+    "angular-resource": "^1.5.9",
+    "multiselect": "multiselect-two-sides#^2.3.2"
   }
 }
