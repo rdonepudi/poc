@@ -6,17 +6,16 @@
     menuEntriesService.$inject = [ '$resource'];
     
     function menuEntriesService ($resource) {
-     var resourceUrl =  'api/osi-menu';
+    	var resourceUrl =  'api/osi-menu-entries';
 
           return $resource(resourceUrl, {}, {
-    'save': {
-             method: 'GET',
-             transformRequest: function (data) {
-                 return angular.toJson(data);
-             }
-    
-    		}
-    
+			    'save': {
+			    method: 'POST',
+			    transformRequest: function (data) {
+			        return angular.toJson(data);
+			    }
+			
+				}
           });
     }
 })();
