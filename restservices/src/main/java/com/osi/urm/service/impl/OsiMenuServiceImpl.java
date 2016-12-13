@@ -68,7 +68,6 @@ public class OsiMenuServiceImpl implements OsiMenuService{
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
     public List<OsiMenusDTO> findAll() {
         log.debug("Request to get all OsiMenus");
         List<OsiMenus> osiMenus = osiMenuRepository.findAll();
@@ -91,7 +90,6 @@ public class OsiMenuServiceImpl implements OsiMenuService{
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
     public OsiMenusDTO findOne(Long id) {
         log.debug("Request to get OsiMenu : {}", id);
         OsiMenus osiMenus = osiMenuRepository.findOne(id);
