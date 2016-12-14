@@ -11,12 +11,12 @@ import com.osi.urm.service.dto.OsiMenusDTO;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, uses = {})
 public interface OsiMenusMapper {
 
-	OsiMenusDTO OsiMenusToOsiMenusDTO(OsiMenus osiUser);
+	OsiMenusDTO OsiMenusToOsiMenusDTO(OsiMenus osiMenus);
 
 	List<OsiMenusDTO> osiMenusListToOsiMenusDTOList(List<OsiMenus> osiMenus);
 
-	OsiMenus osiMenusDTOToOsiMenus(OsiMenusDTO osiUserDTO);
+	OsiMenus osiMenusDTOToOsiMenus(OsiMenusDTO osiMenusDTO);
 
-	List<OsiMenus> osiMenusDTOListToOsMenusList(List<OsiMenusDTO> osiMenusDTO);
+	List<OsiMenus> osiMenusDTOListToOsiMenusList(List<OsiMenusDTO> osiMenusDTO);
 
 }
