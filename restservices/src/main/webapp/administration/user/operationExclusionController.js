@@ -4,10 +4,10 @@
     angular
         .module('app.operationExclusionController',[])
         .controller('operationExclusionController', operationExclusionController);
-    operationExclusionController.$inject = ['$scope','$location', '$window', 'AuthenticationService','OperationExclusionService','FunctionExclusionService','FunctionGetById'];
+    operationExclusionController.$inject = ['$scope','$location', '$window', 'AuthenticationService','OperationExclusionService','FunctionExclusionService'];
     
     var $ = angular.element;
-    function operationExclusionController($scope, $location, $window, AuthenticationService, OperationExclusionService, FunctionExclusionService, FunctionGetById) {
+    function operationExclusionController($scope, $location, $window, AuthenticationService, OperationExclusionService, FunctionExclusionService) {
         var vm = this;
         vm.excludedOpts = [];
         vm.merged = [];

@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
 @Table(name = "osi_user")
 public class OsiUser implements java.io.Serializable {
 
-	private Integer id;
+	private Long id;
 	private String userName;
 	private String password;
 	private String firstName;
@@ -51,7 +51,7 @@ public class OsiUser implements java.io.Serializable {
 	public OsiUser() {
 	}
 
-	public OsiUser(Integer id, String userName, String password, String empNumber, String emailId,
+	public OsiUser(Long id, String userName, String password, String empNumber, String emailId,
 			String mobileNumber, Date startDate, Date endDate) {
 		this.id = id;
 		this.userName = userName;
@@ -63,7 +63,7 @@ public class OsiUser implements java.io.Serializable {
 		this.endDate = endDate;
 	}
 
-	public OsiUser(Integer id, String userName, String password, String firstName,
+	public OsiUser(Long id, String userName, String password, String firstName,
 			String lastName, String empNumber, String emailId, String mobileNumber,
 			Date startDate, String fullName, Date endDate, Integer createdBy,
 			Date createdDate, Integer updatedBy, Date updatedDate,
@@ -97,11 +97,11 @@ public class OsiUser implements java.io.Serializable {
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

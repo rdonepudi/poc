@@ -1,10 +1,13 @@
 ﻿var osi = angular
         .module('app', ['ngRoute', 'ngCookies', 'ngMessages','TreeWidget','ngResource',
                         'app.homeController',
+                        'app.SharedDataService',
                         'app.adminMenuController',
                         'app.adminResponsibilityController',
                         'app.adminFunctionController',
+                        'app.userListController',
                         'app.userController',
+                        'app.userService',
                         'app.operationExclusionController',
                         'app.infoController',
                         'app.infoService',
@@ -57,7 +60,12 @@
 	       controller: 'adminResponsibilityController',
 	       controllerAs: 'vm'
 	   })
-	   .when('/user', {
+	   .when('/users', {
+	       templateUrl: 'administration/user/userList.html', 
+	       controller: 'userListController',
+	       controllerAs: 'vm'
+	   })
+	   .when('/user/:id', {
 	       templateUrl: 'administration/user/user.html', 
 	       controller: 'userController',
 	       controllerAs: 'vm'
@@ -99,7 +107,7 @@
 	    			{name: "Menu", nodeId:141, url:"adminMenu"},
 		            {name: "Function", nodeId:142, url:"adminFunction"},
 		            {name: "Responsibility", nodeId:143, url:"adminResponsibility"},
-		            {name: "User", nodeId:140, url:"user"},
+		            {name: "User", nodeId:140, url:"users"},
 		            {name: "Menus", nodeId:141,
 		            	children:[
 		            		{name:"Menu1",nodeId:112, url:"adminMenusMenu1"},

@@ -13,11 +13,12 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_EMPTY)
 public class OsiUserDTO implements java.io.Serializable {
 
-	private Integer id;
+	private Long id;
 	private String userName;
 	private String password;
 	private String firstName;
 	private String lastName;
+	private String empNumber;
 	private String emailId;
 	private String mobileNumber;
 	private Date startDate;
@@ -39,19 +40,20 @@ public class OsiUserDTO implements java.io.Serializable {
 	public OsiUserDTO() {
 	}
 
-	public OsiUserDTO(Integer id, String userName, String password, String emailId,
+	public OsiUserDTO(Long id, String userName, String password, String empNumber, String emailId,
 			String mobileNumber, Date startDate, Date endDate) {
 		this.id = id;
 		this.userName = userName;
 		this.password = password;
 		this.emailId = emailId;
+		this.empNumber = empNumber;
 		this.mobileNumber = mobileNumber;
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
 
-	public OsiUserDTO(Integer id, String userName, String password, String firstName,
-			String lastName, String emailId, String mobileNumber,
+	public OsiUserDTO(Long id, String userName, String password, String firstName,
+			String lastName, String empNumber, String emailId, String mobileNumber,
 			Date startDate, String fullName, Date endDate, Integer createdBy,
 			Date createdDate, Integer updatedBy, Date updatedDate,
 			Set<OsiUserLoginsDTO> osiUserLoginses,
@@ -64,6 +66,7 @@ public class OsiUserDTO implements java.io.Serializable {
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.empNumber = empNumber;
 		this.emailId = emailId;
 		this.mobileNumber = mobileNumber;
 		this.startDate = startDate;
@@ -80,11 +83,11 @@ public class OsiUserDTO implements java.io.Serializable {
 		this.osiUserOperationExcls = osiUserOperationExcls;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -118,6 +121,13 @@ public class OsiUserDTO implements java.io.Serializable {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	public String getEmpNumber() {
+		return this.empNumber;
+	}
+
+	public void setEmpNumber(String empNumber) {
+		this.empNumber = empNumber;
 	}
 
 	public String getEmailId() {

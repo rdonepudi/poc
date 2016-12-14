@@ -98,7 +98,9 @@ public class OsiUserResource {
         List<OsiUserDTO> usersDTO = new ArrayList<OsiUserDTO>();
         for (OsiUser osiUser : users) {
         	OsiUserDTO userDto = new OsiUserDTO();
-        	userDto.setFirstName(osiUser.getFirstName());
+        	userDto.setId(osiUser.getId());
+        	userDto.setFullName(osiUser.getFullName());
+        	userDto.setEmailId(osiUser.getEmailId());
         	usersDTO.add(userDto);
 		}
         return new ResponseEntity<List<OsiUserDTO>>(usersDTO, HttpStatus.OK);
@@ -117,19 +119,19 @@ public class OsiUserResource {
      * @return the ResponseEntity with status 200 (OK) and with body the OsiUser, or with status 404 (Not Found)
      */
     @GetMapping("/osi-users/{id}")
-    public ResponseEntity<OsiUser> getOsiUser(@PathVariable Long id) {
+    public ResponseEntity<OsiUserDTO> getOsiUser(@PathVariable Long id) {
         log.debug("REST request to get OsiUser : {}", id);
         OsiUser result = osiUserService.findOne(id);
         if(result != null) {
-        	return new ResponseEntity<OsiUser>(result, HttpStatus.OK);
+        	OsiUserDTO userDto = new OsiUserDTO();
+        	userDto.setId(result.getId());
+        	userDto.setFullName(result.getFullName());
+        	userDto.setEmailId(result.getEmailId());
+        	userDto.setEmpNumber(result.getEmpNumber());
+        	return new ResponseEntity<OsiUserDTO>(userDto, HttpStatus.OK);
         } else {
-        	return new ResponseEntity<OsiUser>(result, HttpStatus.NOT_FOUND);
+        	return new ResponseEntity<OsiUserDTO>(HttpStatus.NOT_FOUND);
         }
-       /* return Optional.ofNullable(OsiUser)
-            .map(result -> new ResponseEntity<>(
-                result,
-                HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));*/
     }
 
     /**

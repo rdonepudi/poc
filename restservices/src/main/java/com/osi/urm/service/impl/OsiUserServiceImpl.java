@@ -68,10 +68,8 @@ public class OsiUserServiceImpl implements OsiUserService{
     @Transactional(readOnly = true) 
     public OsiUser findOne(Long id) {
         log.debug("Request to get OsiUser : {}", id);
-        /*OsiUser osiUser = osiUserRepository.findOne(id);
-        OsiUser OsiUser = osiUserMapper.osiUserToOsiUser(osiUser);
-        return OsiUser;*/
-        return null;
+        OsiUser result = osiUserRepository.findOne(id);
+        return result;
     }
 
     /**
