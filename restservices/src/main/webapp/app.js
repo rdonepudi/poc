@@ -5,7 +5,7 @@
                         'app.adminResponsibilityController',
                         'app.adminFunctionController',
                         'app.userController',
-                        'app.operationExclusionController',
+                       
                         'app.infoController',
                         'app.infoService',
                         'app.adminMenusMenu1Controller',
@@ -13,10 +13,7 @@
                         'app.AuthenticationService',
                         'app.adminResponsibilityService',
                         'app.AdminMenuService',
-                        'app.OperationExclusionService',
-                        'app.AdminFunctionService',
-                        'app.FunctionExclusionService',
-                        'app.FunctionGetById',
+                      
                         'app.DateUtils',
                         'ui.bootstrap',
                         'ui.bootstrap.datetimepicker',
