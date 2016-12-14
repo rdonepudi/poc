@@ -5,11 +5,11 @@
 			<div class="form_group" style="float: left">
 				<label>Name</label> <input type="text" name="respName"
 					id="field_name" ng-model="vm.responsibility.respName" ng-required="true" />
-				<span style="color: red"
+				<div style="color: red"
 					ng-show="myForm.respName.$dirty && myForm.respName.$invalid">
 					<span ng-show="myForm.respName.$error.required">Name is
 						required.</span>
-				</span>
+				</div>
 			</div>
 
 

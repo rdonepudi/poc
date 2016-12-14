@@ -34,22 +34,11 @@ public class OsiResponsibilitiesServiceImpl implements OsiResponsibilityService{
      * @return the persisted entity
      */
     public OsiResponsibilities save(OsiResponsibilities osiResponsibilities) {
-        if(osiResponsibilities.getId()!=null){
-        	try{
-        		
-        	}catch(Exception e){
-        		e.printStackTrace();
-        	}
-        }else{
         	try{
         		osiResponsibilities = OsiResponsibilitiesRepository.save(osiResponsibilities);
         	}catch(Exception e){
         		e.printStackTrace();
         	}
-        	
-        }
-     
-        
         return osiResponsibilities;
     }
 

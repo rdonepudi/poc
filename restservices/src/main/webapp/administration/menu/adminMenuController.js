@@ -23,7 +23,6 @@
         
         function save(menu){
         	$scope.menu = menu;
-        	//console.log("In Save function: "+JSON.stringify($scope.menu));
         	AdminMenuService.save(menu);
         };
         
@@ -39,7 +38,6 @@
         
 		
         function cancel(){
-        	//console.log("In Cancel function");
         	$location.path('/home');
         	$window.location.reload();
         };
