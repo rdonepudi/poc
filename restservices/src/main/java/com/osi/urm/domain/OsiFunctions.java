@@ -21,8 +21,8 @@ import javax.persistence.TemporalType;
 @Table(name = "osi_functions")
 public class OsiFunctions implements java.io.Serializable {
 
-	private int id;
 	private String funcName;
+	private Long id;
 	private String funcType;
 	private String funcValue;
 	private String parameters;
@@ -40,14 +40,14 @@ public class OsiFunctions implements java.io.Serializable {
 	public OsiFunctions() {
 	}
 
-	public OsiFunctions(int id, String funcType, String funcValue, String funcName) {
+	public OsiFunctions(Long id, String funcType, String funcValue, String funcName) {
 		this.id = id;
 		this.funcName = funcName;
 		this.funcType = funcType;
 		this.funcValue = funcValue;
 	}
 
-	public OsiFunctions(int id, String funcName, String funcType, String funcValue,
+	public OsiFunctions(Long id, String funcName, String funcType, String funcValue,
 			String parameters, Integer createdBy, Date createdDate,
 			Integer updatedBy, Date updatedDate,
 			Set<OsiUserFuncExcl> osiUserFuncExcls,
@@ -69,11 +69,11 @@ public class OsiFunctions implements java.io.Serializable {
 
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
-	public int getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	

@@ -1,5 +1,10 @@
 package com.osi.urm.service.impl;
 
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +14,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.osi.urm.domain.OsiFunctions;
+import com.osi.urm.domain.OsiUserOperationExcl;
 import com.osi.urm.repository.OsiFunctionRepository;
 import com.osi.urm.service.OsiFunctionService;
 import com.osi.urm.service.dto.OsiFunctionsDTO;
+import com.osi.urm.service.dto.OsiUserOperationExclDTO;
 
 /**
  * Service Implementation for managing OsiFunction.
@@ -51,7 +58,9 @@ public class OsiFunctionServiceImpl implements OsiFunctionService{
     public Page<OsiFunctionsDTO> findAll(Pageable pageable) {
         log.debug("Request to get all OsiFunctions");
         Page<OsiFunctions> result = osiFunctionRepository.findAll(pageable);
-        //return result.map(osiFunction -> osiFunctionMapper.osiFunctionToOsiFunctionsDTO(osiFunction));
+        List<OsiFunctions> result1 = result.getContent();
+        //List<OsiFunctionsDTO> result = 
+        //return result.map(osiFunctionMapper.osiFunctionToOsiFunctionsDTO(osiFunction));
         return null;
     }
 
@@ -65,9 +74,23 @@ public class OsiFunctionServiceImpl implements OsiFunctionService{
     public OsiFunctionsDTO findOne(Long id) {
         log.debug("Request to get OsiFunction : {}", id);
         OsiFunctions osiFunctions = osiFunctionRepository.findOne(id);
+        OsiFunctionsDTO osiFunctionDTO = new OsiFunctionsDTO();
+        osiFunctionDTO.setId(osiFunctions.getId());
+        osiFunctionDTO.setFuncType(osiFunctions.getFuncType());
+        osiFunctionDTO.setFuncValue(osiFunctions.getFuncValue());
+        Set<OsiUserOperationExclDTO> set = new HashSet<OsiUserOperationExclDTO>();
+         
+        /*for (Iterator<OsiUserOperationExcl> it = osiFunctions.getOsiUserOperationExcls().iterator(); it.hasNext();) {
+        	OsiUserOperationExcl opnExcl = it.next();
+        	set.add(opnExcl);
+			
+		}*/
+        osiFunctions.getOsiUserOperationExcls().iterator();
+        
+        //osiFunctionDTO.setOsiUserOperationExcls(osiFunctions.getOsiUserOperationExcls());
        // OsiFunctionsDTO osiFunctionDTO = osiFunctionMapper.osiFunctionToOsiFunctionsDTO(osiFunction);
        // return osiFunctionDTO;
-        return null;
+        return osiFunctionDTO;
     }
 
     /**

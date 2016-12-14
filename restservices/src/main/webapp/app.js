@@ -15,6 +15,8 @@
                         'app.AdminMenuService',
                         'app.OperationExclusionService',
                         'app.AdminFunctionService',
+                        'app.FunctionExclusionService',
+                        'app.FunctionGetById',
                         'app.DateUtils',
                         'ui.bootstrap',
                         'ui.bootstrap.datetimepicker',
@@ -86,6 +88,7 @@
 	       controller: 'menuEntriesController',
 	       controllerAs: 'vm'
 	   })
+	    
 	}
 	osi.controller('authController', function ($location, $rootScope, $scope) {
 

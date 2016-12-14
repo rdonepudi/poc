@@ -1,14 +1,18 @@
-<h3 class="title">Operation Exclusion</h3>
+<h3 class="title"></h3>
 <div class="container" ng-controller="operationExclusionController">
-	<div class="panel">
-		<div class="col-lg-2">Functions</div>
-		<div class="col-lg-2">Available Operations</div>
-		<div class="col-lg-1"></div>
-		<div class="col-lg-2">Excluded Operations</div>
-	</div>
+<div class="panel">
+	<div class="col-lg-2">Functions</div>
+	<div class="col-lg-2">Available Operations</div>
+	<div class="col-lg-1"></div>
+	<div class="col-lg-2">Excluded Operations</div>
+</div>
 
+<div class="row" ng-repeat="f in demoFunc" >
 	<div class="col-lg-2">
+		<a ng-click="getOperations(f.id)" style="cursor:pointer">{{f.funcValue}}</a>
 	</div>
+</div>	
+	<div class="col-lg-2"></div>
     <div class="col-lg-2">
         <select name="from[]" id="multiselect" ng-model="availableOptions" class="form-control" size="8" multiple="multiple">
             <option ng-repeat="x in demoOpts">{{x.opValue}}</option>
@@ -26,14 +30,15 @@
         <select name="to[]" id="multiselect_to" ng-model="excludedOptions" class="form-control" size="8" multiple="multiple"></select>
     </div>
     
-
+</div>
+<div class="row">
 	<div class="col-lg-8 btn-toolbar" role="group" aria-label="..." style="padding-top: 4%;margin-left: 400px;">
 	  <button type="button" class="btn btn-default">Previous</button>
 	  <button type="button" class="btn btn-default">Submit</button>
 	  <button type="button" class="btn btn-default">Cancel</button>
 	</div>
-
 </div>
+
 <script type="text/javascript">
 jQuery(document).ready(function($) {
     $('#multiselect').multiselect();
