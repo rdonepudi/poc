@@ -16,7 +16,6 @@
                         'app.OperationExclusionService',
                         'app.AdminFunctionService',
                         'app.FunctionExclusionService',
-                        'app.FunctionGetById',
                         'app.DateUtils',
                         'ui.bootstrap',
                         'ui.bootstrap.datetimepicker',
