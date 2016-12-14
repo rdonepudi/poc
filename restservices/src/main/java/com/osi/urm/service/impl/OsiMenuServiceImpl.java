@@ -55,9 +55,9 @@ public class OsiMenuServiceImpl implements OsiMenuService{
     	osiMenusDTO.setUpdatedDate(osiMenus.getUpdatedDate());
     	osiMenusDTO.setCreatedBy(osiMenus.getCreatedBy());
     	osiMenusDTO.setCreatedDate(osiMenus.getCreatedDate());
-        /*OsiMenu osiMenu = osiMenuMapper.osiMenusDTOToOsiMenu(osiMenusDTO);
+        /*OsiMenu osiMenu = osiMenusMapper.osiMenusDTOToOsiMenus(osiMenusDTO);
         osiMenu = osiMenuRepository.save(osiMenu);
-        OsiMenusDTO result = osiMenuMapper.osiMenuToOsiMenusDTO(osiMenu);
+        OsiMenusDTO result = osiMenusMapper.OsiMenusToOsiMenusDTO(osiMenu);
         return result;*/
         return osiMenusDTO;
     }
@@ -102,7 +102,7 @@ public class OsiMenuServiceImpl implements OsiMenuService{
     	osiMenusDTO.setCreatedBy(osiMenus.getCreatedBy());
     	osiMenusDTO.setCreatedDate(osiMenus.getCreatedDate());
        /* OsiMenu osiMenu = osiMenuRepository.findOne(id);
-        OsiMenusDTO osiMenusDTO = osiMenuMapper.osiMenuToOsiMenusDTO(osiMenu);
+        OsiMenusDTO osiMenusDTO = osiMenusMapper.osiMenusToOsiMenusDTO(osiMenu);
         return osiMenusDTO;*/
         return osiMenusDTO;
     }
