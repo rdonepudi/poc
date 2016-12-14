@@ -49,6 +49,10 @@ public class OsiMenuEntriesResource {
     public ResponseEntity<OsiMenuEntries> createOsiMenuEntries(@Valid @RequestBody OsiMenuEntries osiMenuEntries) throws URISyntaxException {
 //        log.debug("REST request to save OsiMenuEntries : {}", osiMenuEntriesDTO);
         System.out.println("/***************************************:");
+        System.out.println(osiMenuEntries.getMenuPrompt());
+        System.out.println(osiMenuEntries.getSeq());
+        System.out.println(osiMenuEntries.getOsiMenusByMenuId());
+        System.out.println(osiMenuEntries.getOsiMenusBySubMenuId());
 //        System.out.println(osiMenuEntriesD.getMenuPrompt()); 
 //        System.out.println(osiMenuEntriesDTO.getSeq()); 
        // System.out.println(osiMenuEntriesDTO.getOsiMenusByMenuId()); 

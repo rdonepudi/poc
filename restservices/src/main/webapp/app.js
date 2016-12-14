@@ -116,7 +116,7 @@
 	    {name: "Logout", nodeId:120, url:"logout"
 	},
 	{
-		name: "createMenuEntries", nodeId:121, url:"menuEntries"
+		name: "MenuEntries", nodeId:121, url:"menuEntries"
 	}];
 	    $scope.basicOptions = {
 	    	    showIcon: true,

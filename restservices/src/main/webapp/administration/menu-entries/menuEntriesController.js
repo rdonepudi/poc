@@ -7,19 +7,29 @@
     menuEntriesController.$inject = ['$location', '$window', 'AuthenticationService','AdminMenuService','menuEntriesService'];
     function menuEntriesController($location, $window, AuthenticationService,AdminMenuService,menuEntriesService) {
         var vm = this;
-        vm.selectAttr="asfds";
         vm.types=[{type:"F"},{type:"M"}];
-        vm.selectText="select menu";
         vm.menus=[];
-        vm.subMenus=[{menuName:"Select Menu"}];
-        vm.rows=1;
+       // vm.selectText="select menu";
+        
+        //vm.subMenus=[{menuName:"Select Menu"}];
+        //vm.rows=1;
         vm.menuObj={};
        // vm.menuObj.type=vm.selectedType;
-        vm.menuObj.seq=vm.sequence;
-        vm.menuObj.prompt=vm.prompt;
+        //vm.menuObj.seq=vm.sequence;
+        //vm.menuObj.prompt=vm.prompt;
         
         /************************************************************/
-        vm.menuEntries
+        /*vm.tmpMenu.menuEntries={menus:[]};
+        vm.tmpMenu.selectedType='';
+        vm.tmpMenu.sequence=0;
+        vm.tmpMenu.prompt='';
+        vm.tmpMenu.selectedSubmenu={};*/
+        
+        vm.headerMenu='';
+        vm.menuEntries = {
+        	headerMenu: '',
+            subMenus:[{selectedType: '', seq: '', osiMenusBySubMenuId: '',menuPrompt:''}]
+          };
         
         AdminMenuService.query(function(result){
         	vm.menus=result;
@@ -35,13 +45,44 @@
         	console.log("COntroller Initiateed");
         }
         
-        vm.save=function(){
-            vm.menuObj.seq=vm.sequence;
-            vm.menuObj.menuPrompt=vm.prompt;
+        vm.addMenu=function(){
+        	vm.menuEntries.subMenus.push({ selectedType: '', seq: '', osiMenusBySubMenuId: '',menuPrompt:''});
+        	console.log("add menu called");
+        };
+        
+        vm.save=function(entries){
+        	//vm.headermenu=JSON.stringify(entries.headerMenu).replace(/\\/g, "");
+        	//console.log("str:"+vm.headermenu);
+        	//console.log(JSON.stringify(vm.menus[2]));
+        	//console.log(JSON.stringify(angular.fromJson(entries.headerMenu)));
+        	//console.log("headerMenu:",JSON.stringify(entries.headerMenu).toJSON());
+        	
+        	angular.forEach(entries.subMenus, function(value, key){
+        		
+        		 vm.menuObj={};
+        		 vm.menuObj.seq=value.seq;
+                 vm.menuObj.menuPrompt=value.menuPrompt;
+                 vm.menuObj.osiMenusByMenuId=angular.fromJson(entries.headerMenu);
+                 vm.menuObj.osiMenusBySubMenuId=angular.fromJson(value.osiMenusBySubMenuId);
+                // console.log("Saving: "+JSON.stringify(vm.menuObj));
+                 vm.savedMenu=menuEntriesService.save(vm.menuObj);
+                 console.log("Saved: "+JSON.stringify(vm.savedMenu));
+                 
+                /* vm.menuObj.seq=2;
+                 vm.menuObj.menuPrompt='heolo prompt';
+                 vm.menuObj.osiMenusByMenuId=vm.menus[0];
+                 vm.menuObj.osiMenusBySubMenuId=vm.menus[2];*/
+                // vm.savedMenu=menuEntriesService.save(vm.menuObj);
+             	//console.log("Hardcoded: "+JSON.stringify(vm.menuObj));
+        	});
+        	
+        	
+            /*vm.menuObj.seq=2;
+            vm.menuObj.menuPrompt='heolo prompt';
             vm.menuObj.osiMenusByMenuId=vm.menus[0];
             vm.menuObj.osiMenusBySubMenuId=vm.menus[2];
-            savedMenu=menuEntriesService.save(vm.menuObj);
-        	console.log("Saved: "+JSON.stringify(savedMenu));
+            vm.savedMenu=menuEntriesService.save(vm.menuObj);
+        	console.log("Saved: "+JSON.stringify(vm.savedMenu));*/
         }
     }
 })();
