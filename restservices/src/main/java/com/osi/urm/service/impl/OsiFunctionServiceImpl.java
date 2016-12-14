@@ -31,13 +31,14 @@ public class OsiFunctionServiceImpl implements OsiFunctionService{
      * @param osiFunctionDTO the entity to save
      * @return the persisted entity
      */
-    public OsiFunctionsDTO save(OsiFunctionsDTO osiFunctionDTO) {
-        log.debug("Request to save OsiFunction : {}", osiFunctionDTO);
+    public OsiFunctions save(OsiFunctions osiFunction) {
+        log.debug("Request to save OsiFunction : {}", osiFunction);
        /* OsiFunction osiFunction = osiFunctionMapper.osiFunctionDTOToOsiFunction(osiFunctionDTO);
         osiFunction = osiFunctionRepository.save(osiFunction);
         OsiFunctionsDTO result = osiFunctionMapper.osiFunctionToOsiFunctionsDTO(osiFunction);
         return result;*/
-        return null;
+        osiFunction = osiFunctionRepository.save(osiFunction);
+        return osiFunction;
     }
 
     /**

@@ -32,6 +32,7 @@ public class OsiFunctionsDTO implements java.io.Serializable {
 
 	public OsiFunctionsDTO(Integer id, String funcType, String funcValue,String funcName) {
 		this.id = id;
+		this.funcName = funcName;
 		this.funcType = funcType;
 		this.funcValue = funcValue;
 	}

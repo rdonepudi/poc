@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.osi.urm.domain.OsiFunctions;
 import com.osi.urm.service.OsiFunctionService;
 import com.osi.urm.service.dto.OsiFunctionsDTO;
 import com.osi.urm.service.dto.OsiFunctionsDTO;
@@ -49,13 +50,13 @@ public class OsiFunctionResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/osi-functions")
-    public ResponseEntity<OsiFunctionsDTO> createOsiFunction(@Valid @RequestBody OsiFunctionsDTO osiFunctionsDTO) throws URISyntaxException {
-        log.debug("REST request to save OsiFunction : {}", osiFunctionsDTO);
+    public ResponseEntity<OsiFunctions> createOsiFunction(@Valid @RequestBody OsiFunctions osiFunctions) throws URISyntaxException {
+        log.debug("REST request to save OsiFunction : {}", osiFunctions);
        System.out.println("createOsiFunction");
-        if (osiFunctionsDTO.getId() != null) {
+        /*if (osiFunctions.getId() != null) {
             return ResponseEntity.badRequest().body(null);
-        }
-        OsiFunctionsDTO result = osiFunctionService.save(osiFunctionsDTO);
+        }*/
+        OsiFunctions result = osiFunctionService.save(osiFunctions);
         return ResponseEntity.created(new URI("/api/osi-functions/" + result.getId()))
             .body(result);
     }
@@ -69,7 +70,7 @@ public class OsiFunctionResource {
      * or with status 500 (Internal Server Error) if the osiFunctionsDTO couldnt be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/osi-functions")
+  /*  @PutMapping("/osi-functions")
     public ResponseEntity<OsiFunctionsDTO> updateOsiFunction(@Valid @RequestBody OsiFunctionsDTO osiFunctionsDTO) throws URISyntaxException {
         log.debug("REST request to update OsiFunction : {}", osiFunctionsDTO);
         if (osiFunctionsDTO.getId() == null) {
@@ -79,7 +80,7 @@ public class OsiFunctionResource {
         return ResponseEntity.ok()
             .body(result);
     }
-
+*/
     /**
      * GET  /osi-functions : get all the osiFunctions.
      *

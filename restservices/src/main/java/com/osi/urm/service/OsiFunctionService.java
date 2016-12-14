@@ -3,6 +3,7 @@ package com.osi.urm.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.osi.urm.domain.OsiFunctions;
 import com.osi.urm.service.dto.OsiFunctionsDTO;
 
 /**
@@ -16,7 +17,7 @@ public interface OsiFunctionService {
      * @param osiFunctionsDTO the entity to save
      * @return the persisted entity
      */
-    OsiFunctionsDTO save(OsiFunctionsDTO osiFunctionsDTO);
+    OsiFunctions save(OsiFunctions osiFunctions);
 
     /**
      *  Get all the osiFunctions.
