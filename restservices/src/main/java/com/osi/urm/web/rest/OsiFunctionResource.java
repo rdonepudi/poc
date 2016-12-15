@@ -88,13 +88,24 @@ public class OsiFunctionResource {
      * @return the ResponseEntity with status 200 (OK) and the list of osiFunctions in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
-    @GetMapping("/osi-functions")
+   /* @GetMapping("/osi-functions")
     public ResponseEntity<List<OsiFunctionsDTO>> getAllOsiFunctions(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of OsiFunctions");
         Page<OsiFunctionsDTO> page = osiFunctionService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/osi-functions");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }*/
+    
+    
+    @GetMapping("/osi-functions")
+    public List<OsiFunctionsDTO> getAllOsiFunctions()
+        throws URISyntaxException {
+        /*log.debug("REST request to get a page of OsiFunctions");
+        Page<OsiFunctionsDTO> page = osiFunctionService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/osi-functions");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);*/
+    	return osiFunctionService.findAll();
     }
 
     /**

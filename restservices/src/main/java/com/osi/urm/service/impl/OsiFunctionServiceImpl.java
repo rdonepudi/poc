@@ -1,5 +1,6 @@
 package com.osi.urm.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -54,7 +55,7 @@ public class OsiFunctionServiceImpl implements OsiFunctionService{
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+   /* @Transactional(readOnly = true) 
     public Page<OsiFunctionsDTO> findAll(Pageable pageable) {
         log.debug("Request to get all OsiFunctions");
         Page<OsiFunctions> result = osiFunctionRepository.findAll(pageable);
@@ -62,8 +63,27 @@ public class OsiFunctionServiceImpl implements OsiFunctionService{
         //List<OsiFunctionsDTO> result = 
         //return result.map(osiFunctionMapper.osiFunctionToOsiFunctionsDTO(osiFunction));
         return null;
-    }
+    }*/
 
+    
+    public List<OsiFunctionsDTO> findAll(){
+        log.debug("Request to get all OsiMenus");
+        List<OsiFunctions> osiFunctions = osiFunctionRepository.findAll();
+        List<OsiFunctionsDTO> osiFunctionsDTOs = new ArrayList<OsiFunctionsDTO>();
+        	//List<OsiFunctionsDTO> osiFunctionsDTOs1 = new ArrayList<OsiFunctionsDTO>();
+			for (Iterator iterator = osiFunctions.iterator(); iterator.hasNext();) {
+				OsiFunctions osiFunctions2 = (OsiFunctions) iterator.next();
+				OsiFunctionsDTO osiFunctionsDTO = new OsiFunctionsDTO();
+				osiFunctionsDTO.setId(osiFunctions2.getId());
+				osiFunctionsDTO.setFuncName(osiFunctions2.getFuncName());
+				osiFunctionsDTO.setFuncType(osiFunctions2.getFuncType());
+				osiFunctionsDTO.setFuncValue(osiFunctions2.getFuncValue());
+				
+				osiFunctionsDTOs.add(osiFunctionsDTO);
+			}
+			return osiFunctionsDTOs;
+    }
+    
     /**
      *  Get one osiFunction by id.
      *

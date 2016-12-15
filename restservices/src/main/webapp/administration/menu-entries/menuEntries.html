@@ -52,6 +52,9 @@
 							<div class="col-lg-1">
 							...
 							</div>
+							<div class="col-lg-1">
+							...
+							</div>
 						</div>
 						</strong>
 					</div>
@@ -66,16 +69,24 @@
 								 <input ng-model="submenu.seq"  ng-init="submenu.seq=0" type="number" class="form-control top10" name="quantity" min="1" >
 							  </select>
 							</div>
-							<div class="col-lg-3">
+							<div class="col-lg-3" ng-if="submenu.selectedType=='M'">
 								<select ng-model="submenu.osiMenusBySubMenuId"  class="form-control top10" id="sel1" place-holder="select Type" >
 							    <option ng-repeat="menu in vm.menus" value="{{menu}}">{{menu.menuName}}</option>
 							  </select>
 							</div>
+							<div class="col-lg-3" ng-if="submenu.selectedType=='F'">
+								<select ng-model="submenu.osiFunctions"  class="form-control top10" id="sel1" place-holder="select Type" >
+							    <option ng-repeat="function in vm.functions" value="{{function}}">{{function.funcName}}</option>
+							  </select>
+							</div>
 							<div class="col-lg-2">
-							<input type="text" ng-model="submenu.menuPrompt" ng-init="submenu.menuPrompt=''" class="form-control top10" id="usr" >
+							<input type="text" ng-model="submenu.menuPrompt" ng-init="submenu.menuPrompt=''" class="form-control top10" id="usr"  >
 							</div>
 							<div class="col-lg-1 top10">
-								<span class="glyphicon glyphicon-minus-sign minusIcon" ng-click="vm.addMenu()" ></span>
+								<span class="glyphicon glyphicon-minus-sign minusIcon" ng-click="vm.removeMenu($index)" ></span>
+							</div>
+							<div class="col-lg-1 top10">
+								<span class="glyphicon glyphicon-plus-sign minusIcon" ng-click="vm.addMenu(submenu,$event)" ></span>
 							</div>
 					</div>
 					<br>
