@@ -30,7 +30,7 @@
 					</select>
 					</div> -->
 					<div class="row">
-						<h3 style="color:blue;">Create Menu Entries</h3>
+						<h3 style="color:blue;">Menu Entries</h3>
 					</div>
 					
 					
@@ -59,7 +59,7 @@
 						</strong>
 					</div>
 					
-					<div class="row" ng-repeat="submenu in vm.menuEntries.subMenus">
+					<div class="row" ng-repeat="submenu in vm.menuEntries.subMenus track by $index">
 							<div class="col-lg-2 top10">
 								<select class="form-control" ng-model="submenu.selectedType" ng-init="submenu.selectedType='M'">
 						  			<option ng-repeat="type in vm.types">{{type.type}}</option>
@@ -83,10 +83,10 @@
 							<input type="text" ng-model="submenu.menuPrompt" ng-init="submenu.menuPrompt=''" class="form-control top10" id="usr"  >
 							</div>
 							<div class="col-lg-1 top10">
-								<span class="glyphicon glyphicon-minus-sign minusIcon" ng-click="vm.removeMenu($index)" ></span>
+								<span class="glyphicon glyphicon-minus-sign minusIcon" ng-click="vm.removeMenu(submenu)" ></span>
 							</div>
-							<div class="col-lg-1 top10">
-								<span class="glyphicon glyphicon-plus-sign minusIcon" ng-click="vm.addMenu(submenu,$event)" ></span>
+							<div class="col-lg-1 top10" ng-show="$last">
+								<span class="glyphicon glyphicon-plus-sign minusIcon" ng-click="vm.addMenu(submenu)" ></span>
 							</div>
 					</div>
 					<br>

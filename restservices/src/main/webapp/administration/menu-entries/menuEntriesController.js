@@ -19,12 +19,12 @@
 
     	AdminMenuService.query(function(result){
     		vm.menus=result;
-    		console.log("Menus:",JSON.stringify(vm.menus));
+    		//console.log("Menus:",JSON.stringify(vm.menus));
     	});
 
     	AdminFunctionService.query(function (result){
     		vm.functions=result;
-    		console.log("Functions:",JSON.stringify(vm.functions));
+    		//console.log("Functions:",JSON.stringify(vm.functions));
     	});
 
     	vm.initController=function () {
@@ -34,27 +34,23 @@
         	};
     	}
 
-    	vm.addMenu=function(subMenu,$event){
-    		//buttonEl $event.currentTarget
-    		if(subMenu.selectedType!='' && subMenu.seq!='' &&  subMenu.osiMenusByMenuId!='' && subMenu.menuPrompt!=''){
-    			/*if (buttonEl.hasClass('disabled')) {
-        	        // Do nothing
-        	    } else {
-        	        // Do something AND...
-        	        buttonEl.addClass('disabled');
-        	    }*/
+    	vm.addMenu=function(subMenu){
+    		if(subMenu.selectedType!='' && subMenu.seq!='' &&  subMenu.osiMenusByMenuId!='' && subMenu.menuPrompt!='')
+    		{
     			vm.menuEntries.subMenus.push({ selectedType: '', seq: '', osiMenusBySubMenuId: '',menuPrompt:'',osiFunctions:''});
+    		}
+    		else
+    		{
+    			alert("Please fill all necessary fields.");
     		}
 
     	};
-    	vm.removeMenu=function($index)
+    	vm.removeMenu=function(submenu)
     	{
-    		console.log($index);
     		if(vm.menuEntries.subMenus.length>1)
 			{
-    			vm.menuEntries.subMenus.pop();
+    			vm.menuEntries.subMenus.splice(vm.menuEntries.subMenus.indexOf(submenu),1);
 			}
-    			
     		else
 			{
 				vm.menuEntries.subMenus=[{selectedType: '', seq: '', osiMenusBySubMenuId: '',menuPrompt:'',osiFunctions:''}];
@@ -65,33 +61,36 @@
 
 
     	vm.save=function(entries){
-    		//vm.headermenu=JSON.stringify(entries.headerMenu).replace(/\\/g, "");
-    		//console.log("str:"+vm.headermenu);
     		console.log('Entries:',JSON.stringify(entries));
-    		//console.log(JSON.stringify(angular.fromJson(entries.headerMenu)));
-    		//console.log("headerMenu:",JSON.stringify(entries.headerMenu).toJSON());
+    		if(entries.headerMenu!='')
+    		{
+    			angular.forEach(entries.subMenus, function(value, key){
 
-    		angular.forEach(entries.subMenus, function(value, key){
+        			vm.menuObj={};
+        			vm.menuObj.seq=value.seq;
+        			vm.menuObj.menuPrompt=value.menuPrompt;
+        			vm.menuObj.osiMenusByMenuId=angular.fromJson(entries.headerMenu);
+        			if(value.osiFunctions!='')
+    				{
+        				vm.menuObj.osiFunctions=angular.fromJson(value.osiFunctions);
+    				}
+        			else
+    				{
+    					vm.menuObj.osiMenusBySubMenuId=angular.fromJson(value.osiMenusBySubMenuId);
+    				}
+        			console.log("Saving: "+JSON.stringify(vm.menuObj));
+        			vm.savedMenu=menuEntriesService.save(vm.menuObj);
+        			console.log("Saved: "+JSON.stringify(vm.savedMenu));
+        			vm.initController();
 
-    			vm.menuObj={};
-    			vm.menuObj.seq=value.seq;
-    			vm.menuObj.menuPrompt=value.menuPrompt;
-    			vm.menuObj.osiMenusByMenuId=angular.fromJson(entries.headerMenu);
-    			if(value.osiFunctions!='')
-				{
-    				vm.menuObj.osiFunctions=angular.fromJson(value.osiFunctions);
-				}
-    			else
-				{
-					vm.menuObj.osiMenusBySubMenuId=angular.fromJson(value.osiMenusBySubMenuId);
-				}
-    			console.log("Saving: "+JSON.stringify(vm.menuObj));
-    			vm.savedMenu=menuEntriesService.save(vm.menuObj);
-    			console.log("Saved: "+JSON.stringify(vm.savedMenu));
-    			vm.initController();
+        		});
 
-    		});
-
+    			
+    		}
+    		else{
+    			alert("please select header menu.")
+    		}
+    		
 
     		/*vm.menuObj.seq=2;
             vm.menuObj.menuPrompt='heolo prompt';
