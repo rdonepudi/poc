@@ -16,10 +16,10 @@ public interface OsiResponsibilityService {
     /**
      * Save a osiResponsibility.
      *
-     * @param osiResponsibilities the entity to save
+     * @param osiResponsibilitiesDTO the entity to save
      * @return the persisted entity
      */
-    OsiResponsibilities save(OsiResponsibilities osiResponsibilities);
+    OsiResponsibilitiesDTO save(OsiResponsibilitiesDTO osiResponsibilitiesDTO);
 
     /**
      *  Get all the osiResponsibilities.

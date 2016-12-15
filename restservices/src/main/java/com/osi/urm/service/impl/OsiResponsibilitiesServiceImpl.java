@@ -18,6 +18,7 @@ import com.osi.urm.repository.OsiResponsibilityRepository;
 import com.osi.urm.service.OsiResponsibilityService;
 import com.osi.urm.service.dto.OsiMenusDTO;
 import com.osi.urm.service.dto.OsiResponsibilitiesDTO;
+import com.osi.urm.service.mapper.OsiReponsibilitiesMapper;
 
 /**
  * Service Implementation for managing OsiResponsibilities.
@@ -31,19 +32,20 @@ public class OsiResponsibilitiesServiceImpl implements OsiResponsibilityService{
     @Autowired
     private OsiResponsibilityRepository OsiResponsibilitiesRepository;
 
+    @Autowired
+    private OsiReponsibilitiesMapper osiReponsibilitiesMapper;
     /**
      * Save a OsiResponsibilities.
      *
      * @param osiResponsibilitiesDTO the entity to save
      * @return the persisted entity
      */
-    public OsiResponsibilities save(OsiResponsibilities osiResponsibilities) {
-        	try{
+
+    public OsiResponsibilitiesDTO save(OsiResponsibilitiesDTO osiResponsibilitiesDTO) {
+        		OsiResponsibilities osiResponsibilities = osiReponsibilitiesMapper.osiResponsibilitiesDTOToOsiResponsibilities(osiResponsibilitiesDTO);
         		osiResponsibilities = OsiResponsibilitiesRepository.save(osiResponsibilities);
-        	}catch(Exception e){
-        		e.printStackTrace();
-        	}
-        return osiResponsibilities;
+        		osiResponsibilitiesDTO = osiReponsibilitiesMapper.osiResponsibilitiesToOsiResponsibilitiesDTO(osiResponsibilities);
+        return osiResponsibilitiesDTO;
     }
 
     /**
@@ -85,6 +87,7 @@ public class OsiResponsibilitiesServiceImpl implements OsiResponsibilityService{
         OsiResponsibilities.delete(id);
     }
 
+
     @Transactional(readOnly = true) 
     public List<OsiResponsibilitiesDTO> findAll() {
         log.debug("Request to get all OsiMenus");
@@ -111,6 +114,7 @@ public class OsiResponsibilitiesServiceImpl implements OsiResponsibilityService{
 			}
 		return osiResponsibilitiesDTOs;
     }
+
 
 
 	
