@@ -51,8 +51,11 @@ public class OsiUser implements java.io.Serializable {
 	public OsiUser() {
 	}
 
+	
 	public OsiUser(Long id, String userName, String password, String empNumber, String emailId,
-			String mobileNumber, Date startDate, Date endDate) {
+			String mobileNumber, Date startDate, Date endDate,Set<OsiRespUser> osiRespUsers) {
+		
+		System.out.println("Within OsiUser Constructor");
 		this.id = id;
 		this.userName = userName;
 		this.password = password;
@@ -61,37 +64,7 @@ public class OsiUser implements java.io.Serializable {
 		this.mobileNumber = mobileNumber;
 		this.startDate = startDate;
 		this.endDate = endDate;
-	}
-
-	public OsiUser(Long id, String userName, String password, String firstName,
-			String lastName, String empNumber, String emailId, String mobileNumber,
-			Date startDate, String fullName, Date endDate, Integer createdBy,
-			Date createdDate, Integer updatedBy, Date updatedDate,
-			Set<OsiUserLogins> osiUserLoginses,
-			Set<OsiUserFuncExcl> osiUserFuncExcls,
-			Set<OsiAttachments> osiAttachmentses,
-			Set<OsiRespUser> osiRespUsers,
-			Set<OsiUserOperationExcl> osiUserOperationExcls) {
-		this.id = id;
-		this.userName = userName;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.empNumber = empNumber;
-		this.emailId = emailId;
-		this.mobileNumber = mobileNumber;
-		this.startDate = startDate;
-		this.fullName = fullName;
-		this.endDate = endDate;
-		this.createdBy = createdBy;
-		this.createdDate = createdDate;
-		this.updatedBy = updatedBy;
-		this.updatedDate = updatedDate;
-		this.osiUserLoginses = osiUserLoginses;
-		this.osiUserFuncExcls = osiUserFuncExcls;
-		this.osiAttachmentses = osiAttachmentses;
 		this.osiRespUsers = osiRespUsers;
-		this.osiUserOperationExcls = osiUserOperationExcls;
 	}
 	
 	@Id
@@ -268,6 +241,7 @@ public class OsiUser implements java.io.Serializable {
 	}
 
 	public void setOsiRespUsers(Set<OsiRespUser> osiRespUsers) {
+		System.out.println("setting OsiRespUser"+osiRespUsers);
 		this.osiRespUsers = osiRespUsers;
 	}
 

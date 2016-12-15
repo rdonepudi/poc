@@ -4,6 +4,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -21,10 +22,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.osi.urm.domain.OsiRespUser;
 import com.osi.urm.domain.OsiUser;
+import com.osi.urm.service.OsiRespUserService;
 import com.osi.urm.service.OsiUserService;
 import com.osi.urm.service.dto.OsiUserDTO;
-import com.osi.urm.service.mapper.OsiUserMapper;
 
 /**
  * REST controller for managing OsiUser.
@@ -41,7 +43,10 @@ public class OsiUserResource {
     /*@Autowired
     private OsiUserMapper osiUserMapper;*/
     
-//    OsiUserMapper osiUserMapper = Mappers.getMapper(OsiUserMapper.class);
+    //    OsiUserMapper osiUserMapper = Mappers.getMapper(OsiUserMapper.class);
+    @Autowired
+    private OsiRespUserService osiRespUserService;
+    
 
     /**
      * POST  /osi-users : Create a new osiUser.
@@ -52,16 +57,18 @@ public class OsiUserResource {
      */
     @PostMapping("/osi-users")
     public ResponseEntity<OsiUser> createOsiUser(@Valid @RequestBody OsiUser osiUser) throws URISyntaxException {
-        log.debug("REST request to save OsiUser : {}", osiUser);
+        /*log.debug("REST request to save OsiUser : {}", osiUser);*/
         if (osiUser.getId() != null) {
             return ResponseEntity.badRequest()
             		.body(null);
-        }
+        }        
+       
         OsiUser result = osiUserService.save(osiUser);
+                
         return ResponseEntity.created(new URI("/api/osi-users/" + result.getId()))
             .body(result);
     }
-
+    
     /**
      * PUT  /osi-users : Updates an existing osiUser.
      *
@@ -75,7 +82,8 @@ public class OsiUserResource {
     public ResponseEntity<OsiUser> updateOsiUser(@Valid @RequestBody OsiUser osiUser) throws URISyntaxException {
         log.debug("REST request to update OsiUser : {}", osiUser);
         if (osiUser.getId() == null) {
-            return createOsiUser(osiUser);
+            /*return createOsiUser(osiUser);*/
+        	return null;
         }
         OsiUser result = osiUserService.save(osiUser);
         return ResponseEntity.ok()

@@ -49,10 +49,11 @@ public class OsiResponsibilities implements java.io.Serializable {
 		this.startDate = startDate;
 		this.endDate = endDate;
 	} 
-	public OsiResponsibilities(Integer id, OsiMenus osiMenus, String respName) {
+	public OsiResponsibilities(Integer id, OsiMenus osiMenus, String respName, String description) {
 		this.id = id;
 		this.osiMenus = osiMenus;
 		this.respName = respName;
+		this.description = description;
 	}
 
 	public OsiResponsibilities(Integer id, OsiMenus osiMenus, String respName,
@@ -70,6 +71,11 @@ public class OsiResponsibilities implements java.io.Serializable {
 		this.osiRespUsers = osiRespUsers;
 		this.startDate = startDate;
 		this.endDate = endDate;
+	}
+	
+	public OsiResponsibilities(int id, String respName) {
+		this.id = id;
+		this.respName = respName;
 	}
 
 	@Id

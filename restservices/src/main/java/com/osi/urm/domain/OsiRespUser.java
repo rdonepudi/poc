@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,7 +22,7 @@ import javax.persistence.TemporalType;
 @Table(name = "osi_resp_user")
 public class OsiRespUser implements java.io.Serializable {
 
-	private int id;
+	private Integer id;
 	private OsiUser osiUser;
 	private OsiResponsibilities osiResponsibilities;
 	private Date startDate;
@@ -34,13 +36,13 @@ public class OsiRespUser implements java.io.Serializable {
 	public OsiRespUser() {
 	}
 
-	public OsiRespUser(int id, Date startDate, Date endDate) {
+	public OsiRespUser(Integer id, Date startDate, Date endDate) {
 		this.id = id;
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
 
-	public OsiRespUser(int id, OsiUser osiUser,
+	public OsiRespUser(Integer id, OsiUser osiUser,
 			OsiResponsibilities osiResponsibilities, Date startDate,
 			Date endDate, Boolean defaultResp, Integer createdBy,
 			Date createdDate, Integer updatedBy, Date updatedDate) {
@@ -55,14 +57,24 @@ public class OsiRespUser implements java.io.Serializable {
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
 	}
+	
+	public OsiRespUser(Integer id,OsiResponsibilities osiResponsibilities,Boolean defaultResp, Date startDate, Date endDate) {
+		this.id = id;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.osiResponsibilities = osiResponsibilities;
+		this.defaultResp = defaultResp;
+	}
+
 
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
-	public int getId() {
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -153,4 +165,10 @@ public class OsiRespUser implements java.io.Serializable {
 		this.updatedDate = updatedDate;
 	}
 
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "id"+this.getId()+" user"+this.getOsiUser().getFirstName();
+	}
 }

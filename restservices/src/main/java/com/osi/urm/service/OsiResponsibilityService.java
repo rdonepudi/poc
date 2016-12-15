@@ -1,5 +1,7 @@
 package com.osi.urm.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -26,6 +28,8 @@ public interface OsiResponsibilityService {
      *  @return the list of entities
      */
     Page<OsiResponsibilitiesDTO> findAll(Pageable pageable);
+    
+    List<OsiResponsibilitiesDTO> findAll();
 
     /**
      *  Get the "id" osiResponsibility.

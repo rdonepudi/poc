@@ -1,5 +1,9 @@
 package com.osi.urm.service.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +84,34 @@ public class OsiResponsibilitiesServiceImpl implements OsiResponsibilityService{
         log.debug("Request to delete OsiResponsibilities : {}", id);
         OsiResponsibilities.delete(id);
     }
+
+    @Transactional(readOnly = true) 
+    public List<OsiResponsibilitiesDTO> findAll() {
+        log.debug("Request to get all OsiMenus");
+        System.out.println("***within serviceimpl");
+        List<OsiResponsibilities> osiResponsibilities = OsiResponsibilitiesRepository.findAll();
+        List<OsiResponsibilitiesDTO> osiResponsibilitiesDTOs = new ArrayList<OsiResponsibilitiesDTO>();
+			for (Iterator iterator = osiResponsibilities.iterator(); iterator.hasNext();) {
+				
+				OsiResponsibilities osiResponsibilitiesDTOs2 = (OsiResponsibilities) iterator.next();
+				OsiResponsibilitiesDTO osiResponsibilitiesDTO = new OsiResponsibilitiesDTO();
+				
+				osiResponsibilitiesDTO.setId(osiResponsibilitiesDTOs2.getId());
+				osiResponsibilitiesDTO.setRespName(osiResponsibilitiesDTOs2.getRespName());
+				osiResponsibilitiesDTO.setDescription(osiResponsibilitiesDTOs2.getDescription());
+				
+				OsiMenusDTO menu = new OsiMenusDTO();
+				menu.setId(osiResponsibilitiesDTOs2.getOsiMenus().getId());
+				menu.setDescription(osiResponsibilitiesDTOs2.getOsiMenus().getDescription());
+				menu.setMenuName(osiResponsibilitiesDTOs2.getOsiMenus().getMenuName());
+				menu.setCreatedBy(osiResponsibilitiesDTOs2.getOsiMenus().getCreatedBy());
+				osiResponsibilitiesDTO.setOsiMenus(menu);
+				
+				osiResponsibilitiesDTOs.add(osiResponsibilitiesDTO);
+			}
+		return osiResponsibilitiesDTOs;
+    }
+
 
 	
 }
