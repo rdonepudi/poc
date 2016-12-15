@@ -1,11 +1,9 @@
 package com.osi.urm.service.mapper;
 
 import org.mapstruct.MapperConfig;
+import org.mapstruct.NullValueMappingStrategy;
 import org.mapstruct.ReportingPolicy;
 
-@MapperConfig(implementationPackage = "com.osi.urm.service.mapper",  unmappedTargetPolicy = ReportingPolicy.IGNORE, uses = { OsiAttachmentsMapper.class,
-		OsiFunctionsMapper.class, OsiMenuEntriesMapper.class, OsiMenusMapper.class, OsiOperationsMapper.class,
-		OsiReponsibilitiesMapper.class, OsiRespUserMapper.class, OsiUserFuncExclMapper.class, OsiUserLoginsMapper.class,
-		OsiUserMapper.class, OsiUserOperationExclMapper.class })
+@MapperConfig(implementationPackage = "com.osi.urm.service.mapper",nullValueMappingStrategy=NullValueMappingStrategy.RETURN_DEFAULT, unmappedTargetPolicy = ReportingPolicy.IGNORE, uses = {})
 public interface CentralConfigMapper {
 }

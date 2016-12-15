@@ -8,7 +8,7 @@ import org.mapstruct.ReportingPolicy;
 import com.osi.urm.domain.OsiUserOperationExcl;
 import com.osi.urm.service.dto.OsiUserOperationExclDTO;
 
-@Mapper(componentModel="spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, uses={})
+@Mapper(componentModel="spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, uses={CentralConfigMapper.class, OsiFunctionsMapper.class, OsiUserMapper.class})
 public interface OsiUserOperationExclMapper {
 	
 	OsiUserOperationExclDTO osiUserToOsiUserDTO(OsiUserOperationExcl osiUser);

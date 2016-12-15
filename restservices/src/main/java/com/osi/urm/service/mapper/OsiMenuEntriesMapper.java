@@ -8,7 +8,8 @@ import org.mapstruct.ReportingPolicy;
 import com.osi.urm.domain.OsiMenuEntries;
 import com.osi.urm.service.dto.OsiMenuEntriesDTO;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, uses = {})
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, uses = { CentralConfigMapper.class,
+		OsiFunctionsMapper.class, OsiMenusMapper.class })
 public interface OsiMenuEntriesMapper {
 
 	OsiMenuEntriesDTO OsiMenuEntriesToOsiMenuEntriesDTO(OsiMenuEntries osiMenuEntries);

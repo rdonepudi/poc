@@ -8,7 +8,7 @@ import org.mapstruct.ReportingPolicy;
 import com.osi.urm.domain.OsiUserLogins;
 import com.osi.urm.service.dto.OsiUserLoginsDTO;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, uses = { OsiUserMapper.class })
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, uses = { CentralConfigMapper.class, OsiUserMapper.class })
 public interface OsiUserLoginsMapper {
 
 	OsiUserLoginsDTO OsiUserLoginsToOsiUserLoginsDTO(OsiUserLogins osiUser);
