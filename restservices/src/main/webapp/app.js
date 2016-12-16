@@ -19,6 +19,7 @@
                         'app.OperationExclusionService',
                         'app.AdminFunctionService',
                         'app.FunctionExclusionService',
+                        'app.FunctionOperationService',
                         'app.DateUtils',
                         'app.responsibilityService',
                         'app.respService',

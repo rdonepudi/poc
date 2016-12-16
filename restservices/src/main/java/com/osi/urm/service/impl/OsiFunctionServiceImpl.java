@@ -20,6 +20,7 @@ import com.osi.urm.repository.OsiFunctionRepository;
 import com.osi.urm.service.OsiFunctionService;
 import com.osi.urm.service.dto.OsiFunctionsDTO;
 import com.osi.urm.service.dto.OsiUserOperationExclDTO;
+import com.osi.urm.service.mapper.OsiFunctionsMapper;
 
 /**
  * Service Implementation for managing OsiFunction.
@@ -32,6 +33,9 @@ public class OsiFunctionServiceImpl implements OsiFunctionService{
     
     @Autowired
     private OsiFunctionRepository osiFunctionRepository;
+    
+    @Autowired
+    private OsiFunctionsMapper osiFunctionMapper;
 
     /**
      * Save a osiFunction.
@@ -94,23 +98,14 @@ public class OsiFunctionServiceImpl implements OsiFunctionService{
     public OsiFunctionsDTO findOne(Long id) {
         log.debug("Request to get OsiFunction : {}", id);
         OsiFunctions osiFunctions = osiFunctionRepository.findOne(id);
-        OsiFunctionsDTO osiFunctionDTO = new OsiFunctionsDTO();
+       /* OsiFunctionsDTO osiFunctionDTO = new OsiFunctionsDTO();
         osiFunctionDTO.setId(osiFunctions.getId());
         osiFunctionDTO.setFuncType(osiFunctions.getFuncType());
-        osiFunctionDTO.setFuncValue(osiFunctions.getFuncValue());
-        Set<OsiUserOperationExclDTO> set = new HashSet<OsiUserOperationExclDTO>();
-         
-        /*for (Iterator<OsiUserOperationExcl> it = osiFunctions.getOsiUserOperationExcls().iterator(); it.hasNext();) {
-        	OsiUserOperationExcl opnExcl = it.next();
-        	set.add(opnExcl);
-			
-		}*/
-        osiFunctions.getOsiUserOperationExcls().iterator();
+        osiFunctionDTO.setFuncValue(osiFunctions.getFuncValue());*/
         
-        //osiFunctionDTO.setOsiUserOperationExcls(osiFunctions.getOsiUserOperationExcls());
-       // OsiFunctionsDTO osiFunctionDTO = osiFunctionMapper.osiFunctionToOsiFunctionsDTO(osiFunction);
+        OsiFunctionsDTO osiFunctionDTOs = osiFunctionMapper.osiUserToOsiFunctionsDTO(osiFunctions);
        // return osiFunctionDTO;
-        return osiFunctionDTO;
+        return osiFunctionDTOs;
     }
 
     /**

@@ -1,5 +1,5 @@
 <h3 class="title"></h3>
-<div class="container" ng-controller="operationExclusionController">
+<div class="container" ng-controller="operationExclusionController as vm">
 <div class="panel">
 	<div class="col-lg-2">Functions</div>
 	<div class="col-lg-2">Available Operations</div>
@@ -14,8 +14,8 @@
 </div>	
 	<div class="col-lg-2"></div>
     <div class="col-lg-2">
-        <select name="from[]" id="multiselect" ng-model="availableOptions" class="form-control" size="8" multiple="multiple">
-            <option ng-repeat="x in demoOpts">{{x.opValue}}</option>
+        <select name="from[]" id="multiselect" ng-model="availableOptions" class="multiselect form-control" size="8" multiple="multiple">
+            <option ng-repeat="x in availableFunc">{{x.name}}</option>
         </select>
     </div>
     
@@ -27,7 +27,9 @@
     </div>
     
     <div class="col-lg-2">
-        <select name="to[]" id="multiselect_to" ng-model="excludedOptions" class="form-control" size="8" multiple="multiple"></select>
+        <select name="to[]" id="multiselect_to" ng-model="excludedOptions" class="form-control" size="8" multiple="multiple">
+        	<option ng-repeat="x in excludedFunc">{{x.name}}</option>
+        </select>
     </div>
     
 </div>
@@ -41,6 +43,6 @@
 
 <script type="text/javascript">
 jQuery(document).ready(function($) {
-    $('#multiselect').multiselect();
+    $('.multiselect').multiselect();
 });
 </script>

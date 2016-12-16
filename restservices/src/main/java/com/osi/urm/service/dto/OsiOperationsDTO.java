@@ -8,28 +8,31 @@ public class OsiOperationsDTO implements java.io.Serializable {
 
 	private Integer id;
 	private OsiFunctionsDTO osiFunctionsDTO;
-	private String opType;
-	private String opValue;
-	private String parameters;
+	//private String opType;
+	//private String opValue;
+	//private String parameters;
+	private String name;
+	private String description;
 	private Integer createdBy;
 	private Date createdDate;
 	private Integer updatedBy;
 	private Date updatedDate;
+	private Integer funcId;
 
 	public OsiOperationsDTO() {
 	}
 
-	public OsiOperationsDTO(String opType) {
+	/*public OsiOperationsDTO(String opType) {
 		this.opType = opType;
-	}
+	}*/
 
 	public OsiOperationsDTO(OsiFunctionsDTO osiFunctionsDTO, String opType,
 			String opValue, String parameters, Integer createdBy,
 			Date createdDate, Integer updatedBy, Date updatedDate) {
 		this.osiFunctionsDTO = osiFunctionsDTO;
-		this.opType = opType;
-		this.opValue = opValue;
-		this.parameters = parameters;
+		//this.opType = opType;
+		//this.opValue = opValue;
+		//this.parameters = parameters;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
@@ -43,6 +46,22 @@ public class OsiOperationsDTO implements java.io.Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	public OsiFunctionsDTO getOsiFunctionsDTO() {
 		return this.osiFunctionsDTO;
@@ -52,29 +71,29 @@ public class OsiOperationsDTO implements java.io.Serializable {
 		this.osiFunctionsDTO = osiFunctionsDTO;
 	}
 
-	public String getOpType() {
+	/*public String getOpType() {
 		return this.opType;
 	}
 
 	public void setOpType(String opType) {
 		this.opType = opType;
-	}
+	}*/
 
-	public String getOpValue() {
+/*	public String getOpValue() {
 		return this.opValue;
 	}
 
 	public void setOpValue(String opValue) {
 		this.opValue = opValue;
 	}
-
-	public String getParameters() {
+*/
+	/*public String getParameters() {
 		return this.parameters;
 	}
 
 	public void setParameters(String parameters) {
 		this.parameters = parameters;
-	}
+	}*/
 
 	public Integer getCreatedBy() {
 		return this.createdBy;
@@ -106,6 +125,14 @@ public class OsiOperationsDTO implements java.io.Serializable {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
+	}
+
+	public Integer getFuncId() {
+		return funcId;
+	}
+
+	public void setFuncId(Integer funcId) {
+		this.funcId = funcId;
 	}
 
 }

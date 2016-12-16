@@ -85,7 +85,7 @@ public class OsiOperationsResource {
      * @return the ResponseEntity with status 200 (OK) and the list of osiOperataions in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
-    @GetMapping("/osi-operataions")
+    /*@GetMapping("/osi-operataions")
     public ResponseEntity<List<OsiOperations>> getAllOsiOperataions(Pageable pageable)
         throws URISyntaxException {
     	System.out.println("call........................................................");
@@ -95,8 +95,20 @@ public class OsiOperationsResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/osi-operataions");
         System.out.println("headers : "+headers);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }*/
+    
+    @GetMapping("/osi-operataions")
+    public List<OsiOperationsDTO> getAllOsiOperataions()
+    		throws URISyntaxException {
+    	List<OsiOperationsDTO> list = null;
+		try {
+			list = osiOperationsService.findAll();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return osiOperationsService.findAll();
     }
-
     /**
      * GET  /osi-operataions/:id : get the "id" osiOperataions.
      *
