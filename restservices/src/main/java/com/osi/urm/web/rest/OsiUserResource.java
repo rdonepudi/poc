@@ -2,9 +2,7 @@ package com.osi.urm.web.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -22,11 +20,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.osi.urm.domain.OsiRespUser;
 import com.osi.urm.domain.OsiUser;
-import com.osi.urm.service.OsiRespUserService;
 import com.osi.urm.service.OsiUserService;
 import com.osi.urm.service.dto.OsiUserDTO;
+import com.osi.urm.service.mapper.OsiUserMapper;
 
 /**
  * REST controller for managing OsiUser.
@@ -40,13 +37,8 @@ public class OsiUserResource {
     @Autowired
     private OsiUserService osiUserService;
     
-    /*@Autowired
-    private OsiUserMapper osiUserMapper;*/
-    
-    //    OsiUserMapper osiUserMapper = Mappers.getMapper(OsiUserMapper.class);
     @Autowired
-    private OsiRespUserService osiRespUserService;
-    
+    private OsiUserMapper osiUserMapper;
 
     /**
      * POST  /osi-users : Create a new osiUser.
@@ -102,15 +94,7 @@ public class OsiUserResource {
         throws URISyntaxException {
         log.debug("REST request to get a page of OsiUsers");
         List<OsiUser> users = osiUserService.findAll();
-//        List<OsiUserDTO> usersDTO = osiUserMapper.osiUserListToOsiUserDTOList(users);
-        List<OsiUserDTO> usersDTO = new ArrayList<OsiUserDTO>();
-        for (OsiUser osiUser : users) {
-        	OsiUserDTO userDto = new OsiUserDTO();
-        	userDto.setId(osiUser.getId());
-        	userDto.setFullName(osiUser.getFullName());
-        	userDto.setEmailId(osiUser.getEmailId());
-        	usersDTO.add(userDto);
-		}
+        List<OsiUserDTO> usersDTO = osiUserMapper.osiUserListToOsiUserDTOList(users);
         return new ResponseEntity<List<OsiUserDTO>>(usersDTO, HttpStatus.OK);
     }
   /*public ResponseEntity<List<OsiUser>> getAllOsiUsers(Pageable pageable)
@@ -131,11 +115,7 @@ public class OsiUserResource {
         log.debug("REST request to get OsiUser : {}", id);
         OsiUser result = osiUserService.findOne(id);
         if(result != null) {
-        	OsiUserDTO userDto = new OsiUserDTO();
-        	userDto.setId(result.getId());
-        	userDto.setFullName(result.getFullName());
-        	userDto.setEmailId(result.getEmailId());
-        	userDto.setEmpNumber(result.getEmpNumber());
+        	OsiUserDTO userDto = osiUserMapper.osiUserToOsiUserDTO(result);
         	return new ResponseEntity<OsiUserDTO>(userDto, HttpStatus.OK);
         } else {
         	return new ResponseEntity<OsiUserDTO>(HttpStatus.NOT_FOUND);

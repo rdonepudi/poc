@@ -5,9 +5,9 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-4 no-padding-left">
-				<button class="btn btn-primary" ui-sref="user.new">
-					<a href="#/user/"><span class="glyphicon glyphicon-plus"></span> <span
-						class="hidden-xs"> Create new User </span></a>
+				<button  type="button" class="btn btn-primary" ng-click="vm.createUser()">
+					<span class="glyphicon glyphicon-plus"></span> <span
+						class="hidden-xs"> Create new User </span>
 				</button>
 			</div>
 			<div class="col-xs-8 no-padding-right">
@@ -41,26 +41,21 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="user in vm.users track by user.id">
-					<td><a href="#/user/{{user.id}}">{{user.id}}</a></td>
+					<td><a ng-click="vm.editUser(user.id)">{{user.id}}</a></td>
 					<td>{{user.fullName}}</td>
 					<td>{{user.emailId}}</td>
 					<td class="text-right">
 						<div class="btn-group flex-btn-group-container">
-							<button type="submit" ui-sref="user-detail({id:user.id})"
-								class="btn btn-user btn-sm">
-								<span class="glyphicon glyphicon-eye-open"></span> <span
-									class="hidden-xs hidden-sm"></span>
-							</button>
-							<button type="submit" ui-sref="user.edit({id:user.id})"
+							<button type="submit" ng-click="vm.editUser(user.id)"
 								class="btn btn-primary btn-sm">
 								<span class="glyphicon glyphicon-pencil"></span> <span
 									class="hidden-xs hidden-sm"></span>
 							</button>
-							<button type="submit" ui-sref="user.delete({id:user.id})"
+							<!-- <button type="submit" ui-sref="user.delete({id:user.id})"
 								class="btn btn-danger btn-sm">
 								<span class="glyphicon glyphicon-remove-circle"></span> <span
 									class="hidden-xs hidden-sm"></span>
-							</button>
+							</button> -->
 						</div>
 					</td>
 				</tr>
