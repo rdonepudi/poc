@@ -1,6 +1,6 @@
 package com.osi.urm.domain;
 
-// Generated Nov 28, 2016 7:51:32 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,8 +23,8 @@ import javax.persistence.TemporalType;
 @Table(name = "osi_functions")
 public class OsiFunctions implements java.io.Serializable {
 
-	private String funcName;
 	private Long id;
+	private String funcName;
 	private String funcType;
 	private String funcValue;
 	private String parameters;
@@ -36,26 +38,30 @@ public class OsiFunctions implements java.io.Serializable {
 			0);
 	private Set<OsiUserOperationExcl> osiUserOperationExcls = new HashSet<OsiUserOperationExcl>(
 			0);
+	private Set<OsiFuncOperations> osiFuncOperationses = new HashSet<OsiFuncOperations>(
+			0);
 
 	public OsiFunctions() {
 	}
 
-	public OsiFunctions(Long id, String funcType, String funcValue, String funcName) {
+	public OsiFunctions(Long id, String funcName, String funcType,
+			String funcValue) {
 		this.id = id;
 		this.funcName = funcName;
 		this.funcType = funcType;
 		this.funcValue = funcValue;
 	}
 
-	public OsiFunctions(Long id, String funcName, String funcType, String funcValue,
-			String parameters, Integer createdBy, Date createdDate,
-			Integer updatedBy, Date updatedDate,
+	public OsiFunctions(Long id, String funcName, String funcType,
+			String funcValue, String parameters, Integer createdBy,
+			Date createdDate, Integer updatedBy, Date updatedDate,
 			Set<OsiUserFuncExcl> osiUserFuncExcls,
 			Set<OsiMenuEntries> osiMenuEntrieses,
-			Set<OsiUserOperationExcl> osiUserOperationExcls) {
+			Set<OsiUserOperationExcl> osiUserOperationExcls,
+			Set<OsiFuncOperations> osiFuncOperationses) {
 		this.id = id;
 		this.funcName = funcName;
-	    this.funcType = funcType;
+		this.funcType = funcType;
 		this.funcValue = funcValue;
 		this.parameters = parameters;
 		this.createdBy = createdBy;
@@ -65,10 +71,12 @@ public class OsiFunctions implements java.io.Serializable {
 		this.osiUserFuncExcls = osiUserFuncExcls;
 		this.osiMenuEntrieses = osiMenuEntrieses;
 		this.osiUserOperationExcls = osiUserOperationExcls;
+		this.osiFuncOperationses = osiFuncOperationses;
 	}
 
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
 		return this.id;
 	}
@@ -76,10 +84,10 @@ public class OsiFunctions implements java.io.Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	@Column(name = "func_name", nullable = false, length = 65535)
+
+	@Column(name = "func_name", nullable = false, length = 100)
 	public String getFuncName() {
-		return funcName;
+		return this.funcName;
 	}
 
 	public void setFuncName(String funcName) {
@@ -179,6 +187,14 @@ public class OsiFunctions implements java.io.Serializable {
 		this.osiUserOperationExcls = osiUserOperationExcls;
 	}
 
-	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "osiFunctions")
+	public Set<OsiFuncOperations> getOsiFuncOperationses() {
+		return this.osiFuncOperationses;
+	}
+
+	public void setOsiFuncOperationses(
+			Set<OsiFuncOperations> osiFuncOperationses) {
+		this.osiFuncOperationses = osiFuncOperationses;
+	}
 
 }

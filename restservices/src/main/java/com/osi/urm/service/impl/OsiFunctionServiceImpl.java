@@ -1,11 +1,5 @@
 package com.osi.urm.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.osi.urm.domain.OsiFunctions;
-import com.osi.urm.domain.OsiUserOperationExcl;
 import com.osi.urm.repository.OsiFunctionRepository;
 import com.osi.urm.service.OsiFunctionService;
 import com.osi.urm.service.dto.OsiFunctionsDTO;
-import com.osi.urm.service.dto.OsiUserOperationExclDTO;
-import com.osi.urm.service.mapper.OsiFunctionsMapper;
 
 /**
  * Service Implementation for managing OsiFunction.
@@ -33,9 +24,6 @@ public class OsiFunctionServiceImpl implements OsiFunctionService{
     
     @Autowired
     private OsiFunctionRepository osiFunctionRepository;
-    
-    @Autowired
-    private OsiFunctionsMapper osiFunctionMapper;
 
     /**
      * Save a osiFunction.
@@ -43,14 +31,13 @@ public class OsiFunctionServiceImpl implements OsiFunctionService{
      * @param osiFunctionDTO the entity to save
      * @return the persisted entity
      */
-    public OsiFunctions save(OsiFunctions osiFunction) {
-        log.debug("Request to save OsiFunction : {}", osiFunction);
+    public OsiFunctionsDTO save(OsiFunctionsDTO osiFunctionDTO) {
+        log.debug("Request to save OsiFunction : {}", osiFunctionDTO);
        /* OsiFunction osiFunction = osiFunctionMapper.osiFunctionDTOToOsiFunction(osiFunctionDTO);
         osiFunction = osiFunctionRepository.save(osiFunction);
         OsiFunctionsDTO result = osiFunctionMapper.osiFunctionToOsiFunctionsDTO(osiFunction);
         return result;*/
-        osiFunction = osiFunctionRepository.save(osiFunction);
-        return osiFunction;
+        return null;
     }
 
     /**
@@ -59,35 +46,14 @@ public class OsiFunctionServiceImpl implements OsiFunctionService{
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-   /* @Transactional(readOnly = true) 
+    @Transactional(readOnly = true) 
     public Page<OsiFunctionsDTO> findAll(Pageable pageable) {
         log.debug("Request to get all OsiFunctions");
         Page<OsiFunctions> result = osiFunctionRepository.findAll(pageable);
-        List<OsiFunctions> result1 = result.getContent();
-        //List<OsiFunctionsDTO> result = 
-        //return result.map(osiFunctionMapper.osiFunctionToOsiFunctionsDTO(osiFunction));
+        //return result.map(osiFunction -> osiFunctionMapper.osiFunctionToOsiFunctionsDTO(osiFunction));
         return null;
-    }*/
-
-    
-    public List<OsiFunctionsDTO> findAll(){
-        log.debug("Request to get all OsiMenus");
-        List<OsiFunctions> osiFunctions = osiFunctionRepository.findAll();
-        List<OsiFunctionsDTO> osiFunctionsDTOs = new ArrayList<OsiFunctionsDTO>();
-        	//List<OsiFunctionsDTO> osiFunctionsDTOs1 = new ArrayList<OsiFunctionsDTO>();
-			for (Iterator iterator = osiFunctions.iterator(); iterator.hasNext();) {
-				OsiFunctions osiFunctions2 = (OsiFunctions) iterator.next();
-				OsiFunctionsDTO osiFunctionsDTO = new OsiFunctionsDTO();
-				osiFunctionsDTO.setId(osiFunctions2.getId());
-				osiFunctionsDTO.setFuncName(osiFunctions2.getFuncName());
-				osiFunctionsDTO.setFuncType(osiFunctions2.getFuncType());
-				osiFunctionsDTO.setFuncValue(osiFunctions2.getFuncValue());
-				
-				osiFunctionsDTOs.add(osiFunctionsDTO);
-			}
-			return osiFunctionsDTOs;
     }
-    
+
     /**
      *  Get one osiFunction by id.
      *
@@ -98,14 +64,9 @@ public class OsiFunctionServiceImpl implements OsiFunctionService{
     public OsiFunctionsDTO findOne(Long id) {
         log.debug("Request to get OsiFunction : {}", id);
         OsiFunctions osiFunctions = osiFunctionRepository.findOne(id);
-       /* OsiFunctionsDTO osiFunctionDTO = new OsiFunctionsDTO();
-        osiFunctionDTO.setId(osiFunctions.getId());
-        osiFunctionDTO.setFuncType(osiFunctions.getFuncType());
-        osiFunctionDTO.setFuncValue(osiFunctions.getFuncValue());*/
-        
-        OsiFunctionsDTO osiFunctionDTOs = osiFunctionMapper.osiUserToOsiFunctionsDTO(osiFunctions);
+       // OsiFunctionsDTO osiFunctionDTO = osiFunctionMapper.osiFunctionToOsiFunctionsDTO(osiFunction);
        // return osiFunctionDTO;
-        return osiFunctionDTOs;
+        return null;
     }
 
     /**

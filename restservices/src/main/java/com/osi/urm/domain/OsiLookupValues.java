@@ -1,11 +1,13 @@
 package com.osi.urm.domain;
 
-// Generated Nov 28, 2016 7:51:32 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,7 +22,7 @@ import javax.persistence.TemporalType;
 @Table(name = "osi_lookup_values")
 public class OsiLookupValues implements java.io.Serializable {
 
-	private int id;
+	private Long id;
 	private OsiLookupTypes osiLookupTypes;
 	private String lookupValue;
 	private String lookupDesc;
@@ -32,7 +34,7 @@ public class OsiLookupValues implements java.io.Serializable {
 	public OsiLookupValues() {
 	}
 
-	public OsiLookupValues(int id, OsiLookupTypes osiLookupTypes,
+	public OsiLookupValues(Long id, OsiLookupTypes osiLookupTypes,
 			String lookupValue, String lookupDesc) {
 		this.id = id;
 		this.osiLookupTypes = osiLookupTypes;
@@ -40,7 +42,7 @@ public class OsiLookupValues implements java.io.Serializable {
 		this.lookupDesc = lookupDesc;
 	}
 
-	public OsiLookupValues(int id, OsiLookupTypes osiLookupTypes,
+	public OsiLookupValues(Long id, OsiLookupTypes osiLookupTypes,
 			String lookupValue, String lookupDesc, Integer createdBy,
 			Date createdDate, Integer updatedBy, Date updatedDate) {
 		this.id = id;
@@ -55,11 +57,12 @@ public class OsiLookupValues implements java.io.Serializable {
 
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
-	public int getId() {
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

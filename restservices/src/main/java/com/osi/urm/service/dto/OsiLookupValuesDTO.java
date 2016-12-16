@@ -1,16 +1,12 @@
 package com.osi.urm.service.dto;
 
-// Generated Nov 28, 2016 11:44:49 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
-@JsonInclude(Include.NON_EMPTY)
 public class OsiLookupValuesDTO implements java.io.Serializable {
 
-	private Integer id;
+	private Long id;
 	private OsiLookupTypesDTO osiLookupTypes;
 	private String lookupValue;
 	private String lookupDesc;
@@ -22,7 +18,7 @@ public class OsiLookupValuesDTO implements java.io.Serializable {
 	public OsiLookupValuesDTO() {
 	}
 
-	public OsiLookupValuesDTO(Integer id, OsiLookupTypesDTO osiLookupTypes,
+	public OsiLookupValuesDTO(Long id, OsiLookupTypesDTO osiLookupTypes,
 			String lookupValue, String lookupDesc) {
 		this.id = id;
 		this.osiLookupTypes = osiLookupTypes;
@@ -30,7 +26,7 @@ public class OsiLookupValuesDTO implements java.io.Serializable {
 		this.lookupDesc = lookupDesc;
 	}
 
-	public OsiLookupValuesDTO(Integer id, OsiLookupTypesDTO osiLookupTypes,
+	public OsiLookupValuesDTO(Long id, OsiLookupTypesDTO osiLookupTypes,
 			String lookupValue, String lookupDesc, Integer createdBy,
 			Date createdDate, Integer updatedBy, Date updatedDate) {
 		this.id = id;
@@ -43,11 +39,11 @@ public class OsiLookupValuesDTO implements java.io.Serializable {
 		this.updatedDate = updatedDate;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

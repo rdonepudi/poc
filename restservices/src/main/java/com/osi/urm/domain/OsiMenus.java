@@ -1,11 +1,10 @@
 package com.osi.urm.domain;
 
-// Generated Nov 28, 2016 7:51:32 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,9 +26,9 @@ public class OsiMenus implements java.io.Serializable {
 	private Long id;
 	private String menuName;
 	private String description;
-	private Integer createdBy;
+	private Long createdBy;
 	private Date createdDate;
-	private Integer updatedBy;
+	private Long updatedBy;
 	private Date updatedDate;
 	private Set<OsiMenuEntries> osiMenuEntriesesForSubMenuId = new HashSet<OsiMenuEntries>(
 			0);
@@ -45,16 +44,9 @@ public class OsiMenus implements java.io.Serializable {
 		this.id = id;
 		this.menuName = menuName;
 	}
-	
-	public OsiMenus(Long id, String menuName, String description, Integer createdBy) {
-		this.id = id;
-		this.menuName = menuName;
-		this.description = description;
-		this.createdBy = createdBy;
-	}
 
 	public OsiMenus(Long id, String menuName, String description,
-			Integer createdBy, Date createdDate, Integer updatedBy,
+			Long createdBy, Date createdDate, Long updatedBy,
 			Date updatedDate, Set<OsiMenuEntries> osiMenuEntriesesForSubMenuId,
 			Set<OsiResponsibilities> osiResponsibilitieses,
 			Set<OsiMenuEntries> osiMenuEntriesesForMenuId) {
@@ -100,11 +92,11 @@ public class OsiMenus implements java.io.Serializable {
 	}
 
 	@Column(name = "created_by")
-	public Integer getCreatedBy() {
+	public Long getCreatedBy() {
 		return this.createdBy;
 	}
 
-	public void setCreatedBy(Integer createdBy) {
+	public void setCreatedBy(Long createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -119,11 +111,11 @@ public class OsiMenus implements java.io.Serializable {
 	}
 
 	@Column(name = "updated_by")
-	public Integer getUpdatedBy() {
+	public Long getUpdatedBy() {
 		return this.updatedBy;
 	}
 
-	public void setUpdatedBy(Integer updatedBy) {
+	public void setUpdatedBy(Long updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 

@@ -1,17 +1,17 @@
 package com.osi.urm.domain;
 
-// Generated Nov 30, 2016 8:27:56 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
-
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,103 +23,70 @@ import javax.persistence.TemporalType;
 @Table(name = "osi_operations")
 public class OsiOperations implements java.io.Serializable {
 
-	private Integer id;
-	private OsiFunctions osiFunctions;
-	//private String opType;
-	//private String opValue;
-	//private String parameters;
+	private Long id;
 	private String name;
 	private String description;
 	private Integer createdBy;
 	private Date createdDate;
 	private Integer updatedBy;
 	private Date updatedDate;
+	private Set<OsiFuncOperations> osiFuncOperationses = new HashSet<OsiFuncOperations>(
+			0);
+	private Set<OsiUserOperationExcl> osiUserOperationExcls = new HashSet<OsiUserOperationExcl>(
+			0);
 
 	public OsiOperations() {
 	}
 
-	/*public OsiOperations(String opType) {
-		this.opType = opType;
-	}*/
+	public OsiOperations(Long id, String name, String description) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+	}
 
-	public OsiOperations(OsiFunctions osiFunctions, String opType,
-			String opValue, String parameters, Integer createdBy,
-			Date createdDate, Integer updatedBy, Date updatedDate) {
-		this.osiFunctions = osiFunctions;
-		//this.opType = opType;
-		//this.opValue = opValue;
-		//this.parameters = parameters;
+	public OsiOperations(Long id, String name, String description,
+			Integer createdBy, Date createdDate, Integer updatedBy,
+			Date updatedDate, Set<OsiFuncOperations> osiFuncOperationses,
+			Set<OsiUserOperationExcl> osiUserOperationExcls) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
+		this.osiFuncOperationses = osiFuncOperationses;
+		this.osiUserOperationExcls = osiUserOperationExcls;
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", unique = true, nullable = false)
-	public Integer getId() {
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	@Column(name = "name")
+
+	@Column(name = "name", nullable = false, length = 1000)
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	@Column(name = "description")
+
+	@Column(name = "description", nullable = false, length = 65535)
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
-	}	
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "func_id")
-	public OsiFunctions getOsiFunctions() {
-		return this.osiFunctions;
 	}
-
-	public void setOsiFunctions(OsiFunctions osiFunctions) {
-		this.osiFunctions = osiFunctions;
-	}
-
-	/*@Column(name = "op_type", nullable = false, length = 100)
-	public String getOpType() {
-		return this.opType;
-	}
-
-	public void setOpType(String opType) {
-		this.opType = opType;
-	}*/
-
-	/*@Column(name = "op_value", length = 65535)
-	public String getOpValue() {
-		return this.opValue;
-	}
-
-	public void setOpValue(String opValue) {
-		this.opValue = opValue;
-	}*/
-
-	/*@Column(name = "parameters", length = 1000)
-	public String getParameters() {
-		return this.parameters;
-	}
-
-	public void setParameters(String parameters) {
-		this.parameters = parameters;
-	}*/
 
 	@Column(name = "created_by")
 	public Integer getCreatedBy() {
@@ -157,6 +124,26 @@ public class OsiOperations implements java.io.Serializable {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "osiOperations")
+	public Set<OsiFuncOperations> getOsiFuncOperationses() {
+		return this.osiFuncOperationses;
+	}
+
+	public void setOsiFuncOperationses(
+			Set<OsiFuncOperations> osiFuncOperationses) {
+		this.osiFuncOperationses = osiFuncOperationses;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "osiOperations")
+	public Set<OsiUserOperationExcl> getOsiUserOperationExcls() {
+		return this.osiUserOperationExcls;
+	}
+
+	public void setOsiUserOperationExcls(
+			Set<OsiUserOperationExcl> osiUserOperationExcls) {
+		this.osiUserOperationExcls = osiUserOperationExcls;
 	}
 
 }

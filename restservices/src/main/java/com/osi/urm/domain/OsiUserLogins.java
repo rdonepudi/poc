@@ -1,11 +1,13 @@
 package com.osi.urm.domain;
 
-// Generated Nov 28, 2016 7:51:32 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,8 +22,8 @@ import javax.persistence.TemporalType;
 @Table(name = "osi_user_logins")
 public class OsiUserLogins implements java.io.Serializable {
 
-	private int id;
-	private OsiUser osiUser;
+	private Long id;
+	private Long userId;
 	private Date startTime;
 	private Date endTime;
 	private Integer pid;
@@ -32,16 +34,14 @@ public class OsiUserLogins implements java.io.Serializable {
 	public OsiUserLogins() {
 	}
 
-	public OsiUserLogins(int id, OsiUser osiUser, Date startTime) {
+	public OsiUserLogins(Long id, Date startTime) {
 		this.id = id;
-		this.osiUser = osiUser;
 		this.startTime = startTime;
 	}
 
-	public OsiUserLogins(int id, OsiUser osiUser, Date startTime, Date endTime,
+	public OsiUserLogins(Long id, Date startTime, Date endTime,
 			Integer pid, String loginType, String token, Integer tokenExpTime) {
 		this.id = id;
-		this.osiUser = osiUser;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.pid = pid;
@@ -52,22 +52,13 @@ public class OsiUserLogins implements java.io.Serializable {
 
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
-	public int getId() {
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", nullable = false)
-	public OsiUser getOsiUser() {
-		return this.osiUser;
-	}
-
-	public void setOsiUser(OsiUser osiUser) {
-		this.osiUser = osiUser;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -124,6 +115,14 @@ public class OsiUserLogins implements java.io.Serializable {
 
 	public void setTokenExpTime(Integer tokenExpTime) {
 		this.tokenExpTime = tokenExpTime;
+	}
+	@Column(name = "user_id")
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 }

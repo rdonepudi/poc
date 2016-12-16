@@ -1,22 +1,29 @@
 package com.osi.urm.service.dto;
 
-// Generated Nov 28, 2016 11:44:49 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
-@JsonInclude(Include.NON_EMPTY)
+@JsonInclude(Include.NON_NULL)
 public class OsiMenusDTO implements java.io.Serializable {
 
 	private Long id;
 	private String menuName;
 	private String description;
-	private Integer createdBy;
+	private Long createdBy;
 	private Date createdDate;
-	private Integer updatedBy;
+	private Long updatedBy;
 	private Date updatedDate;
+	private Set<OsiMenuEntriesDTO> osiMenuEntriesesForSubMenuId = new HashSet<OsiMenuEntriesDTO>(
+			0);
+	private Set<OsiResponsibilitiesDTO> osiResponsibilitieses = new HashSet<OsiResponsibilitiesDTO>(
+			0);
+	private Set<OsiMenuEntriesDTO> osiMenuEntriesesForMenuId = new HashSet<OsiMenuEntriesDTO>(
+			0);
 
 	public OsiMenusDTO() {
 	}
@@ -27,8 +34,10 @@ public class OsiMenusDTO implements java.io.Serializable {
 	}
 
 	public OsiMenusDTO(Long id, String menuName, String description,
-			Integer createdBy, Date createdDate, Integer updatedBy,
-			Date updatedDate) {
+			Long createdBy, Date createdDate, Long updatedBy,
+			Date updatedDate, Set<OsiMenuEntriesDTO> osiMenuEntriesesForSubMenuId,
+			Set<OsiResponsibilitiesDTO> osiResponsibilitieses,
+			Set<OsiMenuEntriesDTO> osiMenuEntriesesForMenuId) {
 		this.id = id;
 		this.menuName = menuName;
 		this.description = description;
@@ -36,6 +45,9 @@ public class OsiMenusDTO implements java.io.Serializable {
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
+		this.osiMenuEntriesesForSubMenuId = osiMenuEntriesesForSubMenuId;
+		this.osiResponsibilitieses = osiResponsibilitieses;
+		this.osiMenuEntriesesForMenuId = osiMenuEntriesesForMenuId;
 	}
 
 	public Long getId() {
@@ -62,11 +74,11 @@ public class OsiMenusDTO implements java.io.Serializable {
 		this.description = description;
 	}
 
-	public Integer getCreatedBy() {
+	public Long getCreatedBy() {
 		return this.createdBy;
 	}
 
-	public void setCreatedBy(Integer createdBy) {
+	public void setCreatedBy(Long createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -78,11 +90,11 @@ public class OsiMenusDTO implements java.io.Serializable {
 		this.createdDate = createdDate;
 	}
 
-	public Integer getUpdatedBy() {
+	public Long getUpdatedBy() {
 		return this.updatedBy;
 	}
 
-	public void setUpdatedBy(Integer updatedBy) {
+	public void setUpdatedBy(Long updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 
@@ -92,6 +104,33 @@ public class OsiMenusDTO implements java.io.Serializable {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
+	}
+
+	public Set<OsiMenuEntriesDTO> getOsiMenuEntriesesForSubMenuId() {
+		return this.osiMenuEntriesesForSubMenuId;
+	}
+
+	public void setOsiMenuEntriesesForSubMenuId(
+			Set<OsiMenuEntriesDTO> osiMenuEntriesesForSubMenuId) {
+		this.osiMenuEntriesesForSubMenuId = osiMenuEntriesesForSubMenuId;
+	}
+
+	public Set<OsiResponsibilitiesDTO> getOsiResponsibilitieses() {
+		return this.osiResponsibilitieses;
+	}
+
+	public void setOsiResponsibilitieses(
+			Set<OsiResponsibilitiesDTO> osiResponsibilitieses) {
+		this.osiResponsibilitieses = osiResponsibilitieses;
+	}
+
+	public Set<OsiMenuEntriesDTO> getOsiMenuEntriesesForMenuId() {
+		return this.osiMenuEntriesesForMenuId;
+	}
+
+	public void setOsiMenuEntriesesForMenuId(
+			Set<OsiMenuEntriesDTO> osiMenuEntriesesForMenuId) {
+		this.osiMenuEntriesesForMenuId = osiMenuEntriesesForMenuId;
 	}
 
 }

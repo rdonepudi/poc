@@ -1,0 +1,45 @@
+body{
+        margin: 0px !important;
+        background: #fafafa;
+    }
+div.container {
+    width: 99.85%;
+    border: 0px solid gray;
+    height: 600px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+header, footer {
+    padding-top: 1em;
+    color: white;
+    background-color: #01538D;
+    clear: left;
+    text-align: center;
+    padding-bottom: 4px;
+}
+
+nav {
+    float: left;
+    max-width: 160px;
+    margin: 0;
+    padding: 1em;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+   
+nav ul a {
+    text-decoration: none;
+}
+.border{
+	 border-left: 1px solid gray;
+	 margin-left: 21%; 
+}
+article {
+    padding-left: 1em;
+    overflow: hidden;
+    height: 81.5%;
+}
