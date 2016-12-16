@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.osi.urm.domain.OsiOperations;
+import com.osi.urm.exception.BusinessException;
 import com.osi.urm.service.dto.OsiOperationsDTO;
 
 /**
@@ -27,8 +27,8 @@ public interface OsiOperationsService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    /*Page<OsiOperations> findAll(Pageable pageable);*/
-    List<OsiOperationsDTO> findAll();
+    Page<OsiOperationsDTO> findAll(Pageable pageable);
+
     /**
      *  Get the "id" osiOperataions.
      *
@@ -43,4 +43,6 @@ public interface OsiOperationsService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+    
+    public List<OsiOperationsDTO> getUserExlOperations(Long userId, Long functionId) throws BusinessException;
 }

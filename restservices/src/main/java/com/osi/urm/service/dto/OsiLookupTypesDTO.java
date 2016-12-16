@@ -1,17 +1,22 @@
 package com.osi.urm.service.dto;
 
-// Generated Nov 28, 2016 11:44:49 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-@JsonInclude(Include.NON_EMPTY)
 public class OsiLookupTypesDTO implements java.io.Serializable {
 
-	private Integer id;
+	private Long id;
 	private String lookupName;
 	private String lookupCode;
 	private Integer createdBy;
@@ -24,13 +29,13 @@ public class OsiLookupTypesDTO implements java.io.Serializable {
 	public OsiLookupTypesDTO() {
 	}
 
-	public OsiLookupTypesDTO(Integer id, String lookupName, String lookupCode) {
+	public OsiLookupTypesDTO(Long id, String lookupName, String lookupCode) {
 		this.id = id;
 		this.lookupName = lookupName;
 		this.lookupCode = lookupCode;
 	}
 
-	public OsiLookupTypesDTO(Integer id, String lookupName, String lookupCode,
+	public OsiLookupTypesDTO(Long id, String lookupName, String lookupCode,
 			Integer createdBy, Date createdDate, Integer updatedBy,
 			Date updatedDate, Set<OsiLookupValuesDTO> osiLookupValueses) {
 		this.id = id;
@@ -43,11 +48,11 @@ public class OsiLookupTypesDTO implements java.io.Serializable {
 		this.osiLookupValueses = osiLookupValueses;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -106,4 +111,5 @@ public class OsiLookupTypesDTO implements java.io.Serializable {
 	public void setOsiLookupValueses(Set<OsiLookupValuesDTO> osiLookupValueses) {
 		this.osiLookupValueses = osiLookupValueses;
 	}
+
 }

@@ -2,7 +2,6 @@ package com.osi.urm.service;
 
 import java.util.List;
 
-import com.osi.urm.domain.OsiMenuEntries;
 import com.osi.urm.service.dto.OsiMenuEntriesDTO;
 
 /**
@@ -13,10 +12,10 @@ public interface OsiMenuEntriesService {
     /**
      * Save a osiMenuEntries.
      *
-     * @param osiMenuEntries the entity to save
+     * @param osiMenuEntriesDTO the entity to save
      * @return the persisted entity
      */
-    OsiMenuEntries save(OsiMenuEntries osiMenuEntries);
+    OsiMenuEntriesDTO save(OsiMenuEntriesDTO osiMenuEntriesDTO);
 
     /**
      *  Get all the osiMenuEntries.

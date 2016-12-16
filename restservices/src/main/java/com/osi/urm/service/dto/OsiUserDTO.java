@@ -1,6 +1,6 @@
 package com.osi.urm.service.dto;
 
-// Generated Nov 28, 2016 11:44:49 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -8,9 +8,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
-@SuppressWarnings("serial")
-@JsonInclude(Include.NON_EMPTY)
+@JsonInclude(Include.NON_NULL)
 public class OsiUserDTO implements java.io.Serializable {
 
 	private Long id;
@@ -18,8 +16,8 @@ public class OsiUserDTO implements java.io.Serializable {
 	private String password;
 	private String firstName;
 	private String lastName;
-	private String empNumber;
 	private String emailId;
+	private String empNumber;
 	private String mobileNumber;
 	private Date startDate;
 	private String fullName;
@@ -28,6 +26,8 @@ public class OsiUserDTO implements java.io.Serializable {
 	private Date createdDate;
 	private Integer updatedBy;
 	private Date updatedDate;
+	private String menuTree;
+	private String token;
 	private Set<OsiUserLoginsDTO> osiUserLoginses = new HashSet<OsiUserLoginsDTO>(0);
 	private Set<OsiUserFuncExclDTO> osiUserFuncExcls = new HashSet<OsiUserFuncExclDTO>(
 			0);
@@ -40,20 +40,19 @@ public class OsiUserDTO implements java.io.Serializable {
 	public OsiUserDTO() {
 	}
 
-	public OsiUserDTO(Long id, String userName, String password, String empNumber, String emailId,
+	public OsiUserDTO(Long id, String userName, String password, String emailId,
 			String mobileNumber, Date startDate, Date endDate) {
 		this.id = id;
 		this.userName = userName;
 		this.password = password;
 		this.emailId = emailId;
-		this.empNumber = empNumber;
 		this.mobileNumber = mobileNumber;
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
 
 	public OsiUserDTO(Long id, String userName, String password, String firstName,
-			String lastName, String empNumber, String emailId, String mobileNumber,
+			String lastName, String emailId, String mobileNumber,
 			Date startDate, String fullName, Date endDate, Integer createdBy,
 			Date createdDate, Integer updatedBy, Date updatedDate,
 			Set<OsiUserLoginsDTO> osiUserLoginses,
@@ -66,7 +65,6 @@ public class OsiUserDTO implements java.io.Serializable {
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.empNumber = empNumber;
 		this.emailId = emailId;
 		this.mobileNumber = mobileNumber;
 		this.startDate = startDate;
@@ -121,13 +119,6 @@ public class OsiUserDTO implements java.io.Serializable {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-	public String getEmpNumber() {
-		return this.empNumber;
-	}
-
-	public void setEmpNumber(String empNumber) {
-		this.empNumber = empNumber;
 	}
 
 	public String getEmailId() {
@@ -242,5 +233,55 @@ public class OsiUserDTO implements java.io.Serializable {
 			Set<OsiUserOperationExclDTO> osiUserOperationExcls) {
 		this.osiUserOperationExcls = osiUserOperationExcls;
 	}
+	public String getEmpNumber() {
+		return empNumber;
+	}
 
+	public void setEmpNumber(String empNumber) {
+		this.empNumber = empNumber;
+	}
+
+	public OsiUserDTO(Long id, String userName, String password, String firstName, String lastName, String emailId,
+			String empNumber, String mobileNumber, Date startDate, String fullName, Date endDate, Integer createdBy,
+			Date createdDate, Integer updatedBy, Date updatedDate, Set<OsiUserLoginsDTO> osiUserLoginses,
+			Set<OsiUserFuncExclDTO> osiUserFuncExcls, Set<OsiAttachmentsDTO> osiAttachmentses,
+			Set<OsiRespUserDTO> osiRespUsers, Set<OsiUserOperationExclDTO> osiUserOperationExcls) {
+		super();
+		this.id = id;
+		this.userName = userName;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.emailId = emailId;
+		this.empNumber = empNumber;
+		this.mobileNumber = mobileNumber;
+		this.startDate = startDate;
+		this.fullName = fullName;
+		this.endDate = endDate;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.updatedBy = updatedBy;
+		this.updatedDate = updatedDate;
+		this.osiUserLoginses = osiUserLoginses;
+		this.osiUserFuncExcls = osiUserFuncExcls;
+		this.osiAttachmentses = osiAttachmentses;
+		this.osiRespUsers = osiRespUsers;
+		this.osiUserOperationExcls = osiUserOperationExcls;
+	}
+
+	public String getMenuTree() {
+		return menuTree;
+	}
+
+	public void setMenuTree(String menuTree) {
+		this.menuTree = menuTree;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
 }

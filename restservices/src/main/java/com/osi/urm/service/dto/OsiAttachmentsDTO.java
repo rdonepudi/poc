@@ -1,12 +1,9 @@
 package com.osi.urm.service.dto;
 
-// Generated Nov 28, 2016 11:44:49 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-@JsonInclude(Include.NON_EMPTY)
 public class OsiAttachmentsDTO implements java.io.Serializable {
 
 	private Long id;

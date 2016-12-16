@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.osi.urm.exception.AuthException;
+import com.osi.urm.exception.ErrorResponse;
+
 /**
  * Controller advice to translate the server side exceptions to client-friendly json structures.
  */
@@ -70,7 +73,20 @@ public class ExceptionTranslator {
     public ErrorVM processMethodNotSupportedException(HttpRequestMethodNotSupportedException exception) {
         return new ErrorVM(ErrorConstants.ERR_METHOD_NOT_SUPPORTED, exception.getMessage());
     }
-
+    
+    @ExceptionHandler(AuthException.class)
+    public ResponseEntity<ErrorResponse> processRuntimeException(AuthException ex) {
+        BodyBuilder builder;
+        ResponseStatus responseStatus = AnnotationUtils.findAnnotation(ex.getClass(), ResponseStatus.class);
+        builder = ResponseEntity.status(responseStatus.value());
+        ErrorResponse error = new ErrorResponse();
+		error.setErrorCode(ex.getErrorCode());
+		error.setHttpStatus(ex.getHttpStatus());
+		error.setErrorMessage(ex.getErrorMessage());
+		error.setDeveloperMessage(ex.getDeveloperMessage());
+        return builder.body(error);
+    }
+    
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorVM> processRuntimeException(Exception ex) {
         BodyBuilder builder;
@@ -85,4 +101,5 @@ public class ExceptionTranslator {
         }
         return builder.body(errorVM);
     }
+    
 }

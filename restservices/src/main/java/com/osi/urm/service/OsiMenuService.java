@@ -2,6 +2,10 @@ package com.osi.urm.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import com.osi.urm.exception.BusinessException;
 import com.osi.urm.service.dto.OsiMenusDTO;
 
 /**
@@ -14,8 +18,9 @@ public interface OsiMenuService {
      *
      * @param osiMenusDTO the entity to save
      * @return the persisted entity
+     * @throws BusinessException 
      */
-    OsiMenusDTO save(OsiMenusDTO osiMenusDTO);
+    OsiMenusDTO save(OsiMenusDTO osiMenusDTO, Long userId) throws BusinessException;
 
     /**
      *  Get all the osiMenus.

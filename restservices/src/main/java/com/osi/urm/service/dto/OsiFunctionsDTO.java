@@ -1,14 +1,19 @@
 package com.osi.urm.service.dto;
 
-// Generated Nov 28, 2016 11:44:49 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-@JsonInclude(Include.NON_EMPTY)
 public class OsiFunctionsDTO implements java.io.Serializable {
 
 	private Long id;
@@ -26,23 +31,27 @@ public class OsiFunctionsDTO implements java.io.Serializable {
 			0);
 	private Set<OsiUserOperationExclDTO> osiUserOperationExcls = new HashSet<OsiUserOperationExclDTO>(
 			0);
+	private Set<OsiFuncOperationsDTO> osiFuncOperationses = new HashSet<OsiFuncOperationsDTO>(
+			0);
 
 	public OsiFunctionsDTO() {
 	}
 
-	public OsiFunctionsDTO(Long id, String funcType, String funcValue,String funcName) {
+	public OsiFunctionsDTO(Long id, String funcName, String funcType,
+			String funcValue) {
 		this.id = id;
 		this.funcName = funcName;
 		this.funcType = funcType;
 		this.funcValue = funcValue;
 	}
 
-	public OsiFunctionsDTO(Long id, String funcType, String funcValue,
-			String parameters, Integer createdBy, Date createdDate,String funcName,
-			Integer updatedBy, Date updatedDate,
+	public OsiFunctionsDTO(Long id, String funcName, String funcType,
+			String funcValue, String parameters, Integer createdBy,
+			Date createdDate, Integer updatedBy, Date updatedDate,
 			Set<OsiUserFuncExclDTO> osiUserFuncExcls,
 			Set<OsiMenuEntriesDTO> osiMenuEntrieses,
-			Set<OsiUserOperationExclDTO> osiUserOperationExcls) {
+			Set<OsiUserOperationExclDTO> osiUserOperationExcls,
+			Set<OsiFuncOperationsDTO> osiFuncOperationses) {
 		this.id = id;
 		this.funcName = funcName;
 		this.funcType = funcType;
@@ -55,6 +64,7 @@ public class OsiFunctionsDTO implements java.io.Serializable {
 		this.osiUserFuncExcls = osiUserFuncExcls;
 		this.osiMenuEntrieses = osiMenuEntrieses;
 		this.osiUserOperationExcls = osiUserOperationExcls;
+		this.osiFuncOperationses = osiFuncOperationses;
 	}
 
 	public Long getId() {
@@ -63,6 +73,14 @@ public class OsiFunctionsDTO implements java.io.Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getFuncName() {
+		return this.funcName;
+	}
+
+	public void setFuncName(String funcName) {
+		this.funcName = funcName;
 	}
 
 	public String getFuncType() {
@@ -79,14 +97,6 @@ public class OsiFunctionsDTO implements java.io.Serializable {
 
 	public void setFuncValue(String funcValue) {
 		this.funcValue = funcValue;
-	}
-	
-	public String getFuncName() {
-		return funcName;
-	}
-
-	public void setFuncName(String funcName) {
-		this.funcName = funcName;
 	}
 
 	public String getParameters() {
@@ -154,6 +164,13 @@ public class OsiFunctionsDTO implements java.io.Serializable {
 		this.osiUserOperationExcls = osiUserOperationExcls;
 	}
 
-	
+	public Set<OsiFuncOperationsDTO> getOsiFuncOperationses() {
+		return this.osiFuncOperationses;
+	}
+
+	public void setOsiFuncOperationses(
+			Set<OsiFuncOperationsDTO> osiFuncOperationses) {
+		this.osiFuncOperationses = osiFuncOperationses;
+	}
 
 }

@@ -1,15 +1,21 @@
 package com.osi.urm.service.dto;
 
-// Generated Nov 28, 2016 11:44:49 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-@JsonInclude(Include.NON_EMPTY)
 public class OsiUserLoginsDTO implements java.io.Serializable {
 
-	private Integer id;
+	private Long id;
 	private OsiUserDTO osiUser;
 	private Date startTime;
 	private Date endTime;
@@ -21,13 +27,13 @@ public class OsiUserLoginsDTO implements java.io.Serializable {
 	public OsiUserLoginsDTO() {
 	}
 
-	public OsiUserLoginsDTO(Integer id, OsiUserDTO osiUser, Date startTime) {
+	public OsiUserLoginsDTO(Long id, OsiUserDTO osiUser, Date startTime) {
 		this.id = id;
 		this.osiUser = osiUser;
 		this.startTime = startTime;
 	}
 
-	public OsiUserLoginsDTO(Integer id, OsiUserDTO osiUser, Date startTime, Date endTime,
+	public OsiUserLoginsDTO(Long id, OsiUserDTO osiUser, Date startTime, Date endTime,
 			Integer pid, String loginType, String token, Integer tokenExpTime) {
 		this.id = id;
 		this.osiUser = osiUser;
@@ -39,11 +45,11 @@ public class OsiUserLoginsDTO implements java.io.Serializable {
 		this.tokenExpTime = tokenExpTime;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -102,4 +108,5 @@ public class OsiUserLoginsDTO implements java.io.Serializable {
 	public void setTokenExpTime(Integer tokenExpTime) {
 		this.tokenExpTime = tokenExpTime;
 	}
+
 }

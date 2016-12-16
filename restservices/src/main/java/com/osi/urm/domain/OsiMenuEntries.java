@@ -1,11 +1,13 @@
 package com.osi.urm.domain;
 
-// Generated Nov 28, 2016 7:51:32 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,60 +22,58 @@ import javax.persistence.TemporalType;
 @Table(name = "osi_menu_entries")
 public class OsiMenuEntries implements java.io.Serializable {
 
-	private int id;
+	private Long id;
 	private OsiFunctions osiFunctions;
 	private OsiMenus osiMenusBySubMenuId;
 	private OsiMenus osiMenusByMenuId;
-	private int seq;
-	private String menuPrompt;
+	private Long seq;
+	private String prompt;
+	private Date startDate;
+	private Date endDate;
 	private Integer createdBy;
 	private Date createdDate;
 	private Integer updatedBy;
 	private Date updatedDate;
-	private Date startDate;
-	private Date endDate;
 
 	public OsiMenuEntries() {
 	}
 
-	public OsiMenuEntries(int id, Date startDate, Date endDate) {
-		this.id = id;
-		this.startDate = startDate;
-		this.endDate = endDate;
-	}
-	public OsiMenuEntries(int id, OsiMenus osiMenusByMenuId, int seq,
-			String menuPrompt) {
+	public OsiMenuEntries(Long id, OsiMenus osiMenusByMenuId, Long seq,
+			String prompt, Date startDate, Date endDate) {
 		this.id = id;
 		this.osiMenusByMenuId = osiMenusByMenuId;
 		this.seq = seq;
-		this.menuPrompt = menuPrompt;
+		this.prompt = prompt;
+		this.startDate = startDate;
+		this.endDate = endDate;
 	}
 
-	public OsiMenuEntries(int id, OsiFunctions osiFunctions,
-			OsiMenus osiMenusBySubMenuId, OsiMenus osiMenusByMenuId, int seq,
-			String menuPrompt, Integer createdBy, Date createdDate,
-			Integer updatedBy, Date updatedDate, Date startDate, Date endDate) {
+	public OsiMenuEntries(Long id, OsiFunctions osiFunctions,
+			OsiMenus osiMenusBySubMenuId, OsiMenus osiMenusByMenuId, Long seq,
+			String prompt, Date startDate, Date endDate, Integer createdBy,
+			Date createdDate, Integer updatedBy, Date updatedDate) {
 		this.id = id;
 		this.osiFunctions = osiFunctions;
 		this.osiMenusBySubMenuId = osiMenusBySubMenuId;
 		this.osiMenusByMenuId = osiMenusByMenuId;
 		this.seq = seq;
-		this.menuPrompt = menuPrompt;
+		this.prompt = prompt;
+		this.startDate = startDate;
+		this.endDate = endDate;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
-		this.startDate=startDate;
-		this.endDate=endDate;
 	}
 
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
-	public int getId() {
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -108,21 +108,41 @@ public class OsiMenuEntries implements java.io.Serializable {
 	}
 
 	@Column(name = "seq", nullable = false)
-	public int getSeq() {
+	public Long getSeq() {
 		return this.seq;
 	}
 
-	public void setSeq(int seq) {
+	public void setSeq(Long seq) {
 		this.seq = seq;
 	}
 
 	@Column(name = "prompt", nullable = false, length = 100)
-	public String getMenuPrompt() {
-		return this.menuPrompt;
+	public String getPrompt() {
+		return this.prompt;
 	}
 
-	public void setMenuPrompt(String menuPrompt) {
-		this.menuPrompt = menuPrompt;
+	public void setPrompt(String prompt) {
+		this.prompt = prompt;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "start_date", nullable = false, length = 0)
+	public Date getStartDate() {
+		return this.startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "end_date", nullable = false, length = 0)
+	public Date getEndDate() {
+		return this.endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	@Column(name = "created_by")
@@ -161,26 +181,6 @@ public class OsiMenuEntries implements java.io.Serializable {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
-	}
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "start_date", length = 0)
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "end_date", length = 0)
-	public Date getEndtDate() {
-		return endDate;
-	}
-
-	public void setEndtDate(Date endtDate) {
-		this.endDate = endtDate;
 	}
 
 }

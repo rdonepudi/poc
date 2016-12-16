@@ -12,14 +12,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.osi.urm.domain.OsiFunctions;
-import com.osi.urm.domain.OsiOperations;
+import com.osi.urm.exception.BusinessException;
+import com.osi.urm.exception.DataAccessException;
 import com.osi.urm.repository.OsiOperationsRepository;
 import com.osi.urm.service.OsiOperationsService;
-import com.osi.urm.service.dto.OsiFunctionsDTO;
 import com.osi.urm.service.dto.OsiOperationsDTO;
-
-import scala.annotation.meta.setter;
 
 /**
  * Service Implementation for managing OsiOperations.
@@ -55,33 +52,12 @@ public class OsiOperationsServiceImpl implements OsiOperationsService{
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-   /* @Transactional(readOnly = true) 
-    public Page<OsiOperations> findAll(Pageable pageable) {
+    @Transactional(readOnly = true) 
+    public Page<OsiOperationsDTO> findAll(Pageable pageable) {
         log.debug("Request to get all OsiOperataions");
-        Page<OsiOperations> result = osiOperationsRepository.findAll(pageable);
-        //return result.map(osiOperataions -> osiOperataionsMapper.osiOperataionsToosiOperationsRepository(osiOperataions));
-        return result;
-    }*/
-    
-    
-    
-    public List<OsiOperationsDTO> findAll() {
-    	List<OsiOperations> osiOperations = osiOperationsRepository.findAll();
-    	System.out.println("in findAll : "+osiOperations);
-        List<OsiOperationsDTO> osiOperationsDTOs = new ArrayList<OsiOperationsDTO>();
-			for (Iterator iterator = osiOperations.iterator(); iterator.hasNext();) {
-				OsiOperations osiOperations2 = (OsiOperations) iterator.next();
-				OsiOperationsDTO osiOperationsDTO = new OsiOperationsDTO();
-				osiOperationsDTO.setId(osiOperations2.getId());
-				//osiOperationsDTO.setOpType(osiOperations2.getOpType());
-				//osiOperationsDTO.setOpValue(osiOperations2.getOpValue());
-				//osiOperationsDTO.setOsiFunctions(osiOperations2.getOsiFunctions());
-				osiOperationsDTO.setName(osiOperations2.getName());
-				osiOperationsDTO.setDescription(osiOperations2.getDescription());
-				
-				osiOperationsDTOs.add(osiOperationsDTO);
-			}
-			return osiOperationsDTOs;
+        /*Page<OsiOperataions> result = osiOperataionsRepository.findAll(pageable);
+        return result.map(osiOperataions -> osiOperataionsMapper.osiOperataionsToosiOperationsRepository(osiOperataions));*/
+        return null;
     }
 
     /**
@@ -108,4 +84,32 @@ public class OsiOperationsServiceImpl implements OsiOperationsService{
         log.debug("Request to delete OsiOperataions : {}", id);
         osiOperationsRepository.delete(id);
     }
+
+	@Override
+	public List<OsiOperationsDTO> getUserExlOperations(Long userId, Long functionId) throws BusinessException {
+		List<OsiOperationsDTO> operationsDTOs = null;
+		try {
+			List list = osiOperationsRepository.getUserExlOperations(userId, functionId);
+			operationsDTOs = new ArrayList<OsiOperationsDTO>();
+			for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+				Object[] object = (Object[]) iterator.next();
+				OsiOperationsDTO osiOperationsDTO = new OsiOperationsDTO();
+				if(object!=null){
+					if(object[0]!=null)
+						osiOperationsDTO.setId(Long.parseLong(object[0].toString()));
+					if(object[1]!=null)
+						osiOperationsDTO.setName(object[1].toString());
+					if(object[2]!=null)
+						osiOperationsDTO.setUrl(object[2].toString());
+					operationsDTOs.add(osiOperationsDTO);
+				}
+			}
+		} catch (DataAccessException e) {
+			throw new BusinessException(e.getErrorCode(), e.getMessage());
+		} catch (Exception e) {
+			throw new BusinessException("ERR_1000", e.getMessage());
+		}
+		
+		return operationsDTOs;
+	}
 }

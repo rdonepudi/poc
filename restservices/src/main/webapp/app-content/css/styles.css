@@ -4,38 +4,13 @@ body{
     }
 div.container {
     width: 99.85%;
-    margin-top: -2%;
     border: 0px solid gray;
+    height: 600px;
     padding-left: 0px !important;
     padding-right: 0px !important;
 }
 
-.innerContainer {
-    margin: 2%;
-}
-
-html {
-	height: 100%;
-	box-sizing: border-box;
-}
-
-body {
-	position: relative;
-	margin: 0;
-	min-height: 100%;
-}
-
-footer {
-	width: 99.95%;
-	position: absolute;
-	bottom: -5%;
-	padding: 0.6rem;
-	background-color: #01538D;
-	color: white;
-	text-align: center;
-}
-
-header {
+header, footer {
     padding-top: 1em;
     color: white;
     background-color: #01538D;
@@ -44,17 +19,6 @@ header {
     padding-bottom: 4px;
 }
 
-#responsibilityForm{
-	margin-top:80px;
-	width:650px;
-	padding:20px;
-	margin-left: 200px;
-	border: solid 1px black;
-	 box-shadow: 3px 3px 1px grey;
-} 
-#resField{
-	padding:20px;
-}
 nav {
     float: left;
     max-width: 160px;
@@ -70,64 +34,12 @@ nav ul {
 nav ul a {
     text-decoration: none;
 }
-
+.border{
+	 border-left: 1px solid gray;
+	 margin-left: 21%; 
+}
 article {
-    margin-left: 170px;
-    border-left: 0px solid gray;
     padding-left: 1em;
     overflow: hidden;
-}
-
-.title {
-	text-align: center;
-}
-
-.adminMenuForm{
-	background: #f5f2f2; 
-	border: 1px solid #7d7c7c; 
-	border-radius:4px; 
-	padding:20px;
-}
- 
-textarea {
-    resize: none;
-}
-
-.panel{
-	padding-top:1%;
-	padding-bottom:2%;
-	border:1px solid black !important;
-}
-
-.top10{
-	margin-top:10px !important;
-}
-.Top50{
-	margin-top:50px !important;
-}
-.box{
-	border: solid 1px black;
-    box-shadow: 3px 3px 1px grey;
-        padding:40px 0px 50px 0px;
-}
-
-.minusIcon{    
-	font-size: 25px;
-    margin-top: 5px;
-}
-
-.rowFunction{
-	    margin-right: -60px;
-}
-#respHeader{
-	color:blue;
-}
-#errorMsg{
-	color:red;
-}
-#right{
-	float:right;
-}
-#left{
-	float:left;
+    height: 81.5%;
 }
