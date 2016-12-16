@@ -1,5 +1,9 @@
 package com.osi.urm.service.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +12,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.osi.urm.domain.OsiFunctions;
+import com.osi.urm.domain.OsiOperations;
 import com.osi.urm.repository.OsiOperationsRepository;
 import com.osi.urm.service.OsiOperationsService;
+import com.osi.urm.service.dto.OsiFunctionsDTO;
 import com.osi.urm.service.dto.OsiOperationsDTO;
+
+import scala.annotation.meta.setter;
 
 /**
  * Service Implementation for managing OsiOperations.
@@ -46,12 +55,33 @@ public class OsiOperationsServiceImpl implements OsiOperationsService{
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
-    public Page<OsiOperationsDTO> findAll(Pageable pageable) {
+   /* @Transactional(readOnly = true) 
+    public Page<OsiOperations> findAll(Pageable pageable) {
         log.debug("Request to get all OsiOperataions");
-        /*Page<OsiOperataions> result = osiOperataionsRepository.findAll(pageable);
-        return result.map(osiOperataions -> osiOperataionsMapper.osiOperataionsToosiOperationsRepository(osiOperataions));*/
-        return null;
+        Page<OsiOperations> result = osiOperationsRepository.findAll(pageable);
+        //return result.map(osiOperataions -> osiOperataionsMapper.osiOperataionsToosiOperationsRepository(osiOperataions));
+        return result;
+    }*/
+    
+    
+    
+    public List<OsiOperationsDTO> findAll() {
+    	List<OsiOperations> osiOperations = osiOperationsRepository.findAll();
+    	System.out.println("in findAll : "+osiOperations);
+        List<OsiOperationsDTO> osiOperationsDTOs = new ArrayList<OsiOperationsDTO>();
+			for (Iterator iterator = osiOperations.iterator(); iterator.hasNext();) {
+				OsiOperations osiOperations2 = (OsiOperations) iterator.next();
+				OsiOperationsDTO osiOperationsDTO = new OsiOperationsDTO();
+				osiOperationsDTO.setId(osiOperations2.getId());
+				//osiOperationsDTO.setOpType(osiOperations2.getOpType());
+				//osiOperationsDTO.setOpValue(osiOperations2.getOpValue());
+				//osiOperationsDTO.setOsiFunctions(osiOperations2.getOsiFunctions());
+				osiOperationsDTO.setName(osiOperations2.getName());
+				osiOperationsDTO.setDescription(osiOperations2.getDescription());
+				
+				osiOperationsDTOs.add(osiOperationsDTO);
+			}
+			return osiOperationsDTOs;
     }
 
     /**

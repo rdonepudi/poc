@@ -1,0 +1,111 @@
+<br><br>
+<div class="row" class="Top50">
+	<div class="col-lg-1" ></div>
+	<div class="col-lg-9">
+	
+		<div class="box"   >
+				<div class="row">
+				 	<div class="col-lg-2"></div>
+				 	<div class="col-lg-10">
+					<div class="row" style="color:blue;">
+						<h3>Create Menu Entries</h3>
+					</div>
+					
+					<div class="row">
+						<div class="col-lg-2 top10">
+							<strong>Header Menu</strong>
+						</div>
+						<div class="col-lg-4">
+							<div class="form-group">
+							  <select ng-model="vm.menuEntries.headerMenu" ng-change="vm" class="form-control top10" id="sel1" place-holder="select Type" >
+							    <option ng-repeat="menu in vm.menus" value="{{menu}}">{{menu.menuName}}</option>
+							  </select>
+							</div>
+						</div>
+					</div>
+					<!-- <div class="col-lg-4">
+										<select class="form-control">
+										<option>Select Me</option>
+					  <option ng-repeat="menu in vm.menus">{{menu.menuName}}</option>
+					</select>
+					</div> -->
+					<div class="row">
+						<h3 style="color:blue;">Menu Entries</h3>
+					</div>
+					
+					
+					<div class="row" >
+					<strong>
+						<div class="" >
+							<div class="col-lg-2">
+							Type
+							</div>
+							<div class="col-lg-2">
+							Sequence
+							</div>
+							<div class="col-lg-3">
+							Menu/Function	
+							</div>
+							<div class="col-lg-2">
+							Prompt
+							</div>
+							<div class="col-lg-1">
+							...
+							</div>
+							<div class="col-lg-1">
+							...
+							</div>
+						</div>
+						</strong>
+					</div>
+					
+					<div class="row" ng-repeat="submenu in vm.menuEntries.subMenus track by $index">
+							<div class="col-lg-2 top10">
+								<select class="form-control" ng-model="submenu.selectedType" ng-init="submenu.selectedType='M'">
+						  			<option ng-repeat="type in vm.types">{{type.type}}</option>
+								</select>
+							</div>
+							<div class="col-lg-2">
+								 <input ng-model="submenu.seq"  ng-init="submenu.seq=0" type="number" class="form-control top10" name="quantity" min="1" >
+							  </select>
+							</div>
+							<div class="col-lg-3" ng-if="submenu.selectedType=='M'">
+								<select ng-model="submenu.osiMenusBySubMenuId"  class="form-control top10" id="sel1" place-holder="select Type" >
+							    <option ng-repeat="menu in vm.menus" value="{{menu}}">{{menu.menuName}}</option>
+							  </select>
+							</div>
+							<div class="col-lg-3" ng-if="submenu.selectedType=='F'">
+								<select ng-model="submenu.osiFunctions"  class="form-control top10" id="sel1" place-holder="select Type" >
+							    <option ng-repeat="function in vm.functions" value="{{function}}">{{function.funcName}}</option>
+							  </select>
+							</div>
+							<div class="col-lg-2">
+							<input type="text" ng-model="submenu.menuPrompt" ng-init="submenu.menuPrompt=''" class="form-control top10" id="usr"  >
+							</div>
+							<div class="col-lg-1 top10">
+								<span class="glyphicon glyphicon-minus-sign minusIcon" ng-click="vm.removeMenu(submenu)" ></span>
+							</div>
+							<div class="col-lg-1 top10" ng-show="$last">
+								<span class="glyphicon glyphicon-plus-sign minusIcon" ng-click="vm.addMenu(submenu)" ></span>
+							</div>
+					</div>
+					<br>
+					<div class="row" >
+							<div class="col-lg-4">
+							</div>
+							
+							<div class="col-lg-2">
+								<button class="btn btn-primary" ng-click="vm.save(vm.menuEntries)">SAVE</button>
+							</div>
+							<div class="col-lg-2">
+							<button class="btn">CANCEL</button>
+					</div>
+				
+		</div>
+		
+	</div>
+	</div>
+	</div>
+</div>
+<div class="col-lg-2" ></div>
+</div>

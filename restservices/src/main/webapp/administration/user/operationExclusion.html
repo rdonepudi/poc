@@ -1,0 +1,48 @@
+<h3 class="title"></h3>
+<div class="container" ng-controller="operationExclusionController as vm">
+<div class="panel">
+	<div class="col-lg-2">Functions</div>
+	<div class="col-lg-2">Available Operations</div>
+	<div class="col-lg-1"></div>
+	<div class="col-lg-2">Excluded Operations</div>
+</div>
+
+<div class="row" ng-repeat="f in demoFunc" >
+	<div class="col-lg-2">
+		<a ng-click="getOperations(f.id)" style="cursor:pointer">{{f.funcValue}}</a>
+	</div>
+</div>	
+	<div class="col-lg-2"></div>
+    <div class="col-lg-2">
+        <select name="from[]" id="multiselect" ng-model="availableOptions" class="multiselect form-control" size="8" multiple="multiple">
+            <option ng-repeat="x in availableFunc">{{x.name}}</option>
+        </select>
+    </div>
+    
+    <div class="col-lg-1">
+        <button type="button" id="multiselect_rightAll" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
+        <button type="button" id="multiselect_rightSelected" ng-click="addExcludedOptions(availableOptions);" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
+        <button type="button" id="multiselect_leftSelected" ng-click="removeExcludedOptions(excludedOptions);" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
+        <button type="button" id="multiselect_leftAll" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
+    </div>
+    
+    <div class="col-lg-2">
+        <select name="to[]" id="multiselect_to" ng-model="excludedOptions" class="form-control" size="8" multiple="multiple">
+        	<option ng-repeat="x in excludedFunc">{{x.name}}</option>
+        </select>
+    </div>
+    
+</div>
+<div class="row">
+	<div class="col-lg-8 btn-toolbar" role="group" aria-label="..." style="padding-top: 4%;margin-left: 400px;">
+	  <button type="button" class="btn btn-default">Previous</button>
+	  <button type="button" class="btn btn-default">Submit</button>
+	  <button type="button" class="btn btn-default">Cancel</button>
+	</div>
+</div>
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $('.multiselect').multiselect();
+});
+</script>

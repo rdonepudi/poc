@@ -1,0 +1,173 @@
+<div class="col-md-6 col-md-offset-3">
+	<h1>Administration Function Page</h1>
+	<div class="functionContainer">
+		<h4>Create Function</h4>
+
+		<form class="form-inline">
+			<div class="row rowFunction">
+				<div class="form-group">
+					<label for="name">Name:</label> <input type="name"
+						class="form-control" id="name" ng-model="functionDetails.funcName">
+				</div>
+				<div class="form-group" style="margin-left: 19%;">
+					<label for="type">Type:</label> <input type="type"
+						class="form-control" id="type" ng-model="functionDetails.funcType">
+				</div>
+			</div>
+
+			<div class="row rowFunction">
+				<div class="form-group">
+					<label for="value">Value:</label> <input type="value"
+						class="form-control" id="value" ng-model="functionDetails.funcValue">
+				</div>
+				<div class="form-group" style="margin-left: 15%;">
+					<label for="parameter">Parameters:</label> <input type="text"
+						class="form-control" id="para" ng-model="functionDetails.parameters">
+				</div>
+			</div>
+			<div class="row rowFunction" style="width: 140%">
+				<div class="panel">
+					<div class="col-lg-3">Operation</div>
+					<div class="col-lg-2">URL</div>
+					<div class="col-lg-3">Start Date</div>
+					<div class="col-lg-3">End Date</div>
+				</div>
+			</div>
+
+			<div class="row rowFunction">
+				<div class="form-group">
+					<label>Create:</label> <input type="value" class="form-control"
+						id="create" placeholder="/Create function">
+				</div>
+				<div class="form-group">
+					<input type="date" class="form-control" id="field_sdate"
+						placeholder="/ &nbsp /" name="sdate" ng-model="vm.start_date_create" 
+						>
+					<!-- <button type="button" class="btn btn-default"
+						ng-click="vm.openCalendar('sdate')">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</button> -->
+				</div>
+
+
+				<div class="form-group">
+					<input id="field_edate" type="date" class="form-control" name="edate" 
+					 placeholder="/ &nbsp /"
+					ng-model="vm.end_date_create" />
+					<!-- <button type="button" class="btn btn-default"
+						ng-click="vm.openCalendar('edate')">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</button> -->
+				</div>
+				
+		
+			</div>
+
+			<div class="row rowFunction">
+				<div class="form-group">
+					<label for="value">View:</label> <input type="value"
+						class="form-control" id="view" placeholder="/View function">
+				</div>
+				<div class="form-group">
+					<input type="date" class="form-control" 
+						placeholder="/ &nbsp /" name="sdate" ng-model="vm.start_date_view">
+					<!-- <button type="button" class="btn btn-default"
+						ng-click="vm.openCalendar('sdate')">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</button> -->
+				</div>
+
+				<div class="form-group">
+					<input id="field_edate" type="date" class="form-control" name="edate" 
+					 placeholder="/ &nbsp /"
+					ng-model="vm.end_date_view" />
+					<!-- <button type="button" class="btn btn-default"
+						ng-click="vm.openCalendar('edate')">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</button> -->
+				</div>
+			</div>
+
+			<div class="row rowFunction">
+				<div class="form-group">
+					<label for="value">Edit:</label> <input type="value"
+						class="form-control" id="edit" placeholder="/Edit function">
+				</div>
+				<div class="form-group">
+					<input type="date" class="form-control" 
+						placeholder="/ &nbsp /" name="sdate" ng-model="vm.start_date_edit">
+					<!-- <button type="button" class="btn btn-default"
+						ng-click="vm.openCalendar('sdate')">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</button> -->
+				</div>
+
+				<div class="form-group">
+					<input id="field_edate" type="date" class="form-control" name="edate"  placeholder="/ &nbsp /">
+					<!-- <button type="button" class="btn btn-default"
+						ng-click="vm.openCalendar('edate')">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</button> -->
+				</div>
+			</div>
+			<div class="row rowFunction">
+				<div class="form-group">
+					<label for="value">Delete:</label> <input type="value"
+						class="form-control" id="value" placeholder="/Delete function">
+				</div>
+				<div class="form-group">
+					<input type="date" class="form-control" 
+						placeholder="/ &nbsp /" name="sdate" ng-model="vm.start_date_delete">
+					<!-- <button type="button" class="btn btn-default"
+						ng-click="vm.openCalendar('sdate')">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</button> -->
+				</div>
+
+				<div class="form-group">
+					<input id="field_edate" type="date" class="form-control" name="edate" 
+					 placeholder="/ &nbsp /"
+					ng-model="vm.end_date_delete"/>
+					<!-- <button type="button" class="btn btn-default"
+						ng-click="vm.openCalendar('edate')">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</button> -->
+				</div>
+			</div>
+
+			<div class="row rowFunction">
+				<div class="form-group">
+					<label for="value">Find:</label> <input type="value"
+						class="form-control" id="value" placeholder="/Find function">
+				</div>
+				<div class="form-group">
+					<input type="date" class="form-control" 
+						placeholder="/ &nbsp /" name="sdate">
+					<!-- <button type="button" class="btn btn-default"
+						ng-model="vm.start_date_find" ng-click="vm.openCalendar('sdate')">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</button> -->
+				</div>
+
+				<div class="form-group">
+					<input id="field_edate" type="date" class="form-control"  
+					 placeholder="/ &nbsp /"
+					ng-model="vm.end_date_find" />
+					<!-- <button type="button" class="btn btn-default"
+						ng-click="vm.openCalendar('edate')">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</button> -->
+				</div>
+			</div>
+			<div class="row rowFunction">
+				<div class="col-lg-8 btn-toolbar align-right" role="group"
+					aria-label="..." style="padding-top: 4%; margin-left: 25px;">
+					<button type="button" class="btn btn-default"
+						ng-click="vm.saveFunction(functionDetails)">Save</button>
+					<button type="button" class="btn btn-default">Cancel</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	

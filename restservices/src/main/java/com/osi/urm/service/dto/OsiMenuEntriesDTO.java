@@ -20,10 +20,19 @@ public class OsiMenuEntriesDTO implements java.io.Serializable {
 	private Date createdDate;
 	private Integer updatedBy;
 	private Date updatedDate;
+	private Date startDate;
+	private Date endDate;
 
 	public OsiMenuEntriesDTO() {
 	}
 
+	public OsiMenuEntriesDTO(Integer id, Date startDate, Date endDate) {
+		this.id = id;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+
+	
 	public OsiMenuEntriesDTO(Integer id, OsiMenusDTO osiMenusByMenuId, Integer seq,
 			String menuPrompt) {
 		this.id = id;
@@ -35,7 +44,7 @@ public class OsiMenuEntriesDTO implements java.io.Serializable {
 	public OsiMenuEntriesDTO(Integer id, OsiFunctionsDTO osiFunctions,
 			OsiMenusDTO osiMenusBySubMenuId, OsiMenusDTO osiMenusByMenuId, Integer seq,
 			String menuPrompt, Integer createdBy, Date createdDate,
-			Integer updatedBy, Date updatedDate) {
+			Integer updatedBy, Date updatedDate,Date startDate,Date endDate) {
 		this.id = id;
 		this.osiFunctions = osiFunctions;
 		this.osiMenusBySubMenuId = osiMenusBySubMenuId;
@@ -46,6 +55,8 @@ public class OsiMenuEntriesDTO implements java.io.Serializable {
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
+		this.startDate=startDate;
+		this.endDate=endDate;
 	}
 
 	public Integer getId() {
@@ -126,6 +137,22 @@ public class OsiMenuEntriesDTO implements java.io.Serializable {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 }

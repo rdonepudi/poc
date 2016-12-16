@@ -1,0 +1,24 @@
+<div id="" class="">
+	<h3 class="title">Create or Update User</h3>
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-target="#info" data-toggle="tab">Personal Info</a></li>
+		<li><a data-target="#resp" data-toggle="tab">Responsibility</a></li>
+		<li><a data-target="#funcExcl" data-toggle="tab">Function Exclusion</a></li>
+		<li><a data-target="#oprnExcl" data-toggle="tab">Operation Exclusion</a></li>
+	</ul>
+
+	<div class="tab-content">
+		<div class="tab-pane active" id="info">
+			<div ng-include="'administration/user/info/info.html'" ngCloak></div>
+		</div>
+		<div class="tab-pane" id="resp">
+			<div ng-include="'administration/user/responsibility/responsibility.html'" ngCloak></div>
+		</div>
+		<div class="tab-pane" id="funcExcl">
+			<div ng-include="'administration/user/functionExclusion.html'" ngCloak></div>
+		</div>
+		<div class="tab-pane" id="oprnExcl">
+			<div ng-include="'administration/user/operationExclusion.html'" ngCloak></div>
+		</div>
+	</div>
+</div>

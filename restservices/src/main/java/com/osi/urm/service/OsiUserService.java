@@ -1,9 +1,8 @@
 package com.osi.urm.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.List;
 
-import com.osi.urm.service.dto.OsiUserDTO;
+import com.osi.urm.domain.OsiUser;
 
 /**
  * Service Interface for managing OsiUser.
@@ -13,10 +12,10 @@ public interface OsiUserService {
     /**
      * Save a osiUser.
      *
-     * @param osiUserDTO the entity to save
+     * @param OsiUser the entity to save
      * @return the persisted entity
      */
-    OsiUserDTO save(OsiUserDTO osiUserDTO);
+    OsiUser save(OsiUser OsiUser);
 
     /**
      *  Get all the osiUsers.
@@ -24,7 +23,7 @@ public interface OsiUserService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<OsiUserDTO> findAll(Pageable pageable);
+    List<OsiUser> findAll();
 
     /**
      *  Get the "id" osiUser.
@@ -32,7 +31,7 @@ public interface OsiUserService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    OsiUserDTO findOne(Long id);
+    OsiUser findOne(Long id);
 
     /**
      *  Delete the "id" osiUser.

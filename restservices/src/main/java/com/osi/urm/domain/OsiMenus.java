@@ -45,6 +45,13 @@ public class OsiMenus implements java.io.Serializable {
 		this.id = id;
 		this.menuName = menuName;
 	}
+	
+	public OsiMenus(Long id, String menuName, String description, Integer createdBy) {
+		this.id = id;
+		this.menuName = menuName;
+		this.description = description;
+		this.createdBy = createdBy;
+	}
 
 	public OsiMenus(Long id, String menuName, String description,
 			Integer createdBy, Date createdDate, Integer updatedBy,

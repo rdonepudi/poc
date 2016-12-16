@@ -25,9 +25,11 @@ public class OsiOperations implements java.io.Serializable {
 
 	private Integer id;
 	private OsiFunctions osiFunctions;
-	private String opType;
-	private String opValue;
-	private String parameters;
+	//private String opType;
+	//private String opValue;
+	//private String parameters;
+	private String name;
+	private String description;
 	private Integer createdBy;
 	private Date createdDate;
 	private Integer updatedBy;
@@ -36,17 +38,17 @@ public class OsiOperations implements java.io.Serializable {
 	public OsiOperations() {
 	}
 
-	public OsiOperations(String opType) {
+	/*public OsiOperations(String opType) {
 		this.opType = opType;
-	}
+	}*/
 
 	public OsiOperations(OsiFunctions osiFunctions, String opType,
 			String opValue, String parameters, Integer createdBy,
 			Date createdDate, Integer updatedBy, Date updatedDate) {
 		this.osiFunctions = osiFunctions;
-		this.opType = opType;
-		this.opValue = opValue;
-		this.parameters = parameters;
+		//this.opType = opType;
+		//this.opValue = opValue;
+		//this.parameters = parameters;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
@@ -63,6 +65,24 @@ public class OsiOperations implements java.io.Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	@Column(name = "name")
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	@Column(name = "description")
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}	
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "func_id")
@@ -74,32 +94,32 @@ public class OsiOperations implements java.io.Serializable {
 		this.osiFunctions = osiFunctions;
 	}
 
-	@Column(name = "op_type", nullable = false, length = 100)
+	/*@Column(name = "op_type", nullable = false, length = 100)
 	public String getOpType() {
 		return this.opType;
 	}
 
 	public void setOpType(String opType) {
 		this.opType = opType;
-	}
+	}*/
 
-	@Column(name = "op_value", length = 65535)
+	/*@Column(name = "op_value", length = 65535)
 	public String getOpValue() {
 		return this.opValue;
 	}
 
 	public void setOpValue(String opValue) {
 		this.opValue = opValue;
-	}
+	}*/
 
-	@Column(name = "parameters", length = 1000)
+	/*@Column(name = "parameters", length = 1000)
 	public String getParameters() {
 		return this.parameters;
 	}
 
 	public void setParameters(String parameters) {
 		this.parameters = parameters;
-	}
+	}*/
 
 	@Column(name = "created_by")
 	public Integer getCreatedBy() {

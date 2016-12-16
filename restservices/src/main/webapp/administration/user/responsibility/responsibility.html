@@ -1,0 +1,87 @@
+<div class="container"
+	ng-controller="userResponsibilityController as vm">
+	<form name="respForm" role="form" novalidate role="form"
+		class="form-horizontal" show-validation>
+		<table class="table">
+			<col width="10">
+			<col width="5">
+			<col width="50">
+			<col width="50">
+			<col width="50">
+			<thead>
+				<tr>
+					<th>Responsibility</th>
+					<th>Default</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="i in vm.userResp track by $index">
+					<td><select name="responsibility"
+						placeholder="Select Responsibility" class="form-control" id="sel1"
+						ng-model="vm.userResp[$index].osiResponsibilities"
+						ng-options="x.respName for x in vm.responsibilities" required></select>
+						<div ng-show="respForm.responsibility.$invalid">
+							<p class="help-block"
+								ng-show="respForm.responsibility.$error.required">This field
+								is required.</p>
+						</div></td>
+					<td><label class="checkbox-inline"><input
+							type="checkbox" value=""
+							ng-model="vm.userResp[$index].defaultResp"></label></td>
+					<td>
+						<div class="input-group">
+							<input id="field_sdate" type="text" class="form-control"
+								name="sdate" uib-datepicker-popup="yyyy-MM-dd"
+								ng-model="vm.userResp[$index].startDate"
+								is-open="vm.opened[$index]" required /> <span
+								class="input-group-btn">
+								<button type="button" class="btn btn-default"
+									ng-click="vm.open($index)">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+						</div>
+						<div ng-show="respForm.sdate.$invalid">
+							<p class="help-block" ng-show="respForm.sdate.$error.required">This
+								field is required.</p>
+						</div>
+					</td>
+					<td>
+						<div class="input-group">
+							<input id="field_edate" type="text" class="form-control"
+								name="edate" uib-datepicker-popup="yyyy-MM-dd"
+								ng-model="vm.userResp[$index].endDate"
+								is-open="vm.eopened[$index]" required /> <span
+								class="input-group-btn">
+								<button type="button" class="btn btn-default"
+									ng-click="vm.eopen($index)">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+						</div>
+						<div ng-show="respForm.edate.$invalid">
+							<p class="help-block" ng-show="respForm.edate.$error.required">This
+								field is required.</p>
+						</div>
+					</td>
+					<td>
+						<button type="button" class="btn btn-default btn-circle"
+							ng-click="vm.deleteRow($index)">
+							<i class="glyphicon glyphicon-minus"></i>
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<button type="button" class="btn btn-primary">Previous</button>
+		<button type="button" class="btn btn-primary" ng-click="vm.addRow()">Add
+			Row</button>
+		<button type="button" class="btn btn-primary"
+			ng-disabled="respForm.$invalid" ng-click="">Save & Next</button>
+		<button type="button" class="btn btn-success"
+			ng-disabled="respForm.$invalid" ng-click="vm.save()">Submit</button>
+		<button type="button" class="btn btn-danger" ng-click="">Cancel</button>
+	</form>
+</div>

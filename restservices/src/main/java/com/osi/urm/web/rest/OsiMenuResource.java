@@ -9,10 +9,6 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.osi.urm.service.OsiMenuService;
 import com.osi.urm.service.dto.OsiMenusDTO;
-import com.osi.urm.service.dto.OsiUserLoginsDTO;
-import com.osi.urm.web.rest.util.PaginationUtil;
 
 /**
  * REST controller for managing OsiMenu.
@@ -50,6 +44,7 @@ public class OsiMenuResource {
     @PostMapping("/osi-menus")
     public ResponseEntity<OsiMenusDTO> createOsiMenu(@Valid @RequestBody OsiMenusDTO osiMenusDTO) throws URISyntaxException {
         log.debug("REST request to save OsiMenu : {}", osiMenusDTO);
+       // System.out.println("osiMenusDTO: "+osiMenusDTO.getMenuName());
         if (osiMenusDTO.getId() != null) {
             return ResponseEntity.badRequest()
             		.body(null);

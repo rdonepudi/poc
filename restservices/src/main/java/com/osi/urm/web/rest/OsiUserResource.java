@@ -2,16 +2,15 @@ package com.osi.urm.web.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,9 +22,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.osi.urm.domain.OsiRespUser;
+import com.osi.urm.domain.OsiUser;
+import com.osi.urm.service.OsiRespUserService;
 import com.osi.urm.service.OsiUserService;
 import com.osi.urm.service.dto.OsiUserDTO;
-import com.osi.urm.web.rest.util.PaginationUtil;
 
 /**
  * REST controller for managing OsiUser.
@@ -38,42 +39,53 @@ public class OsiUserResource {
         
     @Autowired
     private OsiUserService osiUserService;
+    
+    /*@Autowired
+    private OsiUserMapper osiUserMapper;*/
+    
+    //    OsiUserMapper osiUserMapper = Mappers.getMapper(OsiUserMapper.class);
+    @Autowired
+    private OsiRespUserService osiRespUserService;
+    
 
     /**
      * POST  /osi-users : Create a new osiUser.
      *
-     * @param osiUserDTO the osiUserDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new osiUserDTO, or with status 400 (Bad Request) if the osiUser has already an ID
+     * @param osiUser the OsiUser to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new OsiUser, or with status 400 (Bad Request) if the osiUser has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/osi-users")
-    public ResponseEntity<OsiUserDTO> createOsiUser(@Valid @RequestBody OsiUserDTO osiUserDTO) throws URISyntaxException {
-        log.debug("REST request to save OsiUser : {}", osiUserDTO);
-        if (osiUserDTO.getId() != null) {
+    public ResponseEntity<OsiUser> createOsiUser(@Valid @RequestBody OsiUser osiUser) throws URISyntaxException {
+        /*log.debug("REST request to save OsiUser : {}", osiUser);*/
+        if (osiUser.getId() != null) {
             return ResponseEntity.badRequest()
             		.body(null);
-        }
-        OsiUserDTO result = osiUserService.save(osiUserDTO);
+        }        
+       
+        OsiUser result = osiUserService.save(osiUser);
+                
         return ResponseEntity.created(new URI("/api/osi-users/" + result.getId()))
             .body(result);
     }
-
+    
     /**
      * PUT  /osi-users : Updates an existing osiUser.
      *
-     * @param osiUserDTO the osiUserDTO to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated osiUserDTO,
-     * or with status 400 (Bad Request) if the osiUserDTO is not valid,
-     * or with status 500 (Internal Server Error) if the osiUserDTO couldnt be updated
+     * @param osiUser the OsiUser to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated OsiUser,
+     * or with status 400 (Bad Request) if the OsiUser is not valid,
+     * or with status 500 (Internal Server Error) if the OsiUser couldnt be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/osi-users")
-    public ResponseEntity<OsiUserDTO> updateOsiUser(@Valid @RequestBody OsiUserDTO osiUserDTO) throws URISyntaxException {
-        log.debug("REST request to update OsiUser : {}", osiUserDTO);
-        if (osiUserDTO.getId() == null) {
-            return createOsiUser(osiUserDTO);
+    public ResponseEntity<OsiUser> updateOsiUser(@Valid @RequestBody OsiUser osiUser) throws URISyntaxException {
+        log.debug("REST request to update OsiUser : {}", osiUser);
+        if (osiUser.getId() == null) {
+            /*return createOsiUser(osiUser);*/
+        	return null;
         }
-        OsiUserDTO result = osiUserService.save(osiUserDTO);
+        OsiUser result = osiUserService.save(osiUser);
         return ResponseEntity.ok()
             .body(result);
     }
@@ -86,36 +98,54 @@ public class OsiUserResource {
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/osi-users")
-    public ResponseEntity<List<OsiUserDTO>> getAllOsiUsers(Pageable pageable)
+    public ResponseEntity<List<OsiUserDTO>> getAllOsiUsers()
         throws URISyntaxException {
         log.debug("REST request to get a page of OsiUsers");
-        Page<OsiUserDTO> page = osiUserService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/osi-users");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        List<OsiUser> users = osiUserService.findAll();
+//        List<OsiUserDTO> usersDTO = osiUserMapper.osiUserListToOsiUserDTOList(users);
+        List<OsiUserDTO> usersDTO = new ArrayList<OsiUserDTO>();
+        for (OsiUser osiUser : users) {
+        	OsiUserDTO userDto = new OsiUserDTO();
+        	userDto.setId(osiUser.getId());
+        	userDto.setFullName(osiUser.getFullName());
+        	userDto.setEmailId(osiUser.getEmailId());
+        	usersDTO.add(userDto);
+		}
+        return new ResponseEntity<List<OsiUserDTO>>(usersDTO, HttpStatus.OK);
     }
-
+  /*public ResponseEntity<List<OsiUser>> getAllOsiUsers(Pageable pageable)
+            throws URISyntaxException {
+            log.debug("REST request to get a page of OsiUsers");
+            Page<OsiUser> page = osiUserService.findAll(pageable);
+            HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/osi-users");
+            return new ResponseEntity<List<OsiUser>>(page.getContent(), headers, HttpStatus.OK);
+        }*/
     /**
      * GET  /osi-users/:id : get the "id" osiUser.
      *
-     * @param id the id of the osiUserDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the osiUserDTO, or with status 404 (Not Found)
+     * @param id the id of the OsiUser to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the OsiUser, or with status 404 (Not Found)
      */
     @GetMapping("/osi-users/{id}")
     public ResponseEntity<OsiUserDTO> getOsiUser(@PathVariable Long id) {
         log.debug("REST request to get OsiUser : {}", id);
-        OsiUserDTO osiUserDTO = osiUserService.findOne(id);
-       /* return Optional.ofNullable(osiUserDTO)
-            .map(result -> new ResponseEntity<>(
-                result,
-                HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));*/
-        return null;
+        OsiUser result = osiUserService.findOne(id);
+        if(result != null) {
+        	OsiUserDTO userDto = new OsiUserDTO();
+        	userDto.setId(result.getId());
+        	userDto.setFullName(result.getFullName());
+        	userDto.setEmailId(result.getEmailId());
+        	userDto.setEmpNumber(result.getEmpNumber());
+        	return new ResponseEntity<OsiUserDTO>(userDto, HttpStatus.OK);
+        } else {
+        	return new ResponseEntity<OsiUserDTO>(HttpStatus.NOT_FOUND);
+        }
     }
 
     /**
      * DELETE  /osi-users/:id : delete the "id" osiUser.
      *
-     * @param id the id of the osiUserDTO to delete
+     * @param id the id of the OsiUser to delete
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/osi-users/{id}")

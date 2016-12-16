@@ -1,0 +1,68 @@
+<div class="col-md-6 col-md-offset-3">
+    <!-- <h1>Administration Menu Page</h1>
+    <p>You're logged in with JWT!!</p> -->
+    
+    <div class="container">
+    	<div class="row" style="padding-top:25px;">
+	    	<form class="adminMenuForm" name="menuForm">
+	    		<div class="row">
+	    			<div class="form-group">
+	    				<label for="menuNameField" class="col-lg-3 col-form-label">Name</label>
+						  <div class="col-lg-8">
+						    <input class="form-control" type="text" id="menuNameField" ng-model="menu.menuName" required>
+						  </div>
+	    			</div>
+	    		</div><br>
+	    		<div class="row">
+	    			<div class="form-group">
+	    				<label for="menuNameField" class="col-lg-3 col-form-label">Description</label>
+						  <div class="col-lg-8">
+						    <textarea rows="4" cols="47" name="comment" id="menuNameField" ng-model="menu.description">Enter Description here...</textarea>
+						  </div>
+	    			</div>
+	    		</div><br>
+	    		<div class="row">
+	    			<div class="form-group">
+	    				<p class="col-lg-3"></p>
+	    				<p class="col-lg-4"><button ng-click="vm.save(menu)" ng-disabled="menuForm.$invalid" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Save</button></p>
+	    				<p class="col-lg-4"><button ng-click="vm.cancel()" class="btn btn-default"><span class="glyphicon glyphicon-ban-circle"></span> Cancel</button></p>
+	    			</div>
+	    		</div><br>
+	    <!-- 		<div class="row">
+	    			<div class="form-group">
+	    				<p class="col-lg-3"></p>
+	    				<p class="col-lg-4">
+	    					<select ng-model="menu.selectedMenuId" >
+	    						<option ng-repeat="Menu in vm.allMenu" value="{{Menu.id}}">{{Menu.menuName}}</option>
+	    					</select>
+	    				</p>
+	    				<p class="col-lg-4"><button ng-click="vm.getMenuById(menu.selectedMenuId); showGetValues == true" class="btn btn-info"><span class="glyphicon glyphicon-ban-circle"></span> Show Details</button></p>
+	    			</div>
+	    			<div class="row" >
+	    				<div class="col-lg-2" >
+	    					<label>{{vm.getMenu.id}}</label>
+	    				</div>
+	    				<div class="col-lg-2" >
+	    					<label> {{vm.getMenu.menuName}}</label>
+	    				</div>
+	    				<div class="col-lg-4" >
+	    					<label> {{vm.getMenu.description}}</label>
+	    				</div>
+	    				<div class="col-lg-2" >
+	    					<label> {{vm.getMenu.createdBy}}</label>
+	    				</div>
+	    				<div class="col-lg-2" >
+	    					<label> {{vm.getMenu.createdDate}}</label>
+	    				</div>
+	    			</div>
+	    		</div> -->
+	    		
+	    	</form>
+    	</div><br><br>
+    	<!-- <div class="row">
+	    	<p align="center">
+	    		<button ng-click="vm.logout()" class="btn btn-primary">Logout</button>
+	    	</p>
+    	</div> -->
+    </div>
+</div>
