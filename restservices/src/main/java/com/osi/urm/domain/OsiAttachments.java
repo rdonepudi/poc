@@ -1,10 +1,14 @@
 package com.osi.urm.domain;
-// Generated Nov 28, 2016 7:51:32 PM by Hibernate Tools 3.4.0.CR1
+
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,7 +23,7 @@ import javax.persistence.TemporalType;
 @Table(name = "osi_attachments")
 public class OsiAttachments implements java.io.Serializable {
 
-	private int id;
+	private Long id;
 	private OsiUser osiUser;
 	private byte[] attachment;
 	private String attachmentType;
@@ -31,7 +35,7 @@ public class OsiAttachments implements java.io.Serializable {
 	public OsiAttachments() {
 	}
 
-	public OsiAttachments(int id, OsiUser osiUser, byte[] attachment,
+	public OsiAttachments(Long id, OsiUser osiUser, byte[] attachment,
 			String attachmentType) {
 		this.id = id;
 		this.osiUser = osiUser;
@@ -39,7 +43,7 @@ public class OsiAttachments implements java.io.Serializable {
 		this.attachmentType = attachmentType;
 	}
 
-	public OsiAttachments(int id, OsiUser osiUser, byte[] attachment,
+	public OsiAttachments(Long id, OsiUser osiUser, byte[] attachment,
 			String attachmentType, Integer createdBy, Date createdDate,
 			Integer updatedBy, Date updatedDate) {
 		this.id = id;
@@ -54,11 +58,12 @@ public class OsiAttachments implements java.io.Serializable {
 
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
-	public int getId() {
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

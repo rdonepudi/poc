@@ -1,65 +1,58 @@
 package com.osi.urm.service.dto;
 
-// Generated Nov 28, 2016 11:44:49 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:47:35 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-@JsonInclude(Include.NON_EMPTY)
+import com.osi.urm.domain.OsiRespUser;
+
 public class OsiResponsibilitiesDTO implements java.io.Serializable {
 
-	private Integer id;
+	private Long id;
 	private OsiMenusDTO osiMenus;
 	private String respName;
 	private String description;
+	private Date startDate;
+	private Date endDate;
 	private Integer createdBy;
 	private Date createdDate;
 	private Integer updatedBy;
 	private Date updatedDate;
-	private Date startDate;
-	private Date endDate;
-	private Set<OsiRespUserDTO> osiRespUsers = new HashSet<OsiRespUserDTO>(0);
+	private Set<OsiRespUser> osiRespUsers = new HashSet<OsiRespUser>(0);
 
 	public OsiResponsibilitiesDTO() {
 	}
-	
-	public OsiResponsibilitiesDTO(Integer id, Date startDate, Date endDate) {
-		this.id = id;
-		this.startDate = startDate;
-		this.endDate = endDate;
-	}
-	
-	public OsiResponsibilitiesDTO(Integer id, OsiMenusDTO osiMenus, String respName) {
+
+	public OsiResponsibilitiesDTO(Long id, OsiMenusDTO osiMenus, String respName) {
 		this.id = id;
 		this.osiMenus = osiMenus;
 		this.respName = respName;
 	}
 
-	public OsiResponsibilitiesDTO(Integer id, OsiMenusDTO osiMenus, String respName,
-			String description, Integer createdBy, Date createdDate,
-			Integer updatedBy, Date updatedDate, Set<OsiRespUserDTO> osiRespUsers, Date startDate,
-			Date endDate) {
+	public OsiResponsibilitiesDTO(Long id, OsiMenusDTO osiMenus, String respName,
+			String description, Date startDate, Date endDate,
+			Integer createdBy, Date createdDate, Integer updatedBy,
+			Date updatedDate, Set<OsiRespUser> osiRespUsers) {
 		this.id = id;
 		this.osiMenus = osiMenus;
 		this.respName = respName;
 		this.description = description;
+		this.startDate = startDate;
+		this.endDate = endDate;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
 		this.osiRespUsers = osiRespUsers;
-		this.startDate = startDate;
-		this.endDate = endDate;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -85,6 +78,22 @@ public class OsiResponsibilitiesDTO implements java.io.Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Date getStartDate() {
+		return this.startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return this.endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	public Integer getCreatedBy() {
@@ -119,27 +128,12 @@ public class OsiResponsibilitiesDTO implements java.io.Serializable {
 		this.updatedDate = updatedDate;
 	}
 
-	public Set<OsiRespUserDTO> getOsiRespUsers() {
+	public Set<OsiRespUser> getOsiRespUsers() {
 		return this.osiRespUsers;
 	}
 
-	public void setOsiRespUsers(Set<OsiRespUserDTO> osiRespUsers) {
+	public void setOsiRespUsers(Set<OsiRespUser> osiRespUsers) {
 		this.osiRespUsers = osiRespUsers;
 	}
-	
-	public Date getStartDate() {
-		return this.startDate;
-	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public Date getEndDate() {
-		return this.endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
 }

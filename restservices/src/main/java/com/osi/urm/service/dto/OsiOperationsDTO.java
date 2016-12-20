@@ -1,54 +1,71 @@
 package com.osi.urm.service.dto;
 
-// Generated Nov 30, 2016 8:27:56 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+@JsonInclude(Include.NON_NULL)
 public class OsiOperationsDTO implements java.io.Serializable {
 
-	private Integer id;
-	private OsiFunctionsDTO osiFunctionsDTO;
-	//private String opType;
-	//private String opValue;
-	//private String parameters;
+	private Long id;
 	private String name;
 	private String description;
+	private String url;
 	private Integer createdBy;
 	private Date createdDate;
 	private Integer updatedBy;
 	private Date updatedDate;
-	private Integer funcId;
+	private Set<OsiFuncOperationsDTO> osiFuncOperationses = new HashSet<OsiFuncOperationsDTO>(
+			0);
+	private Set<OsiUserOperationExclDTO> osiUserOperationExcls = new HashSet<OsiUserOperationExclDTO>(
+			0);
 
 	public OsiOperationsDTO() {
 	}
 
-	/*public OsiOperationsDTO(String opType) {
-		this.opType = opType;
-	}*/
+	public OsiOperationsDTO(Long id, String name, String description) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+	}
 
-	public OsiOperationsDTO(OsiFunctionsDTO osiFunctionsDTO, String opType,
-			String opValue, String parameters, Integer createdBy,
-			Date createdDate, Integer updatedBy, Date updatedDate) {
-		this.osiFunctionsDTO = osiFunctionsDTO;
-		//this.opType = opType;
-		//this.opValue = opValue;
-		//this.parameters = parameters;
+	public OsiOperationsDTO(Long id, String name, String description,
+			Integer createdBy, Date createdDate, Integer updatedBy,
+			Date updatedDate, Set<OsiFuncOperationsDTO> osiFuncOperationses,
+			Set<OsiUserOperationExclDTO> osiUserOperationExcls) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
+		this.osiFuncOperationses = osiFuncOperationses;
+		this.osiUserOperationExcls = osiUserOperationExcls;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -56,44 +73,12 @@ public class OsiOperationsDTO implements java.io.Serializable {
 	}
 
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public OsiFunctionsDTO getOsiFunctionsDTO() {
-		return this.osiFunctionsDTO;
-	}
-
-	public void setOsiFunctions(OsiFunctionsDTO osiFunctionsDTO) {
-		this.osiFunctionsDTO = osiFunctionsDTO;
-	}
-
-	/*public String getOpType() {
-		return this.opType;
-	}
-
-	public void setOpType(String opType) {
-		this.opType = opType;
-	}*/
-
-/*	public String getOpValue() {
-		return this.opValue;
-	}
-
-	public void setOpValue(String opValue) {
-		this.opValue = opValue;
-	}
-*/
-	/*public String getParameters() {
-		return this.parameters;
-	}
-
-	public void setParameters(String parameters) {
-		this.parameters = parameters;
-	}*/
 
 	public Integer getCreatedBy() {
 		return this.createdBy;
@@ -127,12 +112,30 @@ public class OsiOperationsDTO implements java.io.Serializable {
 		this.updatedDate = updatedDate;
 	}
 
-	public Integer getFuncId() {
-		return funcId;
+	public Set<OsiFuncOperationsDTO> getOsiFuncOperationses() {
+		return this.osiFuncOperationses;
 	}
 
-	public void setFuncId(Integer funcId) {
-		this.funcId = funcId;
+	public void setOsiFuncOperationses(
+			Set<OsiFuncOperationsDTO> osiFuncOperationses) {
+		this.osiFuncOperationses = osiFuncOperationses;
 	}
 
+	public Set<OsiUserOperationExclDTO> getOsiUserOperationExcls() {
+		return this.osiUserOperationExcls;
+	}
+
+	public void setOsiUserOperationExcls(
+			Set<OsiUserOperationExclDTO> osiUserOperationExcls) {
+		this.osiUserOperationExcls = osiUserOperationExcls;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
 }

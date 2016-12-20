@@ -1,6 +1,6 @@
 package com.osi.urm.domain;
 
-// Generated Nov 28, 2016 7:51:32 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,7 +23,7 @@ import javax.persistence.TemporalType;
 @Table(name = "osi_lookup_types")
 public class OsiLookupTypes implements java.io.Serializable {
 
-	private int id;
+	private Long id;
 	private String lookupName;
 	private String lookupCode;
 	private Integer createdBy;
@@ -34,13 +36,13 @@ public class OsiLookupTypes implements java.io.Serializable {
 	public OsiLookupTypes() {
 	}
 
-	public OsiLookupTypes(int id, String lookupName, String lookupCode) {
+	public OsiLookupTypes(Long id, String lookupName, String lookupCode) {
 		this.id = id;
 		this.lookupName = lookupName;
 		this.lookupCode = lookupCode;
 	}
 
-	public OsiLookupTypes(int id, String lookupName, String lookupCode,
+	public OsiLookupTypes(Long id, String lookupName, String lookupCode,
 			Integer createdBy, Date createdDate, Integer updatedBy,
 			Date updatedDate, Set<OsiLookupValues> osiLookupValueses) {
 		this.id = id;
@@ -55,11 +57,12 @@ public class OsiLookupTypes implements java.io.Serializable {
 
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
-	public int getId() {
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

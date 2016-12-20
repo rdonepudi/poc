@@ -1,69 +1,69 @@
 package com.osi.urm.service.dto;
 
-// Generated Nov 28, 2016 11:44:49 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
-@JsonInclude(Include.NON_EMPTY)
 public class OsiMenuEntriesDTO implements java.io.Serializable {
 
-	private Integer id;
+	private Long id;
 	private OsiFunctionsDTO osiFunctions;
 	private OsiMenusDTO osiMenusBySubMenuId;
 	private OsiMenusDTO osiMenusByMenuId;
-	private Integer seq;
-	private String menuPrompt;
+	private Long seq;
+	private String prompt;
+	private Date startDate;
+	private Date endDate;
 	private Integer createdBy;
 	private Date createdDate;
 	private Integer updatedBy;
 	private Date updatedDate;
-	private Date startDate;
-	private Date endDate;
 
 	public OsiMenuEntriesDTO() {
 	}
 
-	public OsiMenuEntriesDTO(Integer id, Date startDate, Date endDate) {
+	public OsiMenuEntriesDTO(Long id, OsiMenusDTO osiMenusByMenuId, Long seq,
+			String prompt, Date startDate, Date endDate) {
 		this.id = id;
+		this.osiMenusByMenuId = osiMenusByMenuId;
+		this.seq = seq;
+		this.prompt = prompt;
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
 
-	
-	public OsiMenuEntriesDTO(Integer id, OsiMenusDTO osiMenusByMenuId, Integer seq,
-			String menuPrompt) {
-		this.id = id;
-		this.osiMenusByMenuId = osiMenusByMenuId;
-		this.seq = seq;
-		this.menuPrompt = menuPrompt;
-	}
-
-	public OsiMenuEntriesDTO(Integer id, OsiFunctionsDTO osiFunctions,
-			OsiMenusDTO osiMenusBySubMenuId, OsiMenusDTO osiMenusByMenuId, Integer seq,
-			String menuPrompt, Integer createdBy, Date createdDate,
-			Integer updatedBy, Date updatedDate,Date startDate,Date endDate) {
+	public OsiMenuEntriesDTO(Long id, OsiFunctionsDTO osiFunctions,
+			OsiMenusDTO osiMenusBySubMenuId, OsiMenusDTO osiMenusByMenuId, Long seq,
+			String prompt, Date startDate, Date endDate, Integer createdBy,
+			Date createdDate, Integer updatedBy, Date updatedDate) {
 		this.id = id;
 		this.osiFunctions = osiFunctions;
 		this.osiMenusBySubMenuId = osiMenusBySubMenuId;
 		this.osiMenusByMenuId = osiMenusByMenuId;
 		this.seq = seq;
-		this.menuPrompt = menuPrompt;
+		this.prompt = prompt;
+		this.startDate = startDate;
+		this.endDate = endDate;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
-		this.startDate=startDate;
-		this.endDate=endDate;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -91,20 +91,36 @@ public class OsiMenuEntriesDTO implements java.io.Serializable {
 		this.osiMenusByMenuId = osiMenusByMenuId;
 	}
 
-	public Integer getSeq() {
+	public Long getSeq() {
 		return this.seq;
 	}
 
-	public void setSeq(Integer seq) {
+	public void setSeq(Long seq) {
 		this.seq = seq;
 	}
 
-	public String getMenuPrompt() {
-		return this.menuPrompt;
+	public String getPrompt() {
+		return this.prompt;
 	}
 
-	public void setMenuPrompt(String menuPrompt) {
-		this.menuPrompt = menuPrompt;
+	public void setPrompt(String prompt) {
+		this.prompt = prompt;
+	}
+
+	public Date getStartDate() {
+		return this.startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return this.endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	public Integer getCreatedBy() {
@@ -137,22 +153,6 @@ public class OsiMenuEntriesDTO implements java.io.Serializable {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
-	}
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public Date getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
 	}
 
 }

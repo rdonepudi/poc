@@ -1,11 +1,13 @@
 package com.osi.urm.domain;
 
-// Generated Nov 28, 2016 7:51:32 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,11 +22,9 @@ import javax.persistence.TemporalType;
 @Table(name = "osi_user_func_excl")
 public class OsiUserFuncExcl implements java.io.Serializable {
 
-	private int id;
+	private Long id;
 	private OsiFunctions osiFunctions;
 	private OsiUser osiUser;
-	private Date startDate;
-	private Date endDate;
 	private Integer createdBy;
 	private Date createdDate;
 	private Integer updatedBy;
@@ -33,23 +33,18 @@ public class OsiUserFuncExcl implements java.io.Serializable {
 	public OsiUserFuncExcl() {
 	}
 
-	public OsiUserFuncExcl(int id, OsiFunctions osiFunctions, OsiUser osiUser,
-			Date startDate, Date endDate) {
+	public OsiUserFuncExcl(Long id, OsiFunctions osiFunctions, OsiUser osiUser) {
 		this.id = id;
 		this.osiFunctions = osiFunctions;
 		this.osiUser = osiUser;
-		this.startDate = startDate;
-		this.endDate = endDate;
 	}
 
-	public OsiUserFuncExcl(int id, OsiFunctions osiFunctions, OsiUser osiUser,
-			Date startDate, Date endDate, Integer createdBy, Date createdDate,
-			Integer updatedBy, Date updatedDate) {
+	public OsiUserFuncExcl(Long id, OsiFunctions osiFunctions, OsiUser osiUser,
+			Integer createdBy, Date createdDate, Integer updatedBy,
+			Date updatedDate) {
 		this.id = id;
 		this.osiFunctions = osiFunctions;
 		this.osiUser = osiUser;
-		this.startDate = startDate;
-		this.endDate = endDate;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
@@ -58,11 +53,12 @@ public class OsiUserFuncExcl implements java.io.Serializable {
 
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
-	public int getId() {
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -84,26 +80,6 @@ public class OsiUserFuncExcl implements java.io.Serializable {
 
 	public void setOsiUser(OsiUser osiUser) {
 		this.osiUser = osiUser;
-	}
-
-	@Temporal(TemporalType.DATE)
-	@Column(name = "start_date", nullable = false, length = 0)
-	public Date getStartDate() {
-		return this.startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	@Temporal(TemporalType.DATE)
-	@Column(name = "end_date", nullable = false, length = 0)
-	public Date getEndDate() {
-		return this.endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
 	}
 
 	@Column(name = "created_by")

@@ -1,11 +1,13 @@
 package com.osi.urm.domain;
 
-// Generated Nov 28, 2016 7:51:32 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,12 +22,10 @@ import javax.persistence.TemporalType;
 @Table(name = "osi_user_operation_excl")
 public class OsiUserOperationExcl implements java.io.Serializable {
 
-	private int id;
+	private Long id;
 	private OsiFunctions osiFunctions;
+	private OsiOperations osiOperations;
 	private OsiUser osiUser;
-	private Date startDate;
-	private Date endDate;
-	private String operation;
 	private Integer createdBy;
 	private Date createdDate;
 	private Integer updatedBy;
@@ -34,26 +34,21 @@ public class OsiUserOperationExcl implements java.io.Serializable {
 	public OsiUserOperationExcl() {
 	}
 
-	public OsiUserOperationExcl(int id, OsiFunctions osiFunctions,
-			OsiUser osiUser, Date startDate, Date endDate, String operation) {
+	public OsiUserOperationExcl(Long id, OsiFunctions osiFunctions,
+			OsiOperations osiOperations, OsiUser osiUser) {
 		this.id = id;
 		this.osiFunctions = osiFunctions;
+		this.osiOperations = osiOperations;
 		this.osiUser = osiUser;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.operation = operation;
 	}
 
-	public OsiUserOperationExcl(int id, OsiFunctions osiFunctions,
-			OsiUser osiUser, Date startDate, Date endDate, String operation,
-			Integer createdBy, Date createdDate, Integer updatedBy,
-			Date updatedDate) {
+	public OsiUserOperationExcl(Long id, OsiFunctions osiFunctions,
+			OsiOperations osiOperations, OsiUser osiUser, Integer createdBy,
+			Date createdDate, Integer updatedBy, Date updatedDate) {
 		this.id = id;
 		this.osiFunctions = osiFunctions;
+		this.osiOperations = osiOperations;
 		this.osiUser = osiUser;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.operation = operation;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
@@ -62,11 +57,12 @@ public class OsiUserOperationExcl implements java.io.Serializable {
 
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
-	public int getId() {
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -81,6 +77,16 @@ public class OsiUserOperationExcl implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "op_id", nullable = false)
+	public OsiOperations getOsiOperations() {
+		return this.osiOperations;
+	}
+
+	public void setOsiOperations(OsiOperations osiOperations) {
+		this.osiOperations = osiOperations;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
 	public OsiUser getOsiUser() {
 		return this.osiUser;
@@ -88,35 +94,6 @@ public class OsiUserOperationExcl implements java.io.Serializable {
 
 	public void setOsiUser(OsiUser osiUser) {
 		this.osiUser = osiUser;
-	}
-
-	@Temporal(TemporalType.DATE)
-	@Column(name = "start_date", nullable = false, length = 0)
-	public Date getStartDate() {
-		return this.startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	@Temporal(TemporalType.DATE)
-	@Column(name = "end_date", nullable = false, length = 0)
-	public Date getEndDate() {
-		return this.endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
-
-	@Column(name = "operation", nullable = false, length = 50)
-	public String getOperation() {
-		return this.operation;
-	}
-
-	public void setOperation(String operation) {
-		this.operation = operation;
 	}
 
 	@Column(name = "created_by")

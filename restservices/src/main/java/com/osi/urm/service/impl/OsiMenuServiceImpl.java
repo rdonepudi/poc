@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.osi.urm.domain.OsiMenus;
+import com.osi.urm.exception.BusinessException;
+import com.osi.urm.exception.DataAccessException;
 import com.osi.urm.repository.OsiMenuRepository;
 import com.osi.urm.service.OsiMenuService;
 import com.osi.urm.service.dto.OsiMenusDTO;
@@ -33,32 +35,29 @@ public class OsiMenuServiceImpl implements OsiMenuService{
      * @param osiMenusDTO the entity to save
      * @return the persisted entity
      */
-    public OsiMenusDTO save(OsiMenusDTO osiMenusDTO) {
+    public OsiMenusDTO save(OsiMenusDTO osiMenusDTO, Long userId) throws BusinessException{
         log.debug("Request to save OsiMenu : {}", osiMenusDTO);
-        OsiMenus osiMenus= new OsiMenus();
-        osiMenus.setMenuName(osiMenusDTO.getMenuName());
-        osiMenus.setDescription(osiMenusDTO.getDescription());
-        if(osiMenusDTO.getId()!=null){
-        	osiMenus.setId(osiMenusDTO.getId());
-        	osiMenus.setUpdatedBy(osiMenusDTO.getUpdatedBy());
-        	osiMenus.setUpdatedDate(new Date());
-        	osiMenus = osiMenuRepository.updateMenu(osiMenus);
-        }else{
-        	osiMenus.setCreatedBy(osiMenusDTO.getCreatedBy());
-        	osiMenus.setCreatedDate(new Date());
-        	osiMenus = osiMenuRepository.save(osiMenus);
-        }
-        osiMenusDTO.setId(osiMenus.getId());
-        osiMenusDTO.setMenuName(osiMenus.getMenuName());
-        osiMenusDTO.setDescription(osiMenus.getDescription());
-    	osiMenusDTO.setUpdatedBy(osiMenus.getUpdatedBy());
-    	osiMenusDTO.setUpdatedDate(osiMenus.getUpdatedDate());
-    	osiMenusDTO.setCreatedBy(osiMenus.getCreatedBy());
-    	osiMenusDTO.setCreatedDate(osiMenus.getCreatedDate());
-        /*OsiMenu osiMenu = osiMenusMapper.osiMenusDTOToOsiMenus(osiMenusDTO);
-        osiMenu = osiMenuRepository.save(osiMenu);
-        OsiMenusDTO result = osiMenusMapper.OsiMenusToOsiMenusDTO(osiMenu);
-        return result;*/
+        try {
+			OsiMenus osiMenus= new OsiMenus();
+			osiMenus.setMenuName(osiMenusDTO.getMenuName());
+			osiMenus.setDescription(osiMenusDTO.getDescription());
+			if(osiMenusDTO.getId()!=null){
+				osiMenus.setId(osiMenusDTO.getId());
+				osiMenus.setUpdatedBy(osiMenusDTO.getUpdatedBy());
+				osiMenus.setUpdatedDate(new Date());
+				osiMenus = osiMenuRepository.updateMenu(osiMenus);
+			}else{
+				osiMenus.setCreatedBy(userId);
+				osiMenus.setCreatedDate(new Date());
+				osiMenus = osiMenuRepository.save(osiMenus);
+			}
+			osiMenusDTO.setId(osiMenus.getId());
+			osiMenusDTO.setMenuName(osiMenus.getMenuName());
+			osiMenusDTO.setDescription(osiMenus.getDescription());
+		} catch (DataAccessException e) {
+			throw new BusinessException(e.getErrorCode(), e.getSystemMessage()); 
+			//e.printStackTrace();
+		}
         return osiMenusDTO;
     }
 
@@ -68,6 +67,7 @@ public class OsiMenuServiceImpl implements OsiMenuService{
      *  @param pageable the pagination information
      *  @return the list of entities
      */
+    @Transactional(readOnly = true) 
     public List<OsiMenusDTO> findAll() {
         log.debug("Request to get all OsiMenus");
         List<OsiMenus> osiMenus = osiMenuRepository.findAll();
@@ -90,6 +90,7 @@ public class OsiMenuServiceImpl implements OsiMenuService{
      *  @param id the id of the entity
      *  @return the entity
      */
+    @Transactional(readOnly = true) 
     public OsiMenusDTO findOne(Long id) {
         log.debug("Request to get OsiMenu : {}", id);
         OsiMenus osiMenus = osiMenuRepository.findOne(id);
@@ -101,9 +102,6 @@ public class OsiMenuServiceImpl implements OsiMenuService{
     	osiMenusDTO.setUpdatedDate(osiMenus.getUpdatedDate());
     	osiMenusDTO.setCreatedBy(osiMenus.getCreatedBy());
     	osiMenusDTO.setCreatedDate(osiMenus.getCreatedDate());
-       /* OsiMenu osiMenu = osiMenuRepository.findOne(id);
-        OsiMenusDTO osiMenusDTO = osiMenusMapper.osiMenusToOsiMenusDTO(osiMenu);
-        return osiMenusDTO;*/
         return osiMenusDTO;
     }
 

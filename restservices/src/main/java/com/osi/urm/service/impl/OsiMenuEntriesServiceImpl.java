@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.osi.urm.domain.OsiMenuEntries;
 import com.osi.urm.repository.OsiMenuEntriesRepository;
 import com.osi.urm.service.OsiMenuEntriesService;
 import com.osi.urm.service.dto.OsiMenuEntriesDTO;
@@ -31,15 +30,14 @@ public class OsiMenuEntriesServiceImpl implements OsiMenuEntriesService{
      * @param osiMenuEntriesDTO the entity to save
      * @return the persisted entity
      */
-    public OsiMenuEntries save(OsiMenuEntries osiMenuEntries) {
-        log.debug("Request to save OsiMenuEntries : {}", osiMenuEntries);
+    public OsiMenuEntriesDTO save(OsiMenuEntriesDTO osiMenuEntriesDTO) {
+        log.debug("Request to save OsiMenuEntries : {}", osiMenuEntriesDTO);
        /* OsiMenuEntries osiMenuEntries = osiMenuEntriesMapper.osiMenuEntriesDTOToOsiMenuEntries(osiMenuEntriesDTO);
         osiMenuEntries = osiMenuEntriesRepository.save(osiMenuEntries);
         OsiMenuEntriesDTO result = osiMenuEntriesMapper.osiMenuEntriesToOsiMenuEntriesDTO(osiMenuEntries);
         return result;
         */
-        osiMenuEntries = osiMenuEntriesRepository.save(osiMenuEntries);
-        return osiMenuEntries;
+        return null;
     }
 
     /**

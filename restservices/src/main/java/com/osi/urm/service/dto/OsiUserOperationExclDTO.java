@@ -1,20 +1,24 @@
 package com.osi.urm.service.dto;
 
-// Generated Nov 28, 2016 11:44:49 PM by Hibernate Tools 3.4.0.CR1
+// Generated Dec 1, 2016 5:20:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-@JsonInclude(Include.NON_EMPTY)
 public class OsiUserOperationExclDTO implements java.io.Serializable {
 
-	private Integer id;
+	private Long id;
 	private OsiFunctionsDTO osiFunctions;
+	private OsiOperationsDTO osiOperations;
 	private OsiUserDTO osiUser;
-	private Date startDate;
-	private Date endDate;
-	private String operation;
 	private Integer createdBy;
 	private Date createdDate;
 	private Integer updatedBy;
@@ -23,37 +27,32 @@ public class OsiUserOperationExclDTO implements java.io.Serializable {
 	public OsiUserOperationExclDTO() {
 	}
 
-	public OsiUserOperationExclDTO(Integer id, OsiFunctionsDTO osiFunctions,
-			OsiUserDTO osiUser, Date startDate, Date endDate, String operation) {
+	public OsiUserOperationExclDTO(Long id, OsiFunctionsDTO osiFunctions,
+			OsiOperationsDTO osiOperations, OsiUserDTO osiUser) {
 		this.id = id;
 		this.osiFunctions = osiFunctions;
+		this.osiOperations = osiOperations;
 		this.osiUser = osiUser;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.operation = operation;
 	}
 
-	public OsiUserOperationExclDTO(Integer id, OsiFunctionsDTO osiFunctions,
-			OsiUserDTO osiUser, Date startDate, Date endDate, String operation,
-			Integer createdBy, Date createdDate, Integer updatedBy,
-			Date updatedDate) {
+	public OsiUserOperationExclDTO(Long id, OsiFunctionsDTO osiFunctions,
+			OsiOperationsDTO osiOperations, OsiUserDTO osiUser, Integer createdBy,
+			Date createdDate, Integer updatedBy, Date updatedDate) {
 		this.id = id;
 		this.osiFunctions = osiFunctions;
+		this.osiOperations = osiOperations;
 		this.osiUser = osiUser;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.operation = operation;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -65,36 +64,20 @@ public class OsiUserOperationExclDTO implements java.io.Serializable {
 		this.osiFunctions = osiFunctions;
 	}
 
+	public OsiOperationsDTO getOsiOperations() {
+		return this.osiOperations;
+	}
+
+	public void setOsiOperations(OsiOperationsDTO osiOperations) {
+		this.osiOperations = osiOperations;
+	}
+
 	public OsiUserDTO getOsiUser() {
 		return this.osiUser;
 	}
 
 	public void setOsiUser(OsiUserDTO osiUser) {
 		this.osiUser = osiUser;
-	}
-
-	public Date getStartDate() {
-		return this.startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public Date getEndDate() {
-		return this.endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
-
-	public String getOperation() {
-		return this.operation;
-	}
-
-	public void setOperation(String operation) {
-		this.operation = operation;
 	}
 
 	public Integer getCreatedBy() {
@@ -128,4 +111,5 @@ public class OsiUserOperationExclDTO implements java.io.Serializable {
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
+
 }
